@@ -1,15 +1,15 @@
 <!--
- * @FilePath: \Furnace\src\layout\App.vue
+ * @FilePath: \Furnace\src\pages\Debug\debug.vue
  * @Author: maggot-code
- * @Date: 2022-11-21 14:19:59
+ * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-21 15:26:02
+ * @LastEditTime: 2022-11-21 15:26:44
  * @Description: 
 -->
 <script setup></script>
 
 <template>
-    <div id=app>123</div>
+    <h1>debug</h1>
 </template>
 
 <style scoped lang='scss'>
