@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:03:15
+ * @LastEditTime: 2022-11-23 03:04:48
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
@@ -42,7 +42,7 @@ function generate(props) {
     }
 }
 
-export function defineService(fetch) {
+export function defineService(toFetch) {
     function send(entity, props) {
         const { trans } = defineSendProps(props);
         const controller = new AbortController();
@@ -51,7 +51,7 @@ export function defineService(fetch) {
         entity.config.bind("signal", controller.signal);
         entity.toStart();
 
-        return fetch(unref(entity.config.source))
+        return toFetch(unref(entity.config.source))
             .then((response) => {
                 console.log(response);
                 return trans(response);
