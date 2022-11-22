@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:04:48
+ * @LastEditTime: 2022-11-23 03:15:43
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
@@ -14,6 +14,7 @@ import { NormResult } from "@/service/result.entity";
 
 function generate(props) {
     const config = defineConfig(props);
+    // 存疑
     const result = defineShallowObject(NormResult);
     const pend = defineState(false);
     const finish = defineState(true);
@@ -44,8 +45,10 @@ function generate(props) {
 
 export function defineService(toFetch) {
     function send(entity, props) {
+        // props 置换不应该出现在这里，应该在定义服务时配置
         const { trans } = defineSendProps(props);
         const controller = new AbortController();
+        const toResult = flow(trans, entity.result.setup);
 
         entity.config.bind("controller", controller);
         entity.config.bind("signal", controller.signal);
@@ -53,11 +56,9 @@ export function defineService(toFetch) {
 
         return toFetch(unref(entity.config.source))
             .then((response) => {
-                console.log(response);
-                return trans(response);
+                return toResult(response);
             })
             .catch((error) => {
-                console.log(error);
                 return error;
             })
             .finally(entity.toEnd);

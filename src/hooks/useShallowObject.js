@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-22 12:50:47
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-22 13:15:55
+ * @LastEditTime: 2022-11-23 03:11:17
  * @Description: 
  */
 import { toPlainObject } from "@/shared/trans";
@@ -16,7 +16,7 @@ export function defineShallowObject(rawSource) {
     function setup(value) {
         source.value = toPlainObject(value);
 
-        return source;
+        return unref(source);
     }
     function bind(path, value) {
         const data = cloneDeep(unref(source));

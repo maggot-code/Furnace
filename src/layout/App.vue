@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:01:43
+ * @LastEditTime: 2022-11-23 03:15:12
  * @Description: 
 -->
 <script setup>
@@ -25,8 +25,8 @@ const serverLoad = useServerLoad([userListServer, postListServer], "加油");
 const unwatchLoad = serverLoad.watchLoad();
 
 onMounted(async () => {
-    service.send(userListServer);
-    service.send(postListServer);
+    await service.send(userListServer);
+    await service.send(postListServer);
 });
 onBeforeUnmount(() => {
     unwatchLoad();
