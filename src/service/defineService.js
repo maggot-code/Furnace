@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 01:28:59
+ * @LastEditTime: 2022-11-23 03:03:15
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
@@ -13,10 +13,10 @@ import { defineSendProps } from "@/service/props.entity";
 import { NormResult } from "@/service/result.entity";
 
 function generate(props) {
+    const config = defineConfig(props);
+    const result = defineShallowObject(NormResult);
     const pend = defineState(false);
     const finish = defineState(true);
-    const result = defineShallowObject(NormResult);
-    const config = defineConfig(props);
 
     const loading = computed(() => unref(pend.state));
     const finished = computed(() => unref(finish.state));
