@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-21 14:42:37
+ * @LastEditTime: 2022-11-22 13:27:54
  * @Description: 
  */
 export default [
@@ -13,6 +13,10 @@ export default [
     "isNumber",
     "isBoolean",
     "isFunction",
+    "isPlainObject",
+    "set",
+    "get",
+    "merge",
     "chunk",
     "camelCase",
     "flow",
