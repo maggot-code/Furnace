@@ -3,14 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:15:43
+ * @LastEditTime: 2022-11-23 15:42:01
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
 import { defineShallowObject } from "@/hooks/useShallowObject";
 import { defineConfig } from "@/service/config.entity";
-import { defineSendProps } from "@/service/props.entity";
 import { NormResult } from "@/service/result.entity";
+import { toBoolean } from "@/shared/trans";
 
 function generate(props) {
     const config = defineConfig(props);
@@ -44,11 +44,8 @@ function generate(props) {
 }
 
 export function defineService(toFetch) {
-    function send(entity, props) {
-        // props 置换不应该出现在这里，应该在定义服务时配置
-        const { trans } = defineSendProps(props);
+    function send(entity) {
         const controller = new AbortController();
-        const toResult = flow(trans, entity.result.setup);
 
         entity.config.bind("controller", controller);
         entity.config.bind("signal", controller.signal);
@@ -56,12 +53,17 @@ export function defineService(toFetch) {
 
         return toFetch(unref(entity.config.source))
             .then((response) => {
-                return toResult(response);
+                return entity.result.setup(response);
             })
             .catch((error) => {
                 return error;
             })
             .finally(entity.toEnd);
+    }
+    function sendAll(group, settled) {
+        if (toBoolean(settled, true)) return Promise.allSettled(group.map((entity) => send(entity)));
+
+        return Promise.all(group.map((entity) => send(entity)));
     }
     function abort(entity) {
         const controller = entity.config.take("controller");
@@ -71,6 +73,7 @@ export function defineService(toFetch) {
 
     return {
         send,
+        sendAll,
         abort,
         define: generate
     }

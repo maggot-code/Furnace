@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:15:12
+ * @LastEditTime: 2022-11-23 15:45:49
  * @Description: 
 -->
 <script setup>
@@ -21,20 +21,22 @@ const service = defineService(define);
 const userListServer = service.define({ url: "/users" });
 const postListServer = service.define({ url: "/posts" });
 
-const serverLoad = useServerLoad([userListServer, postListServer], "加油");
-const unwatchLoad = serverLoad.watchLoad();
+const groupServer = [userListServer, postListServer];
+const loading = useServerLoad(groupServer);
 
 onMounted(async () => {
-    await service.send(userListServer);
-    await service.send(postListServer);
+    // await service.send(userListServer);
+    // await service.send(postListServer);
+    await service.sendAll(groupServer);
 });
-onBeforeUnmount(() => {
-    unwatchLoad();
-});
+onBeforeUnmount(() => { });
 </script>
 
 <template>
-    <div id=app>
+    <div
+        id=app
+        v-loading="loading"
+    >
         <h1>app</h1>
     </div>
 </template>
