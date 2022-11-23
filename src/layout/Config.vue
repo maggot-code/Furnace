@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 17:30:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 17:38:14
+ * @LastEditTime: 2022-11-23 23:23:26
  * @Description: 
 -->
 <script setup>
@@ -19,5 +19,5 @@ const globeStore = useGlobeStore();
 </template>
 
 <style scoped lang='scss'>
-@import "@/assets/style/container.scss";
+
 </style>

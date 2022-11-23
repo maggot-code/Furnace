@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 18:21:34
+ * @LastEditTime: 2022-11-23 23:14:29
  * @Description: 
 -->
 <script setup>
@@ -15,7 +15,16 @@ const routerStore = useRouterStore();
 <template>
     <config v-if="routerStore.ready">
         <popup>
-            <router-view></router-view>
+            <lock-screen>
+                <router-view v-slot="{ Component }">
+                    <transition
+                        name="fade"
+                        mode="out-in"
+                    >
+                        <component :is="Component" />
+                    </transition>
+                </router-view>
+            </lock-screen>
         </popup>
     </config>
 </template>
