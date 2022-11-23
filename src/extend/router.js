@@ -3,9 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:54:32
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-21 15:07:08
+ * @LastEditTime: 2022-11-23 16:43:40
  * @Description: 
  */
-export function extendRouter(Vue) { }
+import { defineRouter } from "@/router/defineRouter";
+
+const { router, VueRouter } = defineRouter();
+
+export function extendRouter(Vue) {
+    Vue.use(VueRouter);
+
+    return router;
+}
 
 export default extendRouter;

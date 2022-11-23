@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 01:55:12
+ * @LastEditTime: 2022-11-23 16:37:56
  * @Description: 
  */
 import Vue from 'vue';
@@ -18,16 +18,16 @@ import App from '@/layout/App.vue';
 import "normalize.css";
 import "@/assets/style/index.scss";
 
-const router = extendRouter(Vue);
 const pinia = extendPinia(Vue);
+const router = extendRouter(Vue);
 extendElement(Vue);
 extendTable(Vue);
 extendForm(Vue);
 
 const app = new Vue({
     render: h => h(App),
-    router,
     pinia,
+    router,
 });
 
 app.$mount("#app");

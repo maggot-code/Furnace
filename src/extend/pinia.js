@@ -3,21 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:54:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-21 15:01:58
+ * @LastEditTime: 2022-11-23 16:34:39
  * @Description: 
  */
-import { createPinia, PiniaVuePlugin } from "pinia";
-import { createPersistedState } from "pinia-plugin-persistedstate";
+import { definePinia } from "@/store/definePinia";
 
-export const pinia = createPinia();
-
-pinia.use(createPersistedState({
-    debug: import.meta.env.DEV,
-    storage: sessionStorage
-}));
+const { pinia, PiniaVuePlugin } = definePinia();
 
 export function extendPinia(Vue) {
     Vue.use(PiniaVuePlugin);
+
+    return pinia;
 }
 
 export default extendPinia;
