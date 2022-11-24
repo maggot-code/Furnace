@@ -3,13 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 23:14:29
+ * @LastEditTime: 2022-11-24 11:51:52
  * @Description: 
 -->
 <script setup>
-import { useRouterStore } from "@/router/useRouterStore";
+import { useRouterStore } from "@/store/useRouterStore";
+import { obtainRouter } from "@/server/Router/get";
 
 const routerStore = useRouterStore();
+
+onMounted(async () => {
+    const response = await obtainRouter();
+    console.log(response);
+});
 </script>
 
 <template>

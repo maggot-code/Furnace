@@ -1,19 +1,23 @@
 /*
- * @FilePath: \Furnace\src\router\useRouterStore.js
+ * @FilePath: \Furnace\src\store\useRouterStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 18:08:36
+ * @LastEditTime: 2022-11-24 11:40:21
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { composeRoutes } from "@/router/composeRoutes";
 import {
-    defineFreezeRoutes,
     defineExternRoutes,
+    defineFreezeRoutes,
     defineDriveRoutes,
     defineStateRoutes
 } from "@/router/defineRoutes";
+
+import FreezeRoutes from "@/assets/json/freeze.routes";
+import DriveRoutes from "@/assets/json/drive.routes";
+import StateRoutes from "@/assets/json/state.routes";
 
 const paths = ["cache"];
 
@@ -35,10 +39,10 @@ export const useRouterStore = defineStore(Namespace, {
         // 处理缓存转换路由数据
         routes() {
             return composeRoutes({
-                freeze: defineFreezeRoutes(this.cache),
                 extern: defineExternRoutes(this.cache),
-                drive: defineDriveRoutes(this.cache),
-                state: defineStateRoutes(this.cache)
+                freeze: defineFreezeRoutes(FreezeRoutes),
+                drive: defineDriveRoutes(DriveRoutes),
+                state: defineStateRoutes(StateRoutes)
             });
         }
     },

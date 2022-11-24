@@ -1,0 +1,20 @@
+[
+    {
+        "namespace": "DRIVE",
+        "name": "debug",
+        "component": "Debug/debug.vue",
+        "address": "/debug",
+        "dev": true
+    },
+    {
+        "namespace": "DRIVE",
+        "name": "fragment",
+        "component": "Fragment/fragment.vue"
+    },
+    {
+        "namespace": "DRIVE",
+        "name": "redirect",
+        "component": "Redirect/redirect.vue",
+        "address": "/redirect"
+    }
+]

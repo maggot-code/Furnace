@@ -1,0 +1,16 @@
+[
+    {
+        "namespace": "FREEZE",
+        "name": "welcome",
+        "component": "Welcome/welcome.vue",
+        "address": "/",
+        "title": "欢迎"
+    },
+    {
+        "namespace": "FREEZE",
+        "name": "business",
+        "component": "Business/business.vue",
+        "address": "/biz",
+        "title": "业务"
+    }
+]

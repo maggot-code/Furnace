@@ -1,0 +1,23 @@
+[
+    {
+        "namespace": "STATE",
+        "name": "forbidden",
+        "component": "Accident/forbidden.vue",
+        "address": "/403",
+        "title": "403"
+    },
+    {
+        "namespace": "STATE",
+        "name": "notfound",
+        "component": "Accident/notfound.vue",
+        "address": "/404",
+        "title": "404"
+    },
+    {
+        "namespace": "STATE",
+        "name": "error",
+        "component": "Accident/error.vue",
+        "address": "/500",
+        "title": "500"
+    }
+]
