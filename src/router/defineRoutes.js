@@ -3,14 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 17:45:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 13:29:39
+ * @LastEditTime: 2022-11-24 18:41:07
  * @Description: 
  */
-import { transRoutes } from "@/router/trans";
+import { transRouteGroup } from "@/router/trans";
 
 // 定义静态路由
 export function defineFreezeRoutes(source) {
-    const routes = transRoutes(source);
+    const routes = transRouteGroup(source);
     console.log(routes);
 
     return [];

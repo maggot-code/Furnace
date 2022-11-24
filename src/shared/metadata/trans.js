@@ -3,17 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 13:00:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 15:26:50
+ * @LastEditTime: 2022-11-24 18:29:07
  * @Description: 
  */
-import { toArray } from "@/shared/trans";
-
-const normAdapter = (item) => (item);
+import { toArray, mergePlainObject } from "@/shared/trans";
+import { isEmpty, notEmpty } from "@/shared/is";
 
 // 数组结构转树结构
-export function arrayToTree(parent, dataSource, props = {}) {
-    const check = get(props, "check", eq);
-    const adapter = get(props, "adapter", normAdapter);
+const normToTreeProps = {
+    check: eq,
+    adapter: (item) => (item)
+}
+export function arrayToTree(parent, dataSource, props) {
+    const { check, adapter } = mergePlainObject(normToTreeProps, props);
 
     return toArray(dataSource).reduce((store, raw, index, source) => {
         if (check(parent, raw)) store.push(adapter({
@@ -24,4 +26,26 @@ export function arrayToTree(parent, dataSource, props = {}) {
 
         return store;
     }, []);
+}
+
+// 树结构循环
+function setupLevel(parent) {
+    return isEmpty(parent) ? 0 : parent.level + 1;
+}
+export function treeMap(tree, callback, parent) {
+    return toArray(tree).map((item, index, source) => {
+        const node = callback({
+            parent,
+            item,
+            index,
+            source,
+            level: setupLevel(parent),
+        });
+
+        if (isEmpty(node)) return;
+
+        node.children = treeMap(node.children, callback, node);
+
+        return node;
+    }).filter(notEmpty);
 }

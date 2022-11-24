@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:34:29
+ * @LastEditTime: 2022-11-24 18:31:23
  * @Description: 
  */
 // 关键字定义
@@ -34,16 +34,29 @@ export const NamespaceMapping = {
 export const Namespace = "UNKNOW";
 
 // 基础状态定义
-export const BasicState = {
-    namespace: Namespace,
-}
+export const BasicState = [
+    "name",
+    "address",
+    "redirect",
+    "pid",
+    "id"
+];
 
 // 路由元数据定义
 export const MetaData = {
+    mode: "unknow",
+    template: "unknow",
     icon: "el-icon-house",
+    namespace: Namespace,
     title: Namespace,
     hidden: true,
     affix: false,
     menu: false,
     dev: false,
+    level: 0,
+    pid: null,
+    id: null,
+    parent: null,
+    hasParent: false,
+    hasChild: false
 }
