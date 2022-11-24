@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:23:24
+ * @LastEditTime: 2022-11-24 14:41:17
  * @Description: 
  */
 export default [
@@ -16,6 +16,7 @@ export default [
     "isPlainObject",
     "toLower",
     "toUpper",
+    "eq",
     "set",
     "get",
     "pick",

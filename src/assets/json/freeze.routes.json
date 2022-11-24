@@ -8,6 +8,13 @@
     },
     {
         "namespace": "FREEZE",
+        "name": "signin",
+        "component": "User/signin.vue",
+        "address": "/login",
+        "title": "登录"
+    },
+    {
+        "namespace": "FREEZE",
         "name": "business",
         "component": "Business/business.vue",
         "address": "/biz",

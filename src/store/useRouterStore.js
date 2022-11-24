@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:40:21
+ * @LastEditTime: 2022-11-24 13:30:41
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -18,6 +18,7 @@ import {
 import FreezeRoutes from "@/assets/json/freeze.routes";
 import DriveRoutes from "@/assets/json/drive.routes";
 import StateRoutes from "@/assets/json/state.routes";
+import AA from "@/assets/mock/router.get";
 
 const paths = ["cache"];
 
@@ -39,10 +40,12 @@ export const useRouterStore = defineStore(Namespace, {
         // 处理缓存转换路由数据
         routes() {
             return composeRoutes({
-                extern: defineExternRoutes(this.cache),
-                freeze: defineFreezeRoutes(FreezeRoutes),
-                drive: defineDriveRoutes(DriveRoutes),
-                state: defineStateRoutes(StateRoutes)
+                freeze: defineFreezeRoutes(AA.data),
+
+                // extern: defineExternRoutes(this.cache),
+                // freeze: defineFreezeRoutes(FreezeRoutes),
+                // drive: defineDriveRoutes(DriveRoutes),
+                // state: defineStateRoutes(StateRoutes)
             });
         }
     },

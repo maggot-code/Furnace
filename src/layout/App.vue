@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:51:52
+ * @LastEditTime: 2022-11-24 12:47:42
  * @Description: 
 -->
 <script setup>
@@ -14,7 +14,7 @@ const routerStore = useRouterStore();
 
 onMounted(async () => {
     const response = await obtainRouter();
-    console.log(response);
+    // console.log(response);
 });
 </script>
 

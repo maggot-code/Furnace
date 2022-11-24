@@ -3,10 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:36:21
+ * @LastEditTime: 2022-11-24 15:27:32
  * @Description: 
  */
-import { isKeyword, mergeMetaData } from "@/router/shared";
+import { arrayToTree } from "@/shared/metadata/trans";
+import {
+    isKeyword,
+    mergeMetaData,
+} from "@/router/shared";
 
 // 构建路由原数据
 export function buildMetaData(rawRoute) {
@@ -22,4 +26,14 @@ export function transRouteNode(rawRoute) {
     return {
         meta
     };
+}
+
+// 转换路由
+export function transRoutes(rawData) {
+    // 结构转换
+    const tree = arrayToTree(null, rawData, {
+        check: (parent, raw) => eq(parent?.id ?? null, raw.pid)
+    });
+
+    return tree;
 }
