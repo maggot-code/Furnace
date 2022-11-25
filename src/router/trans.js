@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 18:32:51
+ * @LastEditTime: 2022-11-25 13:08:41
  * @Description: 
  */
 import { notEmpty } from "@/shared/is";
@@ -12,30 +12,18 @@ import { arrayToTree, treeMap } from "@/shared/metadata/trans";
 import {
     checkParent,
     checkDataSource,
-    mergeMetaData,
-    mergeRouterConfig,
 } from "@/router/shared";
 
 // 转换路由节点
-export function transRouteNode({ parent, item, level }) {
+export function transRouteNode(rawNode) {
     // 如果无法通过检查，则记录该数据源信息
     // recordBadRoute 还没实现 TODO..
     // if(checkDataSource(rawRoute)) return recordBadRoute(rawRoute);
-    if (checkDataSource(item)) return;
+    if (checkDataSource(rawNode)) return;
 
-    const rawMeta = {
-        parent,
-        level,
-        hasParent: notEmpty(parent),
-        hasChild: notEmpty(item.children)
-    };
+    console.log(rawNode);
 
-    return mergePlainObject(item, {
-        parent,
-        level,
-        meta: mergeMetaData(mergePlainObject(item, rawMeta)),
-        config: mergeRouterConfig(item),
-    });
+    return rawNode;
 }
 
 // 转换路由组

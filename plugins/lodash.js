@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 14:41:17
+ * @LastEditTime: 2022-11-25 13:04:35
  * @Description: 
  */
 export default [
@@ -20,7 +20,9 @@ export default [
     "set",
     "get",
     "pick",
+    "omit",
     "concat",
+    "compact",
     "merge",
     "chunk",
     "camelCase",
