@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 17:45:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 18:41:07
+ * @LastEditTime: 2022-11-25 16:24:46
  * @Description: 
  */
 import { transRouteGroup } from "@/router/trans";
@@ -11,8 +11,6 @@ import { transRouteGroup } from "@/router/trans";
 // 定义静态路由
 export function defineFreezeRoutes(source) {
     const routes = transRouteGroup(source);
-    console.log(routes);
-
     return [];
 }
 
@@ -23,7 +21,13 @@ export function defineExternRoutes(source) {
 
 // 定义功能路由
 export function defineDriveRoutes(source) {
-    return [];
+    return [
+        {
+            path: "/curd/simple",
+            name: "SimpleCurd",
+            component: () => import("@/pages/Curd/simple.vue"),
+        }
+    ];
 }
 
 // 定义状态路由

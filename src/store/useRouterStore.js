@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 13:30:41
+ * @LastEditTime: 2022-11-25 16:26:56
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -27,7 +27,8 @@ export const Namespace = 'useRouterStore';
 export const useRouterStore = defineStore(Namespace, {
     state: () => ({
         ready: false,
-        cache: []
+        // cache: []
+        cache: AA.data
     }),
 
     getters: {
@@ -40,12 +41,10 @@ export const useRouterStore = defineStore(Namespace, {
         // 处理缓存转换路由数据
         routes() {
             return composeRoutes({
-                freeze: defineFreezeRoutes(AA.data),
-
-                // extern: defineExternRoutes(this.cache),
-                // freeze: defineFreezeRoutes(FreezeRoutes),
-                // drive: defineDriveRoutes(DriveRoutes),
-                // state: defineStateRoutes(StateRoutes)
+                extern: defineExternRoutes(this.cache),
+                freeze: defineFreezeRoutes(FreezeRoutes),
+                drive: defineDriveRoutes(DriveRoutes),
+                state: defineStateRoutes(StateRoutes)
             });
         }
     },

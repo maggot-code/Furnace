@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 13:08:41
+ * @LastEditTime: 2022-11-25 16:25:20
  * @Description: 
  */
 import { notEmpty } from "@/shared/is";
@@ -20,8 +20,6 @@ export function transRouteNode(rawNode) {
     // recordBadRoute 还没实现 TODO..
     // if(checkDataSource(rawRoute)) return recordBadRoute(rawRoute);
     if (checkDataSource(rawNode)) return;
-
-    console.log(rawNode);
 
     return rawNode;
 }
