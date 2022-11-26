@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\layout\App.vue
+ * @FilePath: /Furnace/src/layout/App.vue
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 14:33:37
+ * @LastEditTime: 2022-11-26 14:31:41
  * @Description: 
 -->
 <script setup>
@@ -19,17 +19,19 @@ onMounted(async () => {
 </script>
 
 <template>
-    <config v-if="routerStore.ready">
+    <config>
         <popup>
             <lock-screen>
-                <router-view v-slot="{ Component }">
-                    <transition
-                        name="fade"
-                        mode="out-in"
-                    >
-                        <component :is="Component" />
-                    </transition>
-                </router-view>
+                <template v-if="routerStore.ready">
+                    <router-view v-slot="{ Component }">
+                        <transition
+                            name="fade"
+                            mode="out-in"
+                        >
+                            <component :is="Component" />
+                        </transition>
+                    </router-view>
+                </template>
             </lock-screen>
         </popup>
     </config>

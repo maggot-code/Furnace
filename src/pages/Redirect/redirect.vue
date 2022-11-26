@@ -1,17 +1,26 @@
 <!--
- * @FilePath: \Furnace\src\pages\Redirect\redirect.vue
+ * @FilePath: /Furnace/src/pages/Redirect/redirect.vue
  * @Author: maggot-code
  * @Date: 2022-11-21 15:17:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-21 15:17:14
+ * @LastEditTime: 2022-11-26 15:17:57
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { useRouter, useRoute } from "@/hooks/useRouter";
 
-<template>
-    <h1>Redirect</h1>
-</template>
+const router = useRouter();
+const route = useRoute();
 
-<style scoped lang='scss'>
+onBeforeMount(() => {
+    const { params, query } = route;
+    const [path] = params.path.split("?");
 
-</style>
+    router.replace({
+        path,
+        query
+    });
+});
+</script>
+
+<template></template>

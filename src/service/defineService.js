@@ -1,16 +1,20 @@
 /*
- * @FilePath: \Furnace\src\service\defineService.js
+ * @FilePath: /Furnace/src/service/defineService.js
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 15:42:01
+ * @LastEditTime: 2022-11-26 15:30:43
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
 import { defineShallowObject } from "@/hooks/useShallowObject";
 import { defineConfig } from "@/service/config.entity";
 import { NormResult } from "@/service/result.entity";
-import { toBoolean } from "@/shared/trans";
+import { toBoolean, mergePlainObject } from "@/shared/trans";
+
+const serviceProps = {
+    transResponse: (response) => response,
+};
 
 function generate(props) {
     const config = defineConfig(props);
@@ -43,9 +47,12 @@ function generate(props) {
     }
 }
 
-export function defineService(toFetch) {
-    function send(entity) {
+export function defineService(toFetch, props) {
+    function send(entity, sendProps) {
         const controller = new AbortController();
+        const handler = mergePlainObject(props, sendProps);
+        const { transResponse } = mergePlainObject(serviceProps, handler);
+        const toTrans = flow([transResponse, entity.result.setup]);
 
         entity.config.bind("controller", controller);
         entity.config.bind("signal", controller.signal);
@@ -53,7 +60,7 @@ export function defineService(toFetch) {
 
         return toFetch(unref(entity.config.source))
             .then((response) => {
-                return entity.result.setup(response);
+                return toTrans(response);
             })
             .catch((error) => {
                 return error;

@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\router\defineRouter.js
+ * @FilePath: /Furnace/src/router/defineRouter.js
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 16:25:59
+ * @LastEditTime: 2022-11-26 15:11:03
  * @Description: 
  */
 import VueRouter from "vue-router";
@@ -20,7 +20,6 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 export const router = buildVueRouter();
 
 export function routeMount(route) {
-    console.log(route);
     router.addRoute(route);
 
     return route;

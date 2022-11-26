@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\router\composeRoutes.js
+ * @FilePath: /Furnace/src/router/composeRoutes.js
  * @Author: maggot-code
  * @Date: 2022-11-23 17:49:30
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 18:11:48
+ * @LastEditTime: 2022-11-26 15:10:01
  * @Description: 
  */
 import { toArray } from "@/shared/trans";

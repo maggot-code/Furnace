@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\service\model\Application.js
+ * @FilePath: /Furnace/src/service/model/Application.js
  * @Author: maggot-code
  * @Date: 2022-11-24 10:05:30
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 11:42:32
+ * @LastEditTime: 2022-11-26 15:36:45
  * @Description: 
  */
 import axios from "axios";
@@ -14,6 +14,12 @@ const define = axios.create({
     timeout: import.meta.env.DEV ? 0 : 30000,
 });
 
-export const service = defineService(define);
+function transResponse(response) {
+    return response.data;
+}
+
+export const service = defineService(define, {
+    transResponse
+});
 
 export default service;

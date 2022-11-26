@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\router\defineRoutes.js
+ * @FilePath: /Furnace/src/router/defineRoutes.js
  * @Author: maggot-code
  * @Date: 2022-11-23 17:45:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 16:24:46
+ * @LastEditTime: 2022-11-26 15:10:44
  * @Description: 
  */
 import { transRouteGroup } from "@/router/trans";
@@ -37,8 +37,16 @@ export function defineStateRoutes(source) {
         path: "/:pathMatch(.*)*",
         redirect: "/404"
     };
+    const routes = [
+        {
+            path: "/redirect",
+            name: "Redirect",
+            component: () => import("@/pages/Redirect/redirect.vue"),
+        }
+    ];
+    routes.push(accident);
 
-    return [].push(accident);
+    return routes;
 }
 
 export default defineStateRoutes;

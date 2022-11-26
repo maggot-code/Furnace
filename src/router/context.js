@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\router\context.js
+ * @FilePath: /Furnace/src/router/context.js
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 13:09:25
+ * @LastEditTime: 2022-11-26 14:51:24
  * @Description: 
  */
 // 关键字定义
@@ -32,3 +32,6 @@ export const NamespaceMapping = {
 
 // 未定义命名空间
 export const Namespace = "UNKNOW";
+
+// 重定向路由
+export const RedirectName = "Redirect";
