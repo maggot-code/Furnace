@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 16:29:52
+ * @LastEditTime: 2022-11-27 00:06:19
  * @Description: 
 -->
 <script setup>
@@ -13,6 +13,7 @@ import { useServerLoad } from "@/hooks/useServerLoad";
 import { ConfigCurdServer, obtainCurdConfig } from "@/server/Template/config";
 import { SearchCurdServer, TableCurdServer, obtainLayoutCurd } from "../server/layout";
 import { defineSearch } from "../domain/defineSearch";
+import { defineList } from "../domain/defineList";
 
 const serverGroup = [
     ConfigCurdServer,
@@ -25,8 +26,10 @@ const route = useRoute();
 const loading = useServerLoad(serverGroup);
 const hasSearch = slotServer.slotState(slots.search, SearchCurdServer.finished);
 const hasControl = slotServer.slotState(slots.control, TableCurdServer.finished);
-const hasTable = slotServer.slotState(slots.table, TableCurdServer.finished);
+const hasList = slotServer.slotState(slots.list, TableCurdServer.finished);
+
 const searchEntity = defineSearch();
+const listEntity = defineList();
 
 onBeforeMount(async () => {
     const { query } = route;
@@ -59,10 +62,10 @@ onMounted(() => { });
             </el-header>
 
             <el-main
-                class="simple-curd-body-table"
-                v-if="hasTable"
+                class="simple-curd-body-list"
+                v-if="hasList"
             >
-                <slot name="table"></slot>
+                <slot name="list"></slot>
             </el-main>
             <template v-else>
                 <EmptyView />
@@ -72,5 +75,5 @@ onMounted(() => { });
 </template>
 
 <style scoped lang='scss'>
-@import "@/template/SimpleCurd/style/index.scss";
+@import "../style/index.scss";
 </style>

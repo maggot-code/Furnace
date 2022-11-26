@@ -1,16 +1,16 @@
 /*
- * @FilePath: \Furnace\src\hooks\useShallowObject.js
+ * @FilePath: /Furnace/src/hooks/useShallowObject.js
  * @Author: maggot-code
  * @Date: 2022-11-22 12:50:47
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 03:11:17
+ * @LastEditTime: 2022-11-26 17:26:29
  * @Description: 
  */
 import { toPlainObject } from "@/shared/trans";
 
 export function defineShallowObject(rawSource) {
     const source = shallowRef(toPlainObject(rawSource));
-    const size = computed(() => Reflect.ownKeys(unref(source)).length);
+    const size = computed(() => Object.keys(unref(source)).length);
     const empty = computed(() => unref(size) <= 0);
 
     function setup(value) {
