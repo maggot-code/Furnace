@@ -3,15 +3,15 @@
  * @Author: maggot-code
  * @Date: 2022-11-22 12:50:47
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 17:26:29
+ * @LastEditTime: 2022-11-27 02:56:11
  * @Description: 
  */
 import { toPlainObject } from "@/shared/trans";
+import { useComplexState } from "@/hooks/useRefState";
 
 export function defineShallowObject(rawSource) {
     const source = shallowRef(toPlainObject(rawSource));
-    const size = computed(() => Object.keys(unref(source)).length);
-    const empty = computed(() => unref(size) <= 0);
+    const { size, empty, usable, unusable } = useComplexState(source, { trans: Object.keys });
 
     function setup(value) {
         source.value = toPlainObject(value);
@@ -37,6 +37,8 @@ export function defineShallowObject(rawSource) {
         source,
         size,
         empty,
+        usable,
+        unusable,
         setup,
         bind,
         take,

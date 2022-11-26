@@ -3,10 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 23:59:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 00:01:27
+ * @LastEditTime: 2022-11-27 03:24:40
  * @Description: 
  */
-export function defineList() {
+import { TableEntitySymbol } from "../shared/context";
+
+export function defineList(props) {
+    const { tableElement, tableSchema } = props;
+
+    provide(TableEntitySymbol, {
+        element: tableElement,
+        schema: tableSchema
+    });
+
     return {}
 }
 

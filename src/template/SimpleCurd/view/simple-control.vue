@@ -3,13 +3,13 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:52:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 00:03:54
+ * @LastEditTime: 2022-11-27 03:27:30
  * @Description: 
 -->
 <script setup>
-import { useList } from "../usecase/useList";
+import { TableEntitySymbol } from "../shared/context";
 
-const list = useList();
+const { element, schema } = inject(TableEntitySymbol);
 </script>
 
 <template></template>

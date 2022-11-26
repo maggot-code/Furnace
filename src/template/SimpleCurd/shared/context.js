@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 16:25:56
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 00:00:40
+ * @LastEditTime: 2022-11-27 03:19:13
  * @Description: 
  */
-// 搜索实体注入关键字
-export const SearchSymbolName = Symbol('SimpleCurdSearch');
+// 表单实体关键字注入
+export const SearchEntitySymbol = Symbol("SearchEntitySymbol");
 
-// 列表实体注入关键字
-export const ListSymbolName = Symbol('SimpleCurdList');
+// 表格实体关键字注入
+export const TableEntitySymbol = Symbol("TableEntitySymbol");

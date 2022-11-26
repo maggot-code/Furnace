@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 17:45:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 15:10:44
+ * @LastEditTime: 2022-11-27 01:11:27
  * @Description: 
  */
 import { transRouteGroup } from "@/router/trans";
@@ -42,6 +42,11 @@ export function defineStateRoutes(source) {
             path: "/redirect",
             name: "Redirect",
             component: () => import("@/pages/Redirect/redirect.vue"),
+        },
+        {
+            path: "/404",
+            name: "notfound",
+            component: () => import("@/pages/Accident/notfound.vue"),
         }
     ];
     routes.push(accident);

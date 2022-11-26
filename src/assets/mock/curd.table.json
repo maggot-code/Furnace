@@ -1,5 +1,165 @@
 {
     "code": -1,
     "message": "ok",
-    "data": {}
+    "data": {
+        "keyname": "id",
+        "uiSchema": {
+            "border": true,
+            "stripe": false,
+            "isPage": false,
+            "isChoice": false,
+            "isIndex": false,
+            "isLabel": true,
+            "size": "mini",
+            "handleFixed": "right"
+        },
+        "controller": {
+            "export": {
+                "mode": "export",
+                "type": "default",
+                "useAll": true,
+                "label": "导出文件"
+            },
+            "delete": {
+                "mode": "delete",
+                "type": "default",
+                "useAll": true,
+                "useRow": true,
+                "label": "删除"
+            },
+            "add": {
+                "mode": "add",
+                "type": "default",
+                "useAll": true,
+                "label": "新增"
+            },
+            "edit": {
+                "mode": "edit",
+                "type": "default",
+                "useRow": true,
+                "label": "修改"
+            }
+        },
+        "mergeSchema": {},
+        "columnSchema": [
+            {
+                "prop": "id",
+                "mold": "default",
+                "label": "主键",
+                "align": "center",
+                "width": 260
+            },
+            {
+                "prop": "password",
+                "mold": "void"
+            },
+            {
+                "prop": "birthday",
+                "mold": "date",
+                "label": "生日",
+                "align": "center",
+                "width": 160,
+                "lib": {
+                    "ui": {
+                        "type": "date",
+                        "placeholder": "请选择出生日期"
+                    }
+                }
+            },
+            {
+                "prop": "register",
+                "mold": "datetime",
+                "label": "注册时间",
+                "align": "center",
+                "width": 180,
+                "lib": {
+                    "ui": {
+                        "placeholder": "请选择注册时间"
+                    }
+                }
+            },
+            {
+                "prop": "name",
+                "mold": "html",
+                "label": "姓名",
+                "align": "center",
+                "width": 90
+            },
+            {
+                "prop": "age",
+                "mold": "number",
+                "label": "年龄",
+                "align": "center",
+                "minWidth": 160,
+                "lib": {
+                    "ui": {
+                        "controls": false
+                    }
+                }
+            },
+            {
+                "prop": "sex",
+                "mold": "select",
+                "label": "性别",
+                "align": "center",
+                "minWidth": 160,
+                "lib": {
+                    "data": {
+                        "api": "/api/sex",
+                        "lib": {
+                            "codeid": "SE"
+                        }
+                    },
+                    "ui": {}
+                }
+            },
+            {
+                "prop": "deposit",
+                "mold": "money",
+                "label": "存款",
+                "align": "center",
+                "minWidth": 160,
+                "lib": {
+                    "ui": {}
+                }
+            },
+            {
+                "prop": "address",
+                "mold": "cascader",
+                "label": "住址",
+                "align": "center",
+                "minWidth": 240,
+                "lib": {
+                    "data": {
+                        "step": 2,
+                        "api": "/api/address",
+                        "lib": {
+                            "codeid": "AD"
+                        }
+                    },
+                    "ui": {}
+                }
+            },
+            {
+                "prop": "mail",
+                "mold": "link",
+                "label": "邮件",
+                "align": "center",
+                "width": 240
+            },
+            {
+                "prop": "explain",
+                "mold": "input",
+                "label": "说明",
+                "align": "center",
+                "minWidth": 240,
+                "lib": {
+                    "ui": {
+                        "placeholder": "请输入说明",
+                        "clearable": true
+                    }
+                }
+            }
+        ]
+    }
 }

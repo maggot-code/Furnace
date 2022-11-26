@@ -3,14 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 00:04:34
+ * @LastEditTime: 2022-11-27 03:26:41
  * @Description: 
 -->
-<script setup>
-import { useList } from "../usecase/useList";
-
-const list = useList();
-</script>
+<script setup></script>
 
 <template></template>
 

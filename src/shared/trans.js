@@ -1,11 +1,15 @@
 /*
- * @FilePath: \Furnace\src\shared\trans.js
+ * @FilePath: /Furnace/src/shared/trans.js
  * @Author: maggot-code
  * @Date: 2022-11-21 15:35:56
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-24 16:19:17
+ * @LastEditTime: 2022-11-27 01:03:08
  * @Description: 
  */
+// 函数类型转换
+export function toFunction(func) {
+    return isFunction(func) ? func : () => null;
+}
 // 布尔类型转换
 export function toBoolean(value, replace = false) {
     return isBoolean(value) ? value : replace;
