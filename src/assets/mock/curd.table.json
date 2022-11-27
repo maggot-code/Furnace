@@ -11,7 +11,7 @@
             "isPage": true,
             "isChoice": true,
             "isIndex": true,
-            "isLabel": false,
+            "isLabel": true,
             "size": "mini",
             "handleFixed": "right"
         },
@@ -20,26 +20,30 @@
                 "mode": "export",
                 "type": "default",
                 "useAll": true,
-                "label": "导出文件"
+                "label": "导出文件",
+                "icon": "el-icon-download"
             },
             "delete": {
                 "mode": "delete",
                 "type": "default",
                 "useAll": true,
                 "useRow": true,
-                "label": "删除"
+                "label": "删除",
+                "icon": "el-icon-delete"
             },
             "add": {
                 "mode": "add",
                 "type": "default",
                 "useAll": true,
-                "label": "新增"
+                "label": "新增",
+                "icon": "el-icon-folder-add"
             },
             "edit": {
                 "mode": "edit",
                 "type": "default",
                 "useRow": true,
-                "label": "修改"
+                "label": "修改",
+                "icon": "el-icon-edit"
             }
         },
         "mergeSchema": {},

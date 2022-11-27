@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 14:49:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 21:54:52
+ * @LastEditTime: 2022-11-28 01:10:45
  * @Description: 
  */
 import { isUsable } from "@/shared/is";
+import { toBoolean } from "@/shared/trans";
 
 import { useElementRefs } from "@/hooks/useElement";
 import { useDriveKeyword } from "@/hooks/useDriveKeyword";
@@ -14,6 +15,7 @@ import { useComplexState } from "@/hooks/useRefState";
 import { useControl } from "./useControl";
 import { SchemaEntity } from "../entity/Schema";
 import { DataEntity } from "../entity/Data";
+import { ChoiceEntity } from "../entity/Choice";
 import { EventEntity } from "../entity/Event";
 
 const controlStateProps = { trans: Object.keys };
@@ -48,8 +50,20 @@ export function defineTable(namespace) {
     const refreshKeyword = useDriveKeyword();
     const schema = SchemaEntity();
     const data = DataEntity();
+    const choice = ChoiceEntity(schema);
     const event = EventEntity(element);
     const control = wrapController(schema);
+    const isLabel = computed(() => toBoolean(unref(schema.uiSchema).isLabel, true));
+    const openHeight = computed(() => toBoolean(unref(schema.uiSchema).openHeight, true));
+    function setupSource(source) {
+        data.source.setup({
+            total: source.total ?? 0,
+            data: source.data ?? []
+        });
+        choice.source.setup(source.choice ?? []);
+
+        return source;
+    }
 
     const wrap = {
         element,
@@ -58,12 +72,17 @@ export function defineTable(namespace) {
         refreshKeyword,
         schema,
         data,
+        choice,
         event,
         control,
+        isLabel,
+        openHeight,
+        defaultPageSize: 20,
         tableRefs: element.refs,
         resetCurrentPage: currentKeyword.keyword,
         resizeTable: tableSizeKeyword.keyword,
         refresh: refreshKeyword.keyword,
+        setupSource
     };
     if (isUsable(namespace)) provide(namespace, wrap);
     return wrap;

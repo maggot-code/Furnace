@@ -2,7 +2,7 @@
     "code": -1,
     "message": "ok",
     "data": {
-        "total": 2,
+        "total": 3,
         "data": [
             {
                 "choicepower": true,
@@ -21,6 +21,14 @@
                 "name": "<i style='font-weight: bold;color:green;'>Header</i>",
                 "address": "中国上海",
                 "mail": "https://bilibili.com/"
+            },
+            {
+                "choicepower": false,
+                "rowpower": "edit",
+                "id": "0c4995cbdfaa4083a6707c638d0ac1e6",
+                "password": 333,
+                "name": "<i style='font-weight: bold;color:blue;text-decoration:line-through;'>Maggot</i>",
+                "address": "中国北京"
             }
         ]
     }

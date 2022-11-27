@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 00:25:05
+ * @LastEditTime: 2022-11-28 00:57:56
  * @Description: 
 -->
 <script setup>
@@ -83,7 +83,7 @@ useWatchServer(TableCurdServer, {
 });
 useWatchServer(DataCurdServer, {
     trans: (response) => toPlainObject(response.data),
-    setup: table.data.source.setup
+    setup: table.setupSource,
 });
 watchEffect(() => {
     if (!curd.factor.factorReady) return;

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 20:59:26
+ * @LastEditTime: 2022-11-28 01:18:30
  * @Description: 
 -->
 <script setup>
@@ -52,11 +52,13 @@ onMounted(onSelect);
             <el-button
                 class="simple-search-control-item"
                 size="mini"
+                icon="el-icon-search"
                 @click="onSelect"
             >查询</el-button>
             <el-button
                 class="simple-search-control-item"
                 size="mini"
+                icon="el-icon-refresh"
                 @click="onReset"
             >重置</el-button>
         </div>
