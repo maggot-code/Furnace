@@ -3,22 +3,37 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 23:58:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 02:42:02
+ * @LastEditTime: 2022-11-27 15:58:57
  * @Description: 
  */
-import { toPlainObject } from "@/shared/trans";
+import { toPlainObject, toArray } from "@/shared/trans";
 import { defineShallowObject } from "@/hooks/useShallowObject";
-import { defineShallowArray } from "@/hooks/useShallowArray";
 
 export function SchemaEntity() {
-    const database = defineShallowObject();
+    const struct = defineShallowObject();
+    const keyname = computed(() => {
+        return unref(struct.source).keyname;
+    });
     const controller = computed(() => {
-        return toPlainObject(unref(database.source).controller);
+        return toPlainObject(unref(struct.source).controller);
+    });
+    const uiSchema = computed(() => {
+        return toPlainObject(unref(struct.source).uiSchema);
+    });
+    const mergeSchema = computed(() => {
+        return toPlainObject(unref(struct.source).mergeSchema);
+    });
+    const columnSchema = computed(() => {
+        return toArray(unref(struct.source).columnSchema);
     });
 
     return {
-        database,
-        controller
+        struct,
+        keyname,
+        controller,
+        uiSchema,
+        mergeSchema,
+        columnSchema,
     }
 }
 

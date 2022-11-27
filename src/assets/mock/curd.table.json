@@ -6,10 +6,10 @@
         "uiSchema": {
             "border": true,
             "stripe": false,
-            "isPage": false,
-            "isChoice": false,
-            "isIndex": false,
-            "isLabel": true,
+            "isPage": true,
+            "isChoice": true,
+            "isIndex": true,
+            "isLabel": false,
             "size": "mini",
             "handleFixed": "right"
         },
@@ -54,31 +54,6 @@
                 "mold": "void"
             },
             {
-                "prop": "birthday",
-                "mold": "date",
-                "label": "生日",
-                "align": "center",
-                "width": 160,
-                "lib": {
-                    "ui": {
-                        "type": "date",
-                        "placeholder": "请选择出生日期"
-                    }
-                }
-            },
-            {
-                "prop": "register",
-                "mold": "datetime",
-                "label": "注册时间",
-                "align": "center",
-                "width": 180,
-                "lib": {
-                    "ui": {
-                        "placeholder": "请选择注册时间"
-                    }
-                }
-            },
-            {
                 "prop": "name",
                 "mold": "html",
                 "label": "姓名",
@@ -86,59 +61,11 @@
                 "width": 90
             },
             {
-                "prop": "age",
-                "mold": "number",
-                "label": "年龄",
-                "align": "center",
-                "minWidth": 160,
-                "lib": {
-                    "ui": {
-                        "controls": false
-                    }
-                }
-            },
-            {
-                "prop": "sex",
-                "mold": "select",
-                "label": "性别",
-                "align": "center",
-                "minWidth": 160,
-                "lib": {
-                    "data": {
-                        "api": "/api/sex",
-                        "lib": {
-                            "codeid": "SE"
-                        }
-                    },
-                    "ui": {}
-                }
-            },
-            {
-                "prop": "deposit",
-                "mold": "money",
-                "label": "存款",
-                "align": "center",
-                "minWidth": 160,
-                "lib": {
-                    "ui": {}
-                }
-            },
-            {
                 "prop": "address",
-                "mold": "cascader",
+                "mold": "default",
                 "label": "住址",
                 "align": "center",
-                "minWidth": 240,
-                "lib": {
-                    "data": {
-                        "step": 2,
-                        "api": "/api/address",
-                        "lib": {
-                            "codeid": "AD"
-                        }
-                    },
-                    "ui": {}
-                }
+                "minWidth": 240
             },
             {
                 "prop": "mail",
@@ -146,19 +73,6 @@
                 "label": "邮件",
                 "align": "center",
                 "width": 240
-            },
-            {
-                "prop": "explain",
-                "mold": "input",
-                "label": "说明",
-                "align": "center",
-                "minWidth": 240,
-                "lib": {
-                    "ui": {
-                        "placeholder": "请输入说明",
-                        "clearable": true
-                    }
-                }
             }
         ]
     }

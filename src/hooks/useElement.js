@@ -1,12 +1,12 @@
 /*
- * @FilePath: /Furnace/src/domain/Form/entity/Element.js
+ * @FilePath: /Furnace/src/hooks/useElement.js
  * @Author: maggot-code
- * @Date: 2022-11-26 16:40:11
+ * @Date: 2022-11-27 14:50:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 16:46:53
+ * @LastEditTime: 2022-11-27 14:51:00
  * @Description: 
  */
-export function ElementEntity() {
+export function useElementRefs() {
     const refs = ref(null);
     const ready = computed(() => !isNil(unref(refs)));
 
@@ -16,4 +16,4 @@ export function ElementEntity() {
     }
 }
 
-export default ElementEntity;
+export default useElementRefs;

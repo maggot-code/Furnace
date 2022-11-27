@@ -3,23 +3,21 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 03:20:03
+ * @LastEditTime: 2022-11-27 15:46:47
  * @Description: 
 -->
 <script setup>
-import { SearchEntitySymbol } from "../shared/context";
+import { FormModelSymbol } from "../shared/context";
 
-const { element, schema } = inject(SearchEntitySymbol);
-
-const { refs } = element;
-const { formSchema, cellSchema } = schema;
+const form = inject(FormModelSymbol);
+const { formRefs, formSchema, cellSchema } = form;
 </script>
 
 <template>
     <div class="simple-search">
         <div class="simple-search-form">
             <mg-form
-                ref="refs"
+                ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
             ></mg-form>
         </div>

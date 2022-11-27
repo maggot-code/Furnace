@@ -19,16 +19,15 @@
 
         &-control {
             width: 100%;
-            height: auto;
-            background-color: green;
+            height: 100%;
+            overflow: hidden;
         }
 
         &-list {
             flex: 1;
             width: 100%;
-            height: auto;
+            height: 100%;
             overflow: hidden;
-            background-color: yellow;
         }
     }
 }
