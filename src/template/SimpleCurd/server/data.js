@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 20:17:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 23:12:01
+ * @LastEditTime: 2022-11-28 01:46:28
  * @Description: 
  */
 import MockData from "@/assets/mock/curd.data.json";
@@ -13,15 +13,13 @@ import { service } from "@/service/model/Application";
 // Mock Data用例
 function mockDataAdapter(config) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                data: MockData,
-                headers: {},
-                status: 200,
-                statusText: 'OK',
-                config,
-            });
-        }, 3000);
+        resolve({
+            data: MockData,
+            headers: {},
+            status: 200,
+            statusText: 'OK',
+            config,
+        });
     });
 }
 
