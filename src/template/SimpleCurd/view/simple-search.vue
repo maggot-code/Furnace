@@ -3,31 +3,40 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 17:05:37
+ * @LastEditTime: 2022-11-27 20:59:26
  * @Description: 
 -->
 <script setup>
-import { FormModelSymbol } from "../shared/context";
+import { FormModelSymbol, CurdModelSymbol } from "../shared/context";
 
+const curd = inject(CurdModelSymbol);
 const form = inject(FormModelSymbol);
 const { formRefs, formSchema, cellSchema } = form;
+
+function monitorValue(props) {
+    // console.log("monitor value", props);
+}
+async function onSelect() {
+    const formData = await form.event.getDataSource();
+    const [source] = formData;
+
+    curd.factor.setupForm(source);
+    return formData;
+}
+async function onReset() {
+    const formData = await form.event.resetDataSource();
+    const [source] = formData;
+
+    curd.factor.setupForm(source);
+    return formData;
+}
 
 form.schema.formConfig.setup({
     inline: true,
     labelWidth: "auto"
 });
 
-function monitorValue(props) {
-    console.log("monitor value", props);
-}
-async function onSelect() {
-    const [source, state] = await form.event.getDataSource();
-    console.log(source, state);
-}
-async function onReset() {
-    const [source, state] = await form.event.resetDataSource();
-    console.log(source, state);
-}
+onMounted(onSelect);
 </script>
 
 <template>

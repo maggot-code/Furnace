@@ -3,12 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:35:56
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 01:03:08
+ * @LastEditTime: 2022-11-27 20:35:32
  * @Description: 
  */
 // 函数类型转换
 export function toFunction(func) {
-    return isFunction(func) ? func : () => null;
+    return isFunction(func) ? func : (source) => source;
 }
 // 布尔类型转换
 export function toBoolean(value, replace = false) {
@@ -23,6 +23,15 @@ export function toPlainObject(value) {
 // 数组转换
 export function toArray(value) {
     return Array.isArray(value) ? value : [];
+}
+
+// 普通对象转表单对象
+export function toFormData(value) {
+    const formData = new FormData();
+    for (const key in toPlainObject(value)) {
+        formData.append(key, value[key]);
+    }
+    return formData;
 }
 
 // 普通对象合并

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 01:16:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 01:42:30
+ * @LastEditTime: 2022-11-27 20:34:08
  * @Description: 
  */
 import { toFunction } from "@/shared/trans";
@@ -11,7 +11,8 @@ import { toFunction } from "@/shared/trans";
 export function useWatchServer(server, props) {
     const toHandler = flow([
         toFunction(props.trans),
-        toFunction(props.setup)
+        toFunction(props.setup),
+        toFunction(props.next)
     ]);
 
     const unwatchEffect = watchEffect(() => {

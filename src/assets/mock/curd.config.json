@@ -9,6 +9,10 @@
         "table": {
             "url": "/curd/table",
             "method": "GET"
+        },
+        "source": {
+            "url": "/curd/source",
+            "method": "POST"
         }
     }
 }

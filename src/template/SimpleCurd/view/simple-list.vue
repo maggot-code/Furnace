@@ -3,28 +3,21 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 16:29:12
+ * @LastEditTime: 2022-11-28 00:10:52
  * @Description: 
 -->
 <script setup>
-import MockData from "@/assets/mock/curd.data.json";
-import { TableModelSymbol } from "../shared/context";
+import { TableModelSymbol, CurdModelSymbol } from "../shared/context";
 
+const curd = inject(CurdModelSymbol);
 const table = inject(TableModelSymbol);
-const { tableRefs } = table;
+const { tableRefs, resetCurrentPage, resizeTable, refresh } = table;
 const { uiSchema, mergeSchema, columnSchema } = table.schema;
 const { total, tableData } = table.data;
 const { row } = table.control;
 
-onMounted(() => {
-    table.data.source.setup(MockData.data);
-});
-
 function onChoice(choice) {
     console.log("on choice", choice);
-}
-function tableHandle(props) {
-    console.log("table handle", props);
 }
 function cellEvent(event) {
     console.log("cell event", event);
@@ -32,9 +25,21 @@ function cellEvent(event) {
 function handleRow(row) {
     console.log("handle row", row);
 }
+function tableHandle(props) {
+    console.log("table handle", props);
+    curd.factor.setupTable(props);
+}
 function tableParams(props) {
     console.log("table params", props);
+    curd.factor.setupTable(props);
 }
+watch(table.schema.struct.unusable, (state) => {
+    if (state) return;
+    table.data.source.setup({
+        total: 0,
+        data: []
+    });
+}, { immediate: true });
 </script>
 
 <template>
@@ -45,14 +50,18 @@ function tableParams(props) {
         -->
         <mg-table
             ref="tableRefs"
+            :resetCurrentPage="resetCurrentPage"
+            :resizeTable="resizeTable"
+            :refresh="refresh"
             :total="total"
             :tableData="tableData"
             :tableSchema="{ uiSchema, mergeSchema, columnSchema }"
             :controller="row"
+            :defaultPageSize="20"
             @onChoice="onChoice"
-            @tableHandle="tableHandle"
             @cellEvent="cellEvent"
             @handleRow="handleRow"
+            @tableHandle="tableHandle"
             @tableParams="tableParams"
         ></mg-table>
     </div>

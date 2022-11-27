@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 14:31:41
+ * @LastEditTime: 2022-11-27 23:39:56
  * @Description: 
 -->
 <script setup>
+import { uuid } from "@/shared/uuid";
 import { useRouterStore } from "@/store/useRouterStore";
 import { obtainRouter } from "@/server/Router/get";
 
@@ -28,7 +29,10 @@ onMounted(async () => {
                             name="fade"
                             mode="out-in"
                         >
-                            <component :is="Component" />
+                            <component
+                                :is="Component"
+                                :key="uuid()"
+                            />
                         </transition>
                     </router-view>
                 </template>

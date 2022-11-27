@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 15:30:43
+ * @LastEditTime: 2022-11-27 22:58:07
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
@@ -65,7 +65,7 @@ export function defineService(toFetch, props) {
             .catch((error) => {
                 return error;
             })
-            .finally(entity.toEnd);
+            .finally(() => entity.toEnd());
     }
     function sendAll(group, settled) {
         if (toBoolean(settled, true)) return Promise.allSettled(group.map((entity) => send(entity)));

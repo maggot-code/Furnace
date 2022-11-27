@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 16:48:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 17:03:37
+ * @LastEditTime: 2022-11-27 17:09:39
  * @Description: 
  */
 import { isUnusable } from "@/shared/is";
@@ -33,7 +33,8 @@ export function EventEntity(element) {
 
     async function resetDataSource() {
         await nextTick();
-        if (isUnusable(unref(ready))) return [{}];
+        if (isUnusable(unref(ready))) return [{}, false];
+
         unref(refs).resetForm();
         return getDataSource();
     }

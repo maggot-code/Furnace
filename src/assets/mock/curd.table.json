@@ -4,6 +4,8 @@
     "data": {
         "keyname": "id",
         "uiSchema": {
+            "sortProp": "id",
+            "sortOrder": "ascending",
             "border": true,
             "stripe": false,
             "isPage": true,

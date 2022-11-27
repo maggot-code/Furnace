@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\service\config.entity.js
+ * @FilePath: /Furnace/src/service/config.entity.js
  * @Author: maggot-code
  * @Date: 2022-11-23 01:14:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 01:15:51
+ * @LastEditTime: 2022-11-27 22:57:15
  * @Description: 
  */
 import { defineShallowObject } from "@/hooks/useShallowObject";
@@ -12,7 +12,6 @@ import { mergePlainObject } from "@/shared/trans";
 export const NormConfig = {
     url: "",
     method: "GET",
-    responseType: "json",
     params: {},
     data: {},
     headers: {},

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:41:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 14:41:22
+ * @LastEditTime: 2022-11-27 23:07:23
  * @Description: 
  */
 import MockSearch from "@/assets/mock/curd.search.json";
@@ -40,6 +40,11 @@ function mockTableAdapter(config) {
 export const SearchCurdServer = service.define();
 export const TableCurdServer = service.define();
 
+export function abortLayoutCurd() {
+    service.abort(SearchCurdServer);
+    service.abort(TableCurdServer);
+}
+
 export function obtainLayoutCurd({ search, table }) {
     SearchCurdServer.config.bind("url", search.url);
     SearchCurdServer.config.bind("method", search.method);
@@ -49,6 +54,7 @@ export function obtainLayoutCurd({ search, table }) {
     TableCurdServer.config.bind("method", table.method);
     TableCurdServer.config.bind("adapter", mockTableAdapter);
 
+    abortLayoutCurd();
     return service.sendAll([SearchCurdServer, TableCurdServer]);
 }
 

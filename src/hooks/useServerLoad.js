@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\hooks\useServerLoad.js
+ * @FilePath: /Furnace/src/hooks/useServerLoad.js
  * @Author: maggot-code
  * @Date: 2022-11-22 14:01:06
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 15:35:32
+ * @LastEditTime: 2022-11-27 22:55:11
  * @Description: 
  */
 import { toArray } from "@/shared/trans";
@@ -14,7 +14,9 @@ function pickLoading(server) {
 
 export function useServerLoad(servers) {
     const loads = toArray(servers).map(pickLoading);
-    return computed(() => loads.some((load) => unref(load)));
+    return computed(() => {
+        return loads.some((load) => !!unref(load));
+    });
 }
 
 export default useServerLoad;

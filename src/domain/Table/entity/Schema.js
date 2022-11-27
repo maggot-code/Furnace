@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 23:58:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 15:58:57
+ * @LastEditTime: 2022-11-27 21:28:13
  * @Description: 
  */
 import { toPlainObject, toArray } from "@/shared/trans";
@@ -33,7 +33,7 @@ export function SchemaEntity() {
         controller,
         uiSchema,
         mergeSchema,
-        columnSchema,
+        columnSchema
     }
 }
 

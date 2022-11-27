@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 16:04:56
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 16:08:30
+ * @LastEditTime: 2022-11-27 21:43:54
  * @Description: 
  */
 import { toArray } from "@/shared/trans";
@@ -24,7 +24,7 @@ export function DataEntity() {
     return {
         source,
         total,
-        tableData,
+        tableData
     }
 }
 

@@ -3,10 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 01:39:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 16:11:11
+ * @LastEditTime: 2022-11-27 20:45:11
  * @Description: 
  */
-import { toArray } from "@/shared/trans";
+import { toArray, toPlainObject } from "@/shared/trans";
 
 export function isEmptyString(rawValue) {
     return isString(rawValue) && rawValue.trim().length <= 0;
@@ -16,11 +16,22 @@ export function isEmptyArray(rawValue) {
     return Array.isArray(rawValue) && rawValue.length <= 0;
 }
 
+export function isEmptyObject(rawValue) {
+    const group = flow([
+        toPlainObject,
+        Object.keys,
+        toArray,
+        isEmptyArray
+    ]);
+    return group(rawValue);
+}
+
 export function isEmpty(rawValue) {
     return [
         isNil(rawValue),
         isEmptyString(rawValue),
-        isEmptyArray(rawValue)
+        isEmptyArray(rawValue),
+        isEmptyObject(rawValue)
     ].includes(true);
 }
 
