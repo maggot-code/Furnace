@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 01:11:55
+ * @LastEditTime: 2022-11-28 01:44:57
  * @Description: 
 -->
 <script setup>
@@ -21,7 +21,7 @@ function cellEvent(event) {
     console.log("cell event", event);
 }
 function handleRow(row) {
-    console.log("handle row", row);
+    console.log("handle row", row, table);
 }
 watch(table.schema.struct.unusable, (state) => {
     if (state) return;

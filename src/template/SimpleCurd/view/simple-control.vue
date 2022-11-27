@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:52:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 15:51:13
+ * @LastEditTime: 2022-11-28 01:44:35
  * @Description: 
 -->
 <script setup>
@@ -11,6 +11,10 @@ import { TableModelSymbol } from "../shared/context";
 
 const table = inject(TableModelSymbol);
 const { all } = table.control;
+
+function handleAll(cell) {
+    console.log("handle all", cell, table);
+}
 </script>
 
 <template>
@@ -20,6 +24,7 @@ const { all } = table.control;
                 :key="key"
                 size="mini"
                 v-bind="cell"
+                @click="handleAll(cell)"
             >{{ cell.label }}</el-button>
         </template>
     </div>
