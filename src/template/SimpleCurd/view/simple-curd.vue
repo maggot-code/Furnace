@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 03:43:16
+ * @LastEditTime: 2022-11-27 14:42:07
  * @Description: 
 -->
 <script setup>
@@ -55,11 +55,7 @@ const bindProps = {
 const searchEntity = defineSearch(bindProps);
 const listEntity = defineList(bindProps);
 
-const a = useComplexState(tableControl.allController, { key: 11, trans: Object.keys });
-watchEffect(() => {
-    console.log(unref(tableControl.allController));
-    console.log(a);
-})
+const { usable } = useComplexState(tableControl.allController, { trans: Object.keys });
 
 const hasSearch = slotServer.slotState(slots.search, SearchCurdServer.finished);
 const hasList = slotServer.slotState(slots.list, TableCurdServer.finished);
@@ -103,7 +99,7 @@ onMounted(() => { });
         <el-container class="simple-curd-body">
             <el-header
                 class="simple-curd-body-control"
-                v-if="hasControl"
+                v-if="(hasControl && usable)"
             >
                 <slot name="control"></slot>
             </el-header>

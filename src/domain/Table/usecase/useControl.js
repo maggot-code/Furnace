@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 02:30:08
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 03:37:50
+ * @LastEditTime: 2022-11-27 14:31:32
  * @Description: 
  */
 import { toBoolean, toPlainObject } from "@/shared/trans";
@@ -16,7 +16,7 @@ function toState(target) {
 
 function toPickControl(factor, { keys, source }) {
     return computed(() => unref(keys).reduce((cache, key) => {
-        const state = toState(unref(source)[key]);
+        const state = toState(get(unref(source), key));
         if (factor(state)) cache[key] = state.target;
         return cache;
     }, {}));
