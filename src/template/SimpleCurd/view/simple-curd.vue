@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 15:44:10
+ * @LastEditTime: 2022-11-27 16:23:55
  * @Description: 
 -->
 <script setup>
@@ -45,11 +45,6 @@ const hasList = slotServer.slotState(slots.list, TableCurdServer.finished);
 const hasControl = slotServer.slotState(slots.control, TableCurdServer.finished);
 const { usable: usableControl } = table.control.state.all();
 
-form.schema.formConfig.setup({
-    inline: true,
-    labelWidth: "auto"
-});
-
 useWatchServer(SearchCurdServer, {
     trans: (response) => toArray(response.data),
     setup: form.schema.cellConfig.setup
@@ -65,7 +60,6 @@ onBeforeMount(async () => {
 
     obtainLayoutCurd(data);
 });
-onMounted(() => { });
 </script>
 
 <template>

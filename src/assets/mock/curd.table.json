@@ -43,6 +43,7 @@
         "mergeSchema": {},
         "columnSchema": [
             {
+                "isSort": true,
                 "prop": "id",
                 "mold": "default",
                 "label": "主键",
@@ -54,6 +55,7 @@
                 "mold": "void"
             },
             {
+                "isSort": true,
                 "prop": "name",
                 "mold": "html",
                 "label": "姓名",

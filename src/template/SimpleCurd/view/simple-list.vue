@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 16:20:45
+ * @LastEditTime: 2022-11-27 16:29:12
  * @Description: 
 -->
 <script setup>
@@ -19,16 +19,41 @@ const { row } = table.control;
 onMounted(() => {
     table.data.source.setup(MockData.data);
 });
+
+function onChoice(choice) {
+    console.log("on choice", choice);
+}
+function tableHandle(props) {
+    console.log("table handle", props);
+}
+function cellEvent(event) {
+    console.log("cell event", event);
+}
+function handleRow(row) {
+    console.log("handle row", row);
+}
+function tableParams(props) {
+    console.log("table params", props);
+}
 </script>
 
 <template>
     <div class="simple-list">
+        <!--
+            @rowEnter="rowEnter"
+            @rowLeave="rowLeave"
+        -->
         <mg-table
             ref="tableRefs"
             :total="total"
             :tableData="tableData"
             :tableSchema="{ uiSchema, mergeSchema, columnSchema }"
             :controller="row"
+            @onChoice="onChoice"
+            @tableHandle="tableHandle"
+            @cellEvent="cellEvent"
+            @handleRow="handleRow"
+            @tableParams="tableParams"
         ></mg-table>
     </div>
 </template>
