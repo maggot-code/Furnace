@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\template\SimpleCurd\server\data.js
+ * @FilePath: \Furnace\src\domain\Curd\server\data.js
  * @Author: maggot-code
  * @Date: 2022-11-27 20:17:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 11:42:08
+ * @LastEditTime: 2022-11-28 14:07:17
  * @Description: 
  */
 import MockData from "@/assets/mock/curd.data.json";
@@ -13,15 +13,13 @@ import { service } from "@/service/model/Application";
 // Mock Data用例
 function mockDataAdapter(config) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve({
-                data: MockData,
-                headers: {},
-                status: 200,
-                statusText: 'OK',
-                config,
-            });
-        }, 1200);
+        resolve({
+            data: MockData,
+            headers: {},
+            status: 200,
+            statusText: 'OK',
+            config,
+        });
     });
 }
 

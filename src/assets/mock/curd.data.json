@@ -5,7 +5,7 @@
         "total": 3,
         "data": [
             {
-                "choicepower": true,
+                "choicepower": false,
                 "rowpower": "delete",
                 "id": "599d451541404b13b7cd24f647eca37e",
                 "password": 111,
