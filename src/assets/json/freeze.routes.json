@@ -1,20 +1,32 @@
 [
     {
-        "namespace": "FREEZE",
+        "name": "debug",
+        "component": "Debug/debug.vue",
+        "address": "/debug",
+        "dev": true
+    },
+    {
+        "name": "fragment",
+        "component": "Fragment/fragment.vue"
+    },
+    {
+        "name": "redirect",
+        "component": "Redirect/redirect.vue",
+        "address": "/redirect"
+    },
+    {
         "name": "welcome",
         "component": "Welcome/welcome.vue",
         "address": "/",
         "title": "欢迎"
     },
     {
-        "namespace": "FREEZE",
         "name": "signin",
         "component": "User/signin.vue",
         "address": "/login",
         "title": "登录"
     },
     {
-        "namespace": "FREEZE",
         "name": "business",
         "component": "Business/business.vue",
         "address": "/biz",

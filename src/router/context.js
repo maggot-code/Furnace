@@ -1,37 +1,40 @@
 /*
- * @FilePath: /Furnace/src/router/context.js
+ * @FilePath: \Furnace\src\router\context.js
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-26 14:51:24
+ * @LastEditTime: 2022-11-29 01:20:16
  * @Description: 
  */
-// 关键字定义
-export const Keyword = [
-    "namespace",
-    "unknow",
-    "freeze",
-    "extern",
-    "drive",
-    "state",
-    "welcome",
-    "business",
-    "biz",
-    "debug",
-    "fragment",
-    "redirect"
-];
-
-// 命名空间映射
-export const NamespaceMapping = {
-    "FREEZE": "freeze",
-    "EXTERN": "extern",
-    "DRIVE": "drive",
-    "STATE": "state",
-}
-
-// 未定义命名空间
-export const Namespace = "UNKNOW";
-
 // 重定向路由
 export const RedirectName = "Redirect";
+
+// 异常路由
+export const AccidentRoute = {
+    name: "unknow",
+    path: "/:pathMatch(.*)*",
+    redirect: "/404"
+}
+
+// 关键字定义
+export const Keyword = [
+    "unknow",
+    "403",
+    "404",
+    "500",
+    "forbidden",
+    "notfound",
+    "crash",
+    "debug",
+    "fragment",
+    "redirect",
+    "welcome",
+    "signin",
+    "business",
+];
+
+// 默认命名空间
+export const UnknowNamespace = "unknow";
+
+// 内部命名空间
+export const InternalNamespace = "internal";

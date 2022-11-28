@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 16:44:15
+ * @LastEditTime: 2022-11-28 16:52:10
  * @Description: 
  */
 import MockResponse from "@/assets/mock/router.get.json?raw";
@@ -27,7 +27,13 @@ export const GetRouterServer = service.define({
     url: "/router/get",
 });
 
+export function abortRouter() {
+    service.abort(GetRouterServer);
+}
+
 export function obtainRouter() {
+    abortRouter();
+
     GetRouterServer.config.bind("adapter", mockAdapter);
 
     return service.send(GetRouterServer);

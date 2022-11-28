@@ -3,7 +3,6 @@
     "message": "ok",
     "data": [
         {
-            "namespace": "EXTERN",
             "name": "system",
             "mode": "fragment",
             "redirect": "/system/monitor",
@@ -14,7 +13,6 @@
             "id": 10
         },
         {
-            "namespace": "EXTERN",
             "name": "system_monitor",
             "mode": "template",
             "template": "unknow",
@@ -28,7 +26,6 @@
             "id": 101
         },
         {
-            "namespace": "EXTERN",
             "name": "system_log",
             "mode": "fragment",
             "redirect": "/system/log/view",
@@ -39,7 +36,6 @@
             "id": 102
         },
         {
-            "namespace": "EXTERN",
             "name": "system_log_view",
             "mode": "template",
             "template": "unknow",
@@ -53,7 +49,6 @@
             "id": 1021
         },
         {
-            "namespace": "EXTERN",
             "name": "system_log_chart",
             "mode": "template",
             "template": "unknow",
@@ -67,7 +62,6 @@
             "id": 1022
         },
         {
-            "namespace": "EXTERN",
             "name": "power",
             "mode": "fragment",
             "redirect": "/power/user",
@@ -78,7 +72,6 @@
             "id": 20
         },
         {
-            "namespace": "EXTERN",
             "name": "power_user",
             "mode": "template",
             "template": "unknow",
@@ -92,7 +85,6 @@
             "id": 201
         },
         {
-            "namespace": "EXTERN",
             "name": "power_router",
             "mode": "template",
             "template": "unknow",
@@ -106,7 +98,6 @@
             "id": 202
         },
         {
-            "namespace": "EXTERN",
             "name": "odometer",
             "mode": "template",
             "template": "unknow",

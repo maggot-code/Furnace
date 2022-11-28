@@ -3,64 +3,21 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 16:26:56
+ * @LastEditTime: 2022-11-28 17:43:59
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { composeRoutes } from "@/router/composeRoutes";
-import {
-    defineExternRoutes,
-    defineFreezeRoutes,
-    defineDriveRoutes,
-    defineStateRoutes
-} from "@/router/defineRoutes";
 
-import FreezeRoutes from "@/assets/json/freeze.routes";
-import DriveRoutes from "@/assets/json/drive.routes";
-import StateRoutes from "@/assets/json/state.routes";
-import AA from "@/assets/mock/router.get";
-
-const paths = ["cache"];
+const paths = [];
 
 export const Namespace = 'useRouterStore';
 
 export const useRouterStore = defineStore(Namespace, {
-    state: () => ({
-        ready: false,
-        // cache: []
-        cache: AA.data
-    }),
+    state: () => ({}),
 
-    getters: {
-        notCache() {
-            return this.cache.length <= 0;
-        },
-        hasCache() {
-            return !this.notCache;
-        },
-        // 处理缓存转换路由数据
-        routes() {
-            return composeRoutes({
-                extern: defineExternRoutes(this.cache),
-                freeze: defineFreezeRoutes(FreezeRoutes),
-                drive: defineDriveRoutes(DriveRoutes),
-                state: defineStateRoutes(StateRoutes)
-            });
-        }
-    },
+    getters: {},
 
-    actions: {
-        setReady() {
-            if (this.ready) return;
-
-            this.ready = true;
-        },
-        setCache(dataSource) {
-            if (this.hasCache) return;
-
-            this.cache = dataSource;
-        }
-    },
+    actions: {},
 
     persist: {
         key: Namespace,

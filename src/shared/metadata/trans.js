@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 13:00:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 12:58:16
+ * @LastEditTime: 2022-11-28 17:50:44
  * @Description: 
  */
 import { toArray, mergePlainObject } from "@/shared/trans";
@@ -29,10 +29,9 @@ export function arrayToTree(parent, dataSource, props) {
             node.children = arrayToTree(node, dataSource, props);
             node.childKeys = node.children.map(item => item.uuid);
             node.hasChild = notEmpty(node.children);
-
-            store.push(adapter(node));
         };
 
+        store.push(adapter(node));
         return store;
     }, []);
 }
