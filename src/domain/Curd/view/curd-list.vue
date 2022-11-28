@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/SimpleCurd/view/simple-list.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd-list.vue
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 01:44:57
+ * @LastEditTime: 2022-11-28 12:05:03
  * @Description: 
 -->
 <script setup>
@@ -33,7 +33,7 @@ watch(table.schema.struct.unusable, (state) => {
 </script>
 
 <template>
-    <div class="simple-list">
+    <div class="curd-list">
         <!--
             @rowEnter="rowEnter"
             @rowLeave="rowLeave"

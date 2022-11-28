@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/server/Template/config.js
+ * @FilePath: \Furnace\src\server\Template\config.js
  * @Author: maggot-code
  * @Date: 2022-11-26 15:25:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 01:46:22
+ * @LastEditTime: 2022-11-28 09:57:18
  * @Description: 
  */
 import MockResponse from "@/assets/mock/curd.config.json";
@@ -32,6 +32,7 @@ export function abortConfigCurd() {
 }
 
 export function obtainCurdConfig(params) {
+    console.log(params);
     ConfigCurdServer.config.bind("adapter", mockAdapter);
     ConfigCurdServer.config.bind("params", params);
 

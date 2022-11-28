@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/SimpleCurd/view/simple-curd.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd.vue
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 00:57:56
+ * @LastEditTime: 2022-11-28 12:05:38
  * @Description: 
 -->
 <script setup>
@@ -90,39 +90,43 @@ watchEffect(() => {
 
     obtainDataCurd(curd.factor.sourceConfig);
 });
-onBeforeMount(() => obtainCurdConfig(route.query));
+onBeforeMount(() => obtainCurdConfig(route.params));
 onBeforeUnmount(() => {
     abortGroup.forEach((abort) => abort());
-    curd.factor.reset();
     form.schema.formConfig.clear();
     form.schema.cellConfig.clear();
     table.schema.struct.clear();
     table.data.source.clear();
+    curd.factor.reset();
 });
 </script>
 
 <template>
     <el-container
-        class="simple-curd"
+        class="curd"
+        direction="vertical"
         v-loading="loading"
     >
         <el-header
-            class="simple-curd-search"
+            class="curd-search"
             v-if="hasSearch"
         >
             <slot name="search"></slot>
         </el-header>
 
-        <el-container class="simple-curd-body">
+        <el-container
+            class="curd-body"
+            direction="vertical"
+        >
             <el-header
-                class="simple-curd-body-control"
+                class="curd-body-control"
                 v-if="(hasControl && usableControl)"
             >
                 <slot name="control"></slot>
             </el-header>
 
             <el-main
-                class="simple-curd-body-list"
+                class="curd-body-list"
                 v-if="hasList"
             >
                 <slot name="list"></slot>

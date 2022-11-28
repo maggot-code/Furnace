@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/SimpleCurd/view/simple-search.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd-search.vue
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 01:18:30
+ * @LastEditTime: 2022-11-28 12:05:14
  * @Description: 
 -->
 <script setup>
@@ -40,23 +40,23 @@ onMounted(onSelect);
 </script>
 
 <template>
-    <div class="simple-search">
-        <div class="simple-search-form">
+    <div class="curd-search">
+        <div class="curd-search-form">
             <mg-form
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
                 @monitor-value="monitorValue"
             ></mg-form>
         </div>
-        <div class="simple-search-control">
+        <div class="curd-search-control">
             <el-button
-                class="simple-search-control-item"
+                class="curd-search-control-item"
                 size="mini"
                 icon="el-icon-search"
                 @click="onSelect"
             >查询</el-button>
             <el-button
-                class="simple-search-control-item"
+                class="curd-search-control-item"
                 size="mini"
                 icon="el-icon-refresh"
                 @click="onReset"

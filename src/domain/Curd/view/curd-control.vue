@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/SimpleCurd/view/simple-control.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd-control.vue
  * @Author: maggot-code
  * @Date: 2022-11-26 15:52:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 01:44:35
+ * @LastEditTime: 2022-11-28 12:04:56
  * @Description: 
 -->
 <script setup>
@@ -18,7 +18,7 @@ function handleAll(cell) {
 </script>
 
 <template>
-    <div class="simple-control">
+    <div class="curd-control">
         <template v-for="(cell, key) in all">
             <el-button
                 :key="key"

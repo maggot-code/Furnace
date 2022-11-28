@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/router/defineRoutes.js
+ * @FilePath: \Furnace\src\router\defineRoutes.js
  * @Author: maggot-code
  * @Date: 2022-11-23 17:45:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 01:11:27
+ * @LastEditTime: 2022-11-28 12:02:25
  * @Description: 
  */
 import { transRouteGroup } from "@/router/trans";
@@ -23,9 +23,9 @@ export function defineExternRoutes(source) {
 export function defineDriveRoutes(source) {
     return [
         {
-            path: "/curd/simple",
-            name: "SimpleCurd",
-            component: () => import("@/pages/Curd/simple.vue"),
+            path: "/curd/simple/:cid",
+            name: "CurdSimple",
+            component: () => import("@/template/Curd/simple.vue"),
         }
     ];
 }
