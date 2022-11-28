@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 01:29:52
+ * @LastEditTime: 2022-11-29 01:32:40
  * @Description: 
  */
 import { arrayToTree, treeMap } from "@/shared/metadata/trans";
-import { checkParent, checkDataSource, matedataRoute } from "@/router/shared";
+import { checkParent, checkDataSource } from "@/router/shared";
 
 // 转换路由节点
 export function transRouteNode(rawNode) {
@@ -20,11 +20,10 @@ export function transRouteNode(rawNode) {
 }
 
 // 转换路由组
-export function transRouteGroup(rawData, namespace) {
+export function transRouteGroup(rawData) {
     // 结构转换
     const tree = arrayToTree(null, rawData, {
         check: checkParent,
-        adapter: (route) => matedataRoute(namespace, route),
     });
 
     // 节点转换

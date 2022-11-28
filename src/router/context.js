@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 01:20:16
+ * @LastEditTime: 2022-11-29 01:32:54
  * @Description: 
  */
 // 重定向路由
@@ -32,9 +32,3 @@ export const Keyword = [
     "signin",
     "business",
 ];
-
-// 默认命名空间
-export const UnknowNamespace = "unknow";
-
-// 内部命名空间
-export const InternalNamespace = "internal";
