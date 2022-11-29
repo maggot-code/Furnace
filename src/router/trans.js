@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 15:31:40
+ * @LastEditTime: 2022-11-30 03:30:06
  * @Description: 
  */
 import { mergePlainObject } from "@/shared/trans";
@@ -21,6 +21,9 @@ export function transPath({ address }) {
 // 转换Component
 export function transComponent({ component }) {
     const view = matchVueRouterView(component);
+
+    if (isNil(view)) return;
+
     return defineAsyncComponent(view);
 }
 
@@ -38,7 +41,8 @@ export function transRouteNode(rawNode) {
 
     const { wrap } = RouterNamespace[rawNode.namespace];
 
-    return pick(wrap(rawNode), PickRouteKeyword);
+    // return pick(wrap(rawNode), PickRouteKeyword);
+    return wrap(rawNode);
 }
 
 // 转换路由组

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 16:52:10
+ * @LastEditTime: 2022-11-30 02:10:30
  * @Description: 
  */
 import MockResponse from "@/assets/mock/router.get.json?raw";
@@ -13,13 +13,15 @@ import { service } from "@/service/model/Application";
 // Mock用例
 function mockAdapter(config) {
     return new Promise((resolve, reject) => {
-        resolve({
-            data: MockResponse,
-            headers: {},
-            status: 200,
-            statusText: 'OK',
-            config,
-        });
+        setTimeout(() => {
+            resolve({
+                data: MockResponse,
+                headers: {},
+                status: 200,
+                statusText: 'OK',
+                config,
+            });
+        }, 3600);
     });
 }
 
@@ -27,12 +29,12 @@ export const GetRouterServer = service.define({
     url: "/router/get",
 });
 
-export function abortRouter() {
+export function abortGetRouter() {
     service.abort(GetRouterServer);
 }
 
-export function obtainRouter() {
-    abortRouter();
+export function obtainGetRouter() {
+    abortGetRouter();
 
     GetRouterServer.config.bind("adapter", mockAdapter);
 

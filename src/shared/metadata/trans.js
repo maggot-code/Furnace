@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 13:00:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 17:50:44
+ * @LastEditTime: 2022-11-30 03:30:46
  * @Description: 
  */
 import { toArray, mergePlainObject } from "@/shared/trans";
@@ -20,7 +20,6 @@ export function arrayToTree(parent, dataSource, props) {
 
     return toArray(dataSource).reduce((store, current) => {
         const node = defineNode({ parent, current });
-
         node.hasParent = notEmpty(parent);
         node.map = node.hasParent ? concat(parent.map, node.uuid) : [node.uuid];
         node.level = node.hasParent ? parent.level + 1 : 0;
@@ -29,8 +28,7 @@ export function arrayToTree(parent, dataSource, props) {
             node.children = arrayToTree(node, dataSource, props);
             node.childKeys = node.children.map(item => item.uuid);
             node.hasChild = notEmpty(node.children);
-        };
-
+        }
         store.push(adapter(node));
         return store;
     }, []);

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:17:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 00:27:46
+ * @LastEditTime: 2022-11-30 02:13:32
  * @Description: 
 -->
 <script setup>
@@ -14,8 +14,6 @@ const router = useRouter();
 const route = useRoute();
 
 onBeforeMount(() => {
-    console.log(route);
-
     const { params, query } = route;
     const { path } = params;
     const redirect = "/" + (Array.isArray(path) ? path.join('/') : toString(path));

@@ -3,18 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 01:07:25
+ * @LastEditTime: 2022-11-30 02:03:59
  * @Description: 
 -->
 <script setup>
+import { GetRouterServer } from "@/server/Router/get";
 import { LoginServer, obtainLogin, abortLogin } from "@/server/User/login";
+import { useServerLoad } from "@/hooks/useServerLoad";
 import { useWatchServer } from "@/hooks/useWatchServer";
 import { useElementRefs } from "@/hooks/useElement";
 import { useUserStore } from "@/store/useUserStore";
 
+const loading = useServerLoad([GetRouterServer, LoginServer]);
 const userStore = useUserStore();
-
-const { loading } = LoginServer;
 
 const { refs } = useElementRefs();
 

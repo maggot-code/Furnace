@@ -3,15 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 16:55:22
+ * @LastEditTime: 2022-11-30 02:09:20
  * @Description: 
 -->
-<script setup>
-import { GetRouterServer, obtainRouter, abortRouter } from "@/server/Router/get";
-
-onBeforeMount(() => obtainRouter());
-onBeforeUnmount(() => abortRouter());
-</script>
+<script setup></script>
 
 <template>
     <config>

@@ -1,12 +1,21 @@
 /*
- * @FilePath: /Furnace/src/shared/is.js
+ * @FilePath: \Furnace\src\shared\is.js
  * @Author: maggot-code
  * @Date: 2022-11-23 01:39:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 20:45:11
+ * @LastEditTime: 2022-11-30 02:44:22
  * @Description: 
  */
 import { toArray, toPlainObject } from "@/shared/trans";
+
+export function isUsable(rawSource) {
+    const source = toArray(rawSource);
+    return compact(source).length === source.length;
+}
+
+export function isUnusable(source) {
+    return !isUsable(source);
+}
 
 export function isEmptyString(rawValue) {
     return isString(rawValue) && rawValue.trim().length <= 0;
@@ -32,18 +41,9 @@ export function isEmpty(rawValue) {
         isEmptyString(rawValue),
         isEmptyArray(rawValue),
         isEmptyObject(rawValue)
-    ].includes(true);
+    ].some((item) => !!item);
 }
 
 export function notEmpty(rawValue) {
     return !isEmpty(rawValue);
-}
-
-export function isUsable(rawSource) {
-    const source = toArray(rawSource);
-    return compact(source).length === source.length;
-}
-
-export function isUnusable(source) {
-    return !isUsable(source);
 }

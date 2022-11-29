@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 16:37:56
+ * @LastEditTime: 2022-11-30 01:53:15
  * @Description: 
  */
 import Vue from 'vue';
@@ -16,6 +16,7 @@ import { extendForm } from "@/extend/form";
 import App from '@/layout/App.vue';
 
 import "normalize.css";
+import "nprogress/nprogress.css";
 import "@/assets/style/index.scss";
 
 const pinia = extendPinia(Vue);

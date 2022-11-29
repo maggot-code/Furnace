@@ -1,0 +1,114 @@
+{
+    "code": -1,
+    "message": "ok",
+    "data": [
+        {
+            "name": "system",
+            "mode": "fragment",
+            "redirect": "/system/monitor",
+            "icon": "el-icon-setting",
+            "title": "系统管理",
+            "menu": true,
+            "pid": null,
+            "id": 10
+        },
+        {
+            "name": "system_monitor",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/system/monitor",
+            "icon": "el-icon-monitor",
+            "title": "系统监控",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": 10,
+            "id": 101
+        },
+        {
+            "name": "system_log",
+            "mode": "fragment",
+            "redirect": "/system/log/view",
+            "icon": "el-icon-notebook-1",
+            "title": "系统日志",
+            "menu": true,
+            "pid": 10,
+            "id": 102
+        },
+        {
+            "name": "system_log_view",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/system/log/view",
+            "icon": "el-icon-tickets",
+            "title": "日志列表",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": 102,
+            "id": 1021
+        },
+        {
+            "name": "system_log_chart",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/system/log/chart",
+            "icon": "el-icon-pie-chart",
+            "title": "日志分析",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": 102,
+            "id": 1022
+        },
+        {
+            "name": "power",
+            "mode": "fragment",
+            "redirect": "/power/user",
+            "icon": "el-icon-setting",
+            "title": "权限管理",
+            "menu": true,
+            "pid": null,
+            "id": 20
+        },
+        {
+            "name": "power_user",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/power/user",
+            "icon": "el-icon-user",
+            "title": "用户权限",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": 20,
+            "id": 201
+        },
+        {
+            "name": "power_router",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/power/router",
+            "icon": "el-icon-position",
+            "title": "路由权限",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": 20,
+            "id": 202
+        },
+        {
+            "name": "odometer",
+            "mode": "template",
+            "template": "unknow",
+            "address": "/odometer",
+            "icon": "el-icon-odometer",
+            "title": "指标记录",
+            "hidden": false,
+            "affix": true,
+            "menu": true,
+            "pid": null,
+            "id": 30
+        }
+    ]
+}
