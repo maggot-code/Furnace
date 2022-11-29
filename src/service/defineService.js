@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/service/defineService.js
+ * @FilePath: \Furnace\src\service\defineService.js
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 22:58:07
+ * @LastEditTime: 2022-11-29 20:46:29
  * @Description: 
  */
 import { defineState } from "@/hooks/useState";
@@ -20,22 +20,31 @@ function generate(props) {
     const config = defineConfig(props);
     // 存疑
     const result = defineShallowObject(NormResult);
+    const startup = defineState(false);
     const pend = defineState(false);
     const finish = defineState(true);
 
+    const started = computed(() => unref(startup.state));
     const loading = computed(() => unref(pend.state));
     const finished = computed(() => unref(finish.state));
 
+    function toRecord() {
+        if (unref(started)) return;
+
+        startup.toEnable();
+    }
     function toStart() {
         pend.toEnable();
         finish.toDisable();
     }
     function toEnd() {
+        toRecord();
         pend.toDisable();
         finish.toEnable();
     }
 
     return {
+        started,
         pend,
         finish,
         config,

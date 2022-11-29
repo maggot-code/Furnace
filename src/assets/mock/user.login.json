@@ -1,5 +1,10 @@
 {
     "code": -1,
     "message": "ok",
-    "data": {}
+    "data": {
+        "token": "0755609a91594f27a66e771f9b1b1b1f",
+        "name": "MaggotCode",
+        "avatar": "https://i0.hdslb.com/bfs/baselabs/5c2d6de6e6c0b24d3f7e822b744163a1d6fa57e7.png",
+        "role": []
+    }
 }

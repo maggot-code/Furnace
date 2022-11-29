@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:52:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 15:53:54
+ * @LastEditTime: 2022-11-29 20:28:52
  * @Description: 
  */
 import MockResponse from "@/assets/mock/user.login.json?raw";
@@ -13,13 +13,15 @@ import { service } from "@/service/model/Application";
 // Mock用例
 function mockAdapter(config) {
     return new Promise((resolve, reject) => {
-        resolve({
-            data: MockResponse,
-            headers: {},
-            status: 200,
-            statusText: 'OK',
-            config,
-        });
+        setTimeout(() => {
+            resolve({
+                data: MockResponse,
+                headers: {},
+                status: 200,
+                statusText: 'OK',
+                config,
+            });
+        }, 6400);
     });
 }
 

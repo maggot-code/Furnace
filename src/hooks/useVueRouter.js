@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:09:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 17:17:26
+ * @LastEditTime: 2022-11-29 21:18:42
  * @Description: 
  */
 import { getCurrentInstance } from "vue";
@@ -45,11 +45,6 @@ export function useRedirect() {
     }
 
     return redo;
-}
-
-// 登录跳转
-export function useSigninJump() {
-    // RootName
 }
 
 export default useRouter;

@@ -3,24 +3,21 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 18:08:14
+ * @LastEditTime: 2022-11-29 21:21:02
  * @Description: 
 -->
 <script setup>
 import { LoginServer, obtainLogin, abortLogin } from "@/server/User/login";
-import { useUserStore } from "@/store/useUserStore";
-import { useSigninJump } from "@/hooks/useVueRouter";
 import { useElementRefs } from "@/hooks/useElement";
+import { useWatchServer } from "@/hooks/useWatchServer";
 
 const { loading } = LoginServer;
 
-const userStore = useUserStore();
-const jump = useSigninJump();
 const { refs } = useElementRefs();
 
 const form = reactive({
-    username: "",
-    password: "",
+    username: "admin",
+    password: "furnace",
     note: "",
     code: ""
 });
@@ -54,16 +51,15 @@ const rules = {
 };
 
 function submitForm() {
-    unref(refs).validate((state) => {
-        if (!state) return;
-
-        console.log(unref(form));
-    });
+    unref(refs).validate((state) => state && obtainLogin(unref(form)));
 }
 function resetForm() {
     unref(refs).resetFields();
 }
 
+useWatchServer(LoginServer, ({ data }) => {
+    console.log(data);
+});
 onBeforeUnmount(() => abortLogin());
 </script>
 
@@ -81,6 +77,7 @@ onBeforeUnmount(() => abortLogin());
             <el-form-item prop="username">
                 <el-input
                     v-model="form.username"
+                    :readonly="loading"
                     prefix-icon="el-icon-user"
                     placeholder="账户：admin"
                     type="text"
@@ -90,6 +87,7 @@ onBeforeUnmount(() => abortLogin());
             <el-form-item prop="password">
                 <el-input
                     v-model="form.password"
+                    :readonly="loading"
                     prefix-icon="el-icon-lock"
                     placeholder="密码：furnace"
                     type="password"
@@ -107,8 +105,14 @@ onBeforeUnmount(() => abortLogin());
                 </el-input>
             </el-form-item> -->
             <el-form-item>
-                <el-button @click="submitForm">登录</el-button>
-                <el-button @click="resetForm">重置</el-button>
+                <el-button
+                    :loading="loading"
+                    @click="submitForm"
+                >登录</el-button>
+                <el-button
+                    :disabled="loading"
+                    @click="resetForm"
+                >重置</el-button>
             </el-form-item>
         </el-form>
     </div>
