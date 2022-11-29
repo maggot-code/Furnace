@@ -1,13 +1,14 @@
 /*
- * @FilePath: /Furnace/plugins/lodash.js
+ * @FilePath: \Furnace\plugins\lodash.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 22:09:26
+ * @LastEditTime: 2022-11-29 22:47:34
  * @Description: 
  */
 export default [
     "isNil",
+    "isNull",
     "isObject",
     "isString",
     "isNumber",

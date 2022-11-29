@@ -8,7 +8,8 @@
     {
         "name": "redirect",
         "component": "pages/Redirect/redirect.vue",
-        "address": "/redirect"
+        "address": "/redirect",
+        "hidden": true
     },
     {
         "name": "welcome",
