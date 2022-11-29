@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 12:05:38
+ * @LastEditTime: 2022-11-29 15:11:49
  * @Description: 
 -->
 <script setup>
@@ -32,7 +32,7 @@ import { defineCurd } from "../usecase/defineCurd";
 
 // UseCase
 import { useSlotServer } from "@/hooks/useSlotServer";
-import { useRoute } from "@/hooks/useRouter";
+// import { useRoute } from "@/hooks/useRouter";
 import { useServerLoad } from "@/hooks/useServerLoad";
 import { useWatchServer } from "@/hooks/useWatchServer";
 
@@ -60,7 +60,7 @@ const abortGroup = [
 ];
 const slots = useSlots();
 const slotServer = useSlotServer();
-const route = useRoute();
+// const route = useRoute();
 const loading = useServerLoad(serverGroup);
 
 const hasSearch = slotServer.slotState(slots.search, SearchCurdServer.finished);
@@ -90,7 +90,7 @@ watchEffect(() => {
 
     obtainDataCurd(curd.factor.sourceConfig);
 });
-onBeforeMount(() => obtainCurdConfig(route.params));
+// onBeforeMount(() => obtainCurdConfig(route.params));
 onBeforeUnmount(() => {
     abortGroup.forEach((abort) => abort());
     form.schema.formConfig.clear();

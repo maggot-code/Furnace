@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 01:32:54
+ * @LastEditTime: 2022-11-29 15:34:51
  * @Description: 
  */
 // 重定向路由
@@ -31,4 +31,33 @@ export const Keyword = [
     "welcome",
     "signin",
     "business",
+];
+
+// VueRouter干净路由配置
+export const PickRouteKeyword = [
+    "name",
+    "path",
+    "redirect",
+    "component",
+    "meta",
+    "children"
+];
+
+// VueRouter Meta 配置
+export const PickRouteMetaKeyword = [
+    "address",
+    "dev",
+    "hasParent",
+    "level",
+    "map",
+    "namespace",
+    "parent",
+    "uuid",
+    "mode",
+    "template",
+    "icon",
+    "title",
+    "menu",
+    "hidden",
+    "affix"
 ];

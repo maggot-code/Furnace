@@ -3,10 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:07:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 01:32:47
+ * @LastEditTime: 2022-11-29 15:20:03
  * @Description: 
  */
+import { toBoolean } from "@/shared/trans";
 import { Keyword } from "@/router/context";
+import RouterNamespace from "@/router/namespace";
 
 // 是否是关键字
 export function isKeyword(value) {
@@ -18,8 +20,16 @@ export function isKeyword(value) {
 }
 
 // 检查数据源是否符合标准
+// true  存在不符合标准的数据
+// false 不存在不符合标准的数据
 export function checkDataSource(dataSource) {
-    // if (uncheck.includes(dataSource.namespace)) return false;
+    const { namespace } = dataSource;
+
+    // 检查是否只在开发环境启用
+    if (import.meta.env.PROD && toBoolean(dataSource.dev, false)) return true;
+
+    if (RouterNamespace[namespace].skip) return false;
+
     const state = [
         isKeyword(dataSource.pid),
         isKeyword(dataSource.id),

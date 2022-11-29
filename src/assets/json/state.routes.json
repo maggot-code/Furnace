@@ -1,19 +1,19 @@
 [
     {
         "name": "forbidden",
-        "component": "Accident/forbidden.vue",
+        "component": "pages/Accident/forbidden.vue",
         "address": "/403",
         "title": "403"
     },
     {
         "name": "notfound",
-        "component": "Accident/notfound.vue",
+        "component": "pages/Accident/notfound.vue",
         "address": "/404",
         "title": "404"
     },
     {
         "name": "crash",
-        "component": "Accident/crash.vue",
+        "component": "pages/Accident/crash.vue",
         "address": "/500",
         "title": "500"
     }
