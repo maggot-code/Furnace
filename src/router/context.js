@@ -3,9 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 16:49:19
+ * @LastEditTime: 2022-11-29 17:16:53
  * @Description: 
  */
+// 根基路由
+export const RootName = "welcome";
+
 // 重定向路由
 export const RedirectName = "redirect";
 

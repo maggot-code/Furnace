@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:09:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 16:59:17
+ * @LastEditTime: 2022-11-29 17:17:26
  * @Description: 
  */
 import { getCurrentInstance } from "vue";
-import { RedirectName, SigninPath } from "@/router/context";
+import { RedirectName, RootName } from "@/router/context";
 import { mergePlainObject } from "@/shared/trans";
 
 export function useRouter() {
@@ -47,15 +47,9 @@ export function useRedirect() {
     return redo;
 }
 
-// 重定向到登录页面
-export function useRedirectSignin() {
-    const route = useRoute();
-    const redo = useRedirect();
-
-    return () => redo({
-        path: SigninPath,
-        pointTo: route.fullPath
-    });
+// 登录跳转
+export function useSigninJump() {
+    // RootName
 }
 
 export default useRouter;
