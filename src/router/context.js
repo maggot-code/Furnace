@@ -3,11 +3,16 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 15:34:51
+ * @LastEditTime: 2022-11-29 16:49:19
  * @Description: 
  */
 // 重定向路由
-export const RedirectName = "Redirect";
+export const RedirectName = "redirect";
+
+// 登录路由名称
+export const SigninName = "signin";
+// 登录路由路径
+export const SigninPath = "/signin";
 
 // 异常路由
 export const AccidentRoute = {
