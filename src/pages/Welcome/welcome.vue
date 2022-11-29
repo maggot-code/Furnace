@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 21:34:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 16:28:05
+ * @LastEditTime: 2022-11-29 23:31:46
  * @Description: 
 -->
 <script setup>
@@ -15,7 +15,6 @@ const userStore = useUserStore();
 <template>
     <div>
         <h1>Welcome!</h1>
-        <p>{{ userStore.overdueView }}</p>
     </div>
 </template>
 

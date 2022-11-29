@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:52:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 20:28:52
+ * @LastEditTime: 2022-11-30 01:05:38
  * @Description: 
  */
 import MockResponse from "@/assets/mock/user.login.json?raw";
@@ -21,7 +21,7 @@ function mockAdapter(config) {
                 statusText: 'OK',
                 config,
             });
-        }, 6400);
+        }, 1600);
     });
 }
 

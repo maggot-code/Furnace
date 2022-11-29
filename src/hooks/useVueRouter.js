@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:09:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 21:18:42
+ * @LastEditTime: 2022-11-30 01:20:20
  * @Description: 
  */
 import { getCurrentInstance } from "vue";
@@ -32,7 +32,7 @@ export function useRedirect() {
 
     function redo(to) {
         return new Promise((resolve) => {
-            if (route.name === RedirectName) return resolve(false);
+            if (eq(route.name, RedirectName)) return resolve(false);
 
             const params = mergePlainObject(to, { query: route.query });
             return router.push({ name: RedirectName, params })

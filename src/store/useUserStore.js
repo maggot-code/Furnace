@@ -3,14 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:51:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 22:50:49
+ * @LastEditTime: 2022-11-30 01:16:36
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { toString, toNull, toArray } from "@/shared/trans";
+import { isUnusable } from "@/shared/is";
+import { toBoolean, toString, toArray } from "@/shared/trans";
+import dayjs from "dayjs";
 
 const paths = [
     "token",
+    "isLogin",
     "name",
     "avatar",
     "roles",
@@ -38,6 +41,7 @@ export const Namespace = 'useUserStore';
 export const useUserStore = defineStore(Namespace, {
     state: () => ({
         token: defineToken(),
+        isLogin: false,
         name: "",
         avatar: "",
         roles: [],
@@ -48,10 +52,17 @@ export const useUserStore = defineStore(Namespace, {
         tokenValue() {
             return this.token.value;
         },
+        // token 是否过期
         tokenLapse() {
-            const untoken = isNil(this.tokenValue);
+            const untoken = isUnusable([this.tokenValue]);
             const date = this.token.overdue < Date.now();
             return untoken || date;
+        },
+        tokenOverdue() {
+            return dayjs(this.token.overdue).format("YYYY-MM-DD HH:mm:ss");
+        },
+        overdueView() {
+            return this.tokenLapse ? "已过期" : "未过期";
         },
         info() {
             return {
@@ -70,6 +81,12 @@ export const useUserStore = defineStore(Namespace, {
             this.avatar = info.avatar;
             this.roles = info.roles;
             this.activeRole = info.activeRole;
+        },
+        setupToLogin(value) {
+            const state = toBoolean(value, true);
+            if (eq(state, this.isLogin)) return;
+
+            this.isLogin = state;
         },
         setupToken(value) {
             this.token = defineToken(value);

@@ -3,13 +3,16 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 21:21:02
+ * @LastEditTime: 2022-11-30 01:07:25
  * @Description: 
 -->
 <script setup>
 import { LoginServer, obtainLogin, abortLogin } from "@/server/User/login";
-import { useElementRefs } from "@/hooks/useElement";
 import { useWatchServer } from "@/hooks/useWatchServer";
+import { useElementRefs } from "@/hooks/useElement";
+import { useUserStore } from "@/store/useUserStore";
+
+const userStore = useUserStore();
 
 const { loading } = LoginServer;
 
@@ -58,7 +61,8 @@ function resetForm() {
 }
 
 useWatchServer(LoginServer, ({ data }) => {
-    console.log(data);
+    userStore.setup(data);
+    userStore.setupToken(data.token);
 });
 onBeforeUnmount(() => abortLogin());
 </script>
@@ -119,5 +123,12 @@ onBeforeUnmount(() => abortLogin());
 </template>
 
 <style scoped lang='scss'>
-
+.furnace-signin {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 </style>
