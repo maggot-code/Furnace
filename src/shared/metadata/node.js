@@ -3,21 +3,23 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:59:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-25 13:14:23
+ * @LastEditTime: 2022-11-30 15:30:52
  * @Description: 
  */
 import { mergePlainObject } from "@/shared/trans";
 import { uuid } from "@/shared/uuid";
 
-export function defineNode({ parent, current }) {
+export function defineNode(current) {
+    const uid = uuid();
     return mergePlainObject(current, {
-        parent,
-        uuid: uuid(),
+        parent: null,
+        children: [],
+        hasParent: false,
+        hasChild: false,
+        level: 0,
+        map: [uid],
+        uid,
     });
-}
-
-export function pickNode(props) {
-    return pick(props, []);
 }
 
 export default defineNode;

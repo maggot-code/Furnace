@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 03:30:06
+ * @LastEditTime: 2022-11-30 15:31:26
  * @Description: 
  */
 import { mergePlainObject } from "@/shared/trans";
@@ -42,14 +42,15 @@ export function transRouteNode(rawNode) {
     const { wrap } = RouterNamespace[rawNode.namespace];
 
     // return pick(wrap(rawNode), PickRouteKeyword);
-    return wrap(rawNode);
+    return wrap(rawNode)
 }
 
 // 转换路由组
 export function transRouteGroup(rawData, namespace) {
     // 结构转换
-    const tree = arrayToTree(null, rawData, {
-        check: checkParent,
+    const tree = arrayToTree(rawData, {
+        self: "id",
+        parent: "pid",
         adapter: (node) => mergePlainObject(node, {
             namespace: namespace ?? UnknownNamespace,
         }),

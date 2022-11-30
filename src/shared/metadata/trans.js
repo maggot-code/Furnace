@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 13:00:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 03:30:46
+ * @LastEditTime: 2022-11-30 15:30:42
  * @Description: 
  */
 import { toArray, mergePlainObject } from "@/shared/trans";
@@ -11,27 +11,49 @@ import { isEmpty, notEmpty } from "@/shared/is";
 import { defineNode } from "@/shared/metadata/node";
 
 // 数组结构转树结构
+// 不适合使用递归，因为不清楚数据量
+// 不适合单次循环，一边存储一边找关系，因为需要给子节点追加父节点属性
+// 这样实现 cache 无法被正常释放，所以实现方法存疑
 const normToTreeProps = {
-    check: eq,
+    self: "id",
+    parent: "pid",
     adapter: (item) => (item)
 }
-export function arrayToTree(parent, dataSource, props) {
-    const { check, adapter } = mergePlainObject(normToTreeProps, props);
+export function arrayToTree(dataSource, props) {
+    const { self, parent, adapter } = mergePlainObject(normToTreeProps, props);
+    const notKeyword = (node) => !Reflect.has(node, self) && !Reflect.has(node, parent);
 
-    return toArray(dataSource).reduce((store, current) => {
-        const node = defineNode({ parent, current });
-        node.hasParent = notEmpty(parent);
-        node.map = node.hasParent ? concat(parent.map, node.uuid) : [node.uuid];
-        node.level = node.hasParent ? parent.level + 1 : 0;
+    const store = [];
+    const cache = {};
+    const source = toArray(dataSource);
 
-        if (check(parent, current)) {
-            node.children = arrayToTree(node, dataSource, props);
-            node.childKeys = node.children.map(item => item.uuid);
-            node.hasChild = notEmpty(node.children);
+    source.forEach((item) => {
+        const node = defineNode(item);
+        if (notKeyword(node)) return;
+
+        cache[node[self]] = node;
+    });
+
+    source.forEach((item) => {
+        if (notKeyword(item)) {
+            store.push(adapter(defineNode(item)));
+            return;
         }
-        store.push(adapter(node));
-        return store;
-    }, []);
+
+        if (cache[item[parent]]) {
+            cache[item[self]].parent = cache[item[parent]];
+            cache[item[self]].hasParent = true;
+            cache[item[self]].level = cache[item[parent]].level + 1;
+            cache[item[self]].map = concat(cache[item[parent]].map, cache[item[self]].uid);
+
+            cache[item[parent]].children.push(adapter(cache[item[self]]));
+            cache[item[parent]].hasChild = true;
+        } else {
+            store.push(adapter(cache[item[self]]));
+        }
+    });
+
+    return store;
 }
 
 // 树结构循环
