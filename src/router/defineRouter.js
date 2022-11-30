@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 23:20:28
+ * @LastEditTime: 2022-12-01 00:39:30
  * @Description: 
  */
 import FreezeRoutes from "@/assets/json/freeze.routes";
@@ -12,6 +12,7 @@ import StateRoutes from "@/assets/json/state.routes";
 import BeforeUnknow from "@/middleware/router/unknow.before";
 import BeforeToken from "@/middleware/router/token.before";
 import BeforeLogin from "@/middleware/router/login.before";
+import BeforeAsync from "@/middleware/router/async.before";
 import BeforeProgress from "@/middleware/router/nprogress.before";
 import AfterProgress from "@/middleware/router/nprogress.after";
 
@@ -28,6 +29,7 @@ const internalRoutes = transRouteGroup(
 const { router, VueRouter } = buildVueRouter(internalRoutes);
 const routerBefore = [
     BeforeProgress,
+    BeforeAsync,
     BeforeUnknow,
     BeforeToken,
     BeforeLogin,
