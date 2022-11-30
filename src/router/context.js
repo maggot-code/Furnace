@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 02:34:07
+ * @LastEditTime: 2022-11-30 16:20:53
  * @Description: 
  */
 // 重定向路由
@@ -15,12 +15,23 @@ export const RootName = "welcome";
 // 登录路由名称
 export const SigninName = "signin";
 
+// 未定义路由名称
+export const NotfoundName = "notfound";
+
 // 异常路由
 export const AccidentRoute = {
     name: "unknow",
     path: "/:pathMatch(.*)*",
     redirect: "/404"
 }
+
+// 忽略路由定义
+export const OmitRouteGroup = [
+    "debug",
+    "notfound",
+    "signin",
+    "redirect"
+];
 
 // 关键字定义
 export const Keyword = [
