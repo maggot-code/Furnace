@@ -3,15 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 16:21:43
+ * @LastEditTime: 2022-11-30 16:45:36
  * @Description: 
  */
 import FreezeRoutes from "@/assets/json/freeze.routes";
 import StateRoutes from "@/assets/json/state.routes";
 
-import BeforeUnknow from "@/middleware/router/unknow.before";
-import BeforeAsync from "@/middleware/router/async.before";
-import BeforeToken from "@/middleware/router/token.before";
 import BeforeProgress from "@/middleware/router/nprogress.before";
 import AfterProgress from "@/middleware/router/nprogress.after";
 
@@ -30,9 +27,6 @@ const { router, VueRouter } = buildVueRouter(internalRoutes);
 // router.afterEach
 export function defineRouter() {
     BeforeProgress(router);
-    BeforeUnknow(router);
-    BeforeToken(router);
-    BeforeAsync(router);
     AfterProgress(router);
 
     return {
