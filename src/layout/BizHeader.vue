@@ -3,10 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 23:46:36
+ * @LastEditTime: 2022-12-01 02:15:08
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { useMenuStore } from "@/store/useMenuStore";
+
+const menuStore = useMenuStore();
+</script>
 
 <template>
     <div class="furnace-header">
@@ -15,6 +19,7 @@
             icon="el-icon-s-fold"
             size="small"
             circle
+            @click="menuStore.switchCollapse"
         ></el-button>
     </div>
 </template>

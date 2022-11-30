@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 01:40:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:01:58
+ * @LastEditTime: 2022-12-01 02:12:57
  * @Description: 
 -->
 <script setup>
@@ -25,8 +25,9 @@ watchEffect(() => {
     @close="handleClose" -->
     <el-menu
         class="furnace-menu"
+        mode="vertical"
         :default-active="route.fullPath"
-        :collapse="false"
+        :collapse="menuStore.collapse"
     >
         <el-submenu index="1">
             <template slot="title">

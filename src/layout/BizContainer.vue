@@ -3,10 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 23:44:50
+ * @LastEditTime: 2022-12-01 02:19:23
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { useMenuStore } from "@/store/useMenuStore";
+
+const menuStore = useMenuStore();
+</script>
 
 <template>
     <el-container
@@ -15,7 +19,7 @@
     >
         <el-aside
             class="furnace-biz-aside"
-            width="240px"
+            :width="menuStore.menuWidth"
         >
             <slot name="aside"></slot>
         </el-aside>
@@ -43,7 +47,8 @@
     box-sizing: border-box;
 
     &-aside {
-        background-color: pink;
+        transition: all 0.3s;
+        overflow: hidden;
     }
 
     &-main {
