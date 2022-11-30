@@ -3,14 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-30 01:47:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 01:56:19
+ * @LastEditTime: 2022-11-30 16:50:22
  * @Description: 
  */
 import { useProgress } from "@/hooks/useProgress";
 
 const progress = useProgress();
 
-export function define(to, form, next) {
+function define(to, form, next) {
     if (!progress.isStarted()) progress.start();
 
     next();

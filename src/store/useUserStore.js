@@ -3,17 +3,16 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:51:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 01:16:36
+ * @LastEditTime: 2022-11-30 19:13:55
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { isUnusable } from "@/shared/is";
-import { toBoolean, toString, toArray } from "@/shared/trans";
+import { toString, toArray } from "@/shared/trans";
 import dayjs from "dayjs";
 
 const paths = [
     "token",
-    "isLogin",
     "name",
     "avatar",
     "roles",
@@ -41,7 +40,6 @@ export const Namespace = 'useUserStore';
 export const useUserStore = defineStore(Namespace, {
     state: () => ({
         token: defineToken(),
-        isLogin: false,
         name: "",
         avatar: "",
         roles: [],
@@ -77,16 +75,11 @@ export const useUserStore = defineStore(Namespace, {
     actions: {
         setup(source) {
             const info = defineInfo(source);
+
             this.name = info.name;
             this.avatar = info.avatar;
             this.roles = info.roles;
             this.activeRole = info.activeRole;
-        },
-        setupToLogin(value) {
-            const state = toBoolean(value, true);
-            if (eq(state, this.isLogin)) return;
-
-            this.isLogin = state;
         },
         setupToken(value) {
             this.token = defineToken(value);

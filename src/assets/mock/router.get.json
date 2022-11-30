@@ -5,6 +5,7 @@
         {
             "name": "system",
             "mode": "fragment",
+            "address": "/system",
             "redirect": "/system/monitor",
             "icon": "el-icon-setting",
             "title": "系统管理",
@@ -28,6 +29,7 @@
         {
             "name": "system_log",
             "mode": "fragment",
+            "address": "/system/log",
             "redirect": "/system/log/view",
             "icon": "el-icon-notebook-1",
             "title": "系统日志",
@@ -64,6 +66,7 @@
         {
             "name": "power",
             "mode": "fragment",
+            "address": "/power",
             "redirect": "/power/user",
             "icon": "el-icon-setting",
             "title": "权限管理",

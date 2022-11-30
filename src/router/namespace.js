@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 14:18:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 15:47:25
+ * @LastEditTime: 2022-11-30 20:31:14
  * @Description: 
  */
 import { mergePlainObject } from "@/shared/trans";
@@ -32,12 +32,13 @@ export function wrapInternalNamespace(route) {
 // 外部路由模式
 export const ExternalNamespace = 'external';
 export function wrapExternalNamespace(route) {
-    console.log(route);
-    return mergePlainObject(route, {
+    const bind = {
         path: transPath(route),
         meta: transMate(route),
         component: defineAsyncComponent(() => import("@/components/EmptyView.vue"))
-    });
+    };
+
+    return mergePlainObject(route, bind);
 }
 
 export default {

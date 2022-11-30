@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 15:41:15
+ * @LastEditTime: 2022-11-30 18:57:19
  * @Description: 
 -->
 <script setup>
@@ -12,11 +12,12 @@ import { LoginServer, obtainLogin, abortLogin } from "@/server/User/login";
 import { useServerLoad } from "@/hooks/useServerLoad";
 import { useWatchServer } from "@/hooks/useWatchServer";
 import { useElementRefs } from "@/hooks/useElement";
+import { useRedirect } from "@/hooks/useVueRouter";
 import { useUserStore } from "@/store/useUserStore";
 
 const loading = useServerLoad([GetRouterServer, LoginServer]);
 const userStore = useUserStore();
-
+const redo = useRedirect();
 const { refs } = useElementRefs();
 
 const form = reactive({
@@ -55,7 +56,7 @@ const rules = {
 };
 
 function submitForm() {
-    unref(refs).validate((state) => state && obtainLogin(unref(form)));
+    unref(refs).validate((state) => state && obtainLogin(unref(form)).finally(() => redo()));
 }
 function resetForm() {
     unref(refs).resetFields();

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 16:20:53
+ * @LastEditTime: 2022-11-30 19:23:42
  * @Description: 
  */
 // 重定向路由
@@ -29,8 +29,7 @@ export const AccidentRoute = {
 export const OmitRouteGroup = [
     "debug",
     "notfound",
-    "signin",
-    "redirect"
+    "signin"
 ];
 
 // 关键字定义
