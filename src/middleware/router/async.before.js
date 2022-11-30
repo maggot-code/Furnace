@@ -1,20 +1,15 @@
 /*
  * @FilePath: \Furnace\src\middleware\router\async.before.js
  * @Author: maggot-code
- * @Date: 2022-11-30 02:22:26
+ * @Date: 2022-11-30 15:54:55
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 04:26:21
+ * @LastEditTime: 2022-11-30 16:02:52
  * @Description: 
  */
-import { useRouterStore } from "@/store/useRouterStore";
+import Router from "@/router/defineRouter";
 
-export const define = (router) => (to, form, next) => {
-    const routerStore = useRouterStore();
-    // console.log(router);
-    // console.log("挂载异步路由");
-    console.log(routerStore.asyncRoutes);
-
+export async function define(to, form, next) {
     next();
 }
 
-export default (router) => router.beforeEach(define(router));
+export default (router) => router.beforeEach(define);
