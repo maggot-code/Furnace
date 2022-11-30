@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 13:00:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 15:30:42
+ * @LastEditTime: 2022-12-01 01:33:06
  * @Description: 
  */
 import { toArray, mergePlainObject } from "@/shared/trans";
@@ -47,8 +47,8 @@ export function arrayToTree(dataSource, props) {
             cache[item[self]].map = concat(cache[item[parent]].map, cache[item[self]].uid);
 
             cache[item[parent]].children.push(adapter(cache[item[self]]));
-            cache[item[parent]].hasChild = true;
         } else {
+
             store.push(adapter(cache[item[self]]));
         }
     });

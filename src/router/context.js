@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 00:46:47
+ * @LastEditTime: 2022-12-01 01:16:55
  * @Description: 
  */
 // 根基路由
@@ -67,6 +67,7 @@ export const PickRouteMetaKeyword = [
     "address",
     "dev",
     "hasParent",
+    "hasChild",
     "level",
     "map",
     "namespace",
@@ -76,6 +77,7 @@ export const PickRouteMetaKeyword = [
     "template",
     "icon",
     "title",
+    "sort",
     "menu",
     "hidden",
     "affix"

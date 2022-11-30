@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 00:53:57
+ * @LastEditTime: 2022-12-01 01:37:40
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -39,11 +39,12 @@ export const useRouterStore = defineStore(Namespace, {
                 this.cache = toArray(data);
             }
 
+            this.mounted = true;
+
             const router = reloadRouter();
             this.asyncRoutes.forEach((route) => {
                 router.addRoute(BusinessName, route);
             });
-            this.mounted = true;
 
             return this.mounted;
         },

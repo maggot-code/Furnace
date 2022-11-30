@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:11:39
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 15:22:00
+ * @LastEditTime: 2022-12-01 01:38:31
  * @Description: 
  */
 import VueRouter from "vue-router";
+import { uuid } from "@/shared/uuid";
 import { toArray } from "@/shared/trans";
 
 // hack router push callback
@@ -23,6 +24,7 @@ export function buildVueRouter(routes) {
         mode: "hash",
         scrollBehavior: () => ({ y: 0 })
     });
+    router.matcher["tag"] = uuid();
     return { router, VueRouter };
 }
 

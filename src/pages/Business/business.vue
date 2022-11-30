@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:19:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 00:56:30
+ * @LastEditTime: 2022-12-01 01:40:57
  * @Description: 
 -->
 <script setup></script>
@@ -11,7 +11,7 @@
 <template>
     <biz-container>
         <template #aside>
-            <h1>菜单</h1>
+            <biz-menu></biz-menu>
         </template>
 
         <template #header>
