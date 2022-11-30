@@ -3,15 +3,16 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 00:37:19
+ * @LastEditTime: 2022-12-01 00:53:57
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { obtainGetRouter } from "@/server/Router/get";
-import { toBoolean, toArray } from "@/shared/trans";
+import { toArray } from "@/shared/trans";
 import { reloadRouter } from "@/router/defineRouter";
 import { transRouteGroup } from "@/router/trans";
 import { ExternalNamespace } from "@/router/namespace";
+import { BusinessName } from "@/router/context";
 
 const paths = ["cache"];
 
@@ -38,7 +39,10 @@ export const useRouterStore = defineStore(Namespace, {
                 this.cache = toArray(data);
             }
 
-            reloadRouter(this.asyncRoutes);
+            const router = reloadRouter();
+            this.asyncRoutes.forEach((route) => {
+                router.addRoute(BusinessName, route);
+            });
             this.mounted = true;
 
             return this.mounted;

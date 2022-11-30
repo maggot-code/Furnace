@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:19:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 23:46:09
+ * @LastEditTime: 2022-12-01 00:56:30
  * @Description: 
 -->
 <script setup></script>
@@ -19,7 +19,9 @@
         </template>
 
         <template #body>
-            <h1>主体</h1>
+            <transition name="el-fade-in-linear">
+                <router-view></router-view>
+            </transition>
         </template>
     </biz-container>
 </template>

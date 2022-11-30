@@ -5,7 +5,6 @@ import { NotfoundName } from "@/router/context";
 function define(to, form, next) {
     const routes = Router.getRoutes();
     const userStore = useUserStore();
-    console.log(routes);
     const loseIndex = routes.findIndex(route => eq(route.name, to.name)) < 0;
 
     if (userStore.tokenUnusable || eq(to.name, NotfoundName)) {

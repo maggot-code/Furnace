@@ -2,8 +2,6 @@ import { useUserStore } from "@/store/useUserStore";
 import { useRouterStore } from "@/store/useRouterStore";
 
 async function define(to, form, next) {
-    console.log(to, form);
-
     const userStore = useUserStore();
     const routerStore = useRouterStore();
 

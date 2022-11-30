@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 21:01:22
+ * @LastEditTime: 2022-12-01 00:56:43
  * @Description: 
 -->
 <script setup></script>
@@ -12,7 +12,9 @@
     <config>
         <popup>
             <lock-screen>
-                <router-view></router-view>
+                <transition name="el-fade-in-linear">
+                    <router-view></router-view>
+                </transition>
             </lock-screen>
         </popup>
     </config>

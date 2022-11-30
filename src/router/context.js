@@ -3,14 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 19:23:42
+ * @LastEditTime: 2022-12-01 00:46:47
  * @Description: 
  */
-// 重定向路由
-export const RedirectName = "redirect";
-
 // 根基路由
 export const RootName = "welcome";
+
+// 业务路由
+export const BusinessName = "business";
+
+// 重定向路由
+export const RedirectName = "redirect";
 
 // 登录路由名称
 export const SigninName = "signin";

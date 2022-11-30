@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:17:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 23:50:06
+ * @LastEditTime: 2022-12-01 00:51:29
  * @Description: 
 -->
 <script setup>
@@ -20,7 +20,7 @@ onBeforeMount(() => {
     const redirect = (Array.isArray(path) ? path.join('/') : toString(path));
 
     router.replace({
-        path: isEmptyString(redirect) ? "/" : redirect,
+        path: isEmptyString(redirect) ? "/welcome" : redirect,
         params,
         query,
     });
