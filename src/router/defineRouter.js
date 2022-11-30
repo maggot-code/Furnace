@@ -3,19 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 19:36:54
+ * @LastEditTime: 2022-11-30 23:20:28
  * @Description: 
  */
 import FreezeRoutes from "@/assets/json/freeze.routes";
 import StateRoutes from "@/assets/json/state.routes";
 
 import BeforeUnknow from "@/middleware/router/unknow.before";
-import BeforeAsync from "@/middleware/router/async.before";
 import BeforeToken from "@/middleware/router/token.before";
 import BeforeLogin from "@/middleware/router/login.before";
 import BeforeProgress from "@/middleware/router/nprogress.before";
 import AfterProgress from "@/middleware/router/nprogress.after";
 
+import { toArray } from "@/shared/trans";
 import { buildVueRouter } from "@/router/internal";
 import { transRouteGroup } from "@/router/trans";
 import { InternalNamespace } from "@/router/namespace";
@@ -29,7 +29,6 @@ const { router, VueRouter } = buildVueRouter(internalRoutes);
 const routerBefore = [
     BeforeProgress,
     BeforeUnknow,
-    BeforeAsync,
     BeforeToken,
     BeforeLogin,
 ];
@@ -48,9 +47,13 @@ export function defineRouter() {
     }
 }
 
-export function reloadRouter() {
-    const { router: replace } = buildVueRouter(internalRoutes);
+export function reloadRouter(routes) {
+    const group = concat(internalRoutes, toArray(routes));
+    const { router: replace } = buildVueRouter(group);
+
     router.matcher = replace.matcher // reset router
+
+    return router;
 }
 
 export default router;

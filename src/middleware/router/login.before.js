@@ -17,9 +17,9 @@ function define(to, form, next) {
     const userStore = useUserStore();
     const isSignin = eq(to.name, SigninName);
 
-    if (isSignin && !userStore.tokenLapse) {
+    if (isSignin && !userStore.tokenUnusable) {
         next({ name: RootName });
-    } else if (toOmit(to) || !userStore.tokenLapse) {
+    } else if (toOmit(to) || !userStore.tokenUnusable) {
         next();
     } else {
         next({ name: SigninName });

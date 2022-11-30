@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 18:57:19
+ * @LastEditTime: 2022-11-30 23:51:18
  * @Description: 
 -->
 <script setup>
@@ -15,9 +15,10 @@ import { useElementRefs } from "@/hooks/useElement";
 import { useRedirect } from "@/hooks/useVueRouter";
 import { useUserStore } from "@/store/useUserStore";
 
-const loading = useServerLoad([GetRouterServer, LoginServer]);
-const userStore = useUserStore();
+
 const redo = useRedirect();
+const userStore = useUserStore();
+const loading = useServerLoad([GetRouterServer, LoginServer]);
 const { refs } = useElementRefs();
 
 const form = reactive({
@@ -56,7 +57,7 @@ const rules = {
 };
 
 function submitForm() {
-    unref(refs).validate((state) => state && obtainLogin(unref(form)).finally(() => redo()));
+    unref(refs).validate((state) => state && obtainLogin(unref(form)));
 }
 function resetForm() {
     unref(refs).resetFields();
@@ -65,6 +66,7 @@ function resetForm() {
 useWatchServer(LoginServer, ({ data }) => {
     userStore.setup(data);
     userStore.setupToken(data.token);
+    redo();
 });
 onBeforeUnmount(() => abortLogin());
 </script>

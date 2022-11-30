@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:51:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 19:13:55
+ * @LastEditTime: 2022-11-30 23:45:44
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -50,17 +50,19 @@ export const useUserStore = defineStore(Namespace, {
         tokenValue() {
             return this.token.value;
         },
-        // token 是否过期
-        tokenLapse() {
+        tokenUnusable() {
             const untoken = isUnusable([this.tokenValue]);
             const date = this.token.overdue < Date.now();
             return untoken || date;
+        },
+        tokenUsable() {
+            return !this.tokenUnusable;
         },
         tokenOverdue() {
             return dayjs(this.token.overdue).format("YYYY-MM-DD HH:mm:ss");
         },
         overdueView() {
-            return this.tokenLapse ? "已过期" : "未过期";
+            return this.tokenUnusable ? "已过期" : "未过期";
         },
         info() {
             return {

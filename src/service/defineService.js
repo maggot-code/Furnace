@@ -3,15 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:32:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 20:46:29
+ * @LastEditTime: 2022-11-30 23:52:04
  * @Description: 
  */
+import { useProgress } from "@/hooks/useProgress";
 import { defineState } from "@/hooks/useState";
 import { defineShallowObject } from "@/hooks/useShallowObject";
 import { defineConfig } from "@/service/config.entity";
 import { NormResult } from "@/service/result.entity";
 import { toBoolean, mergePlainObject } from "@/shared/trans";
 
+const progress = useProgress();
 const serviceProps = {
     transResponse: (response) => response,
 };
@@ -34,6 +36,7 @@ function generate(props) {
         startup.toEnable();
     }
     function toStart() {
+        progress.start();
         pend.toEnable();
         finish.toDisable();
     }
@@ -41,6 +44,7 @@ function generate(props) {
         toRecord();
         pend.toDisable();
         finish.toEnable();
+        progress.done();
     }
 
     return {

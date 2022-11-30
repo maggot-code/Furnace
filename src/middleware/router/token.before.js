@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-30 18:09:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 20:39:43
+ * @LastEditTime: 2022-11-30 21:46:35
  * @Description: 
  */
 import { useUserStore } from "@/store/useUserStore";
@@ -13,7 +13,7 @@ function define(to, form, next) {
     const userStore = useUserStore();
     const routerStore = useRouterStore();
 
-    if (userStore.tokenLapse) {
+    if (userStore.tokenUnusable) {
         userStore.clearToken();
         routerStore.setupCache([]);
     };
