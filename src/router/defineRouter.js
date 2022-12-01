@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:30:30
+ * @LastEditTime: 2022-12-01 17:21:57
  * @Description: 
  */
 import FreezeRoutes from "@/assets/json/freeze.routes";
@@ -22,12 +22,6 @@ import { buildVueRouter } from "@/router/internal";
 import { transRouteGroup } from "@/router/trans";
 import { InternalNamespace } from "@/router/namespace";
 
-// 构建内部路由
-const internalRoutes = transRouteGroup(
-    concat(FreezeRoutes, StateRoutes),
-    InternalNamespace
-);
-const { router, VueRouter } = buildVueRouter(internalRoutes);
 const routerBefore = [
     BeforeProgress,
     BeforeAsync,
@@ -39,6 +33,12 @@ const routerBefore = [
 const routerAfter = [
     AfterProgress
 ];
+// 构建内部路由
+const internalRoutes = transRouteGroup(
+    concat(FreezeRoutes, StateRoutes),
+    InternalNamespace
+);
+const { router, VueRouter } = buildVueRouter(internalRoutes);
 
 // router.beforeEach
 // router.afterEach

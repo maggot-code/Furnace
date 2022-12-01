@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 23:51:18
+ * @LastEditTime: 2022-12-01 17:15:24
  * @Description: 
 -->
 <script setup>
@@ -65,7 +65,7 @@ function resetForm() {
 
 useWatchServer(LoginServer, ({ data }) => {
     userStore.setup(data);
-    userStore.setupToken(data.token);
+    userStore.setupToken(data);
     redo();
 });
 onBeforeUnmount(() => abortLogin());

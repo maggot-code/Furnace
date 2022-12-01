@@ -3,12 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 15:51:18
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 23:45:44
+ * @LastEditTime: 2022-12-01 16:26:37
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { isUnusable } from "@/shared/is";
-import { toString, toArray } from "@/shared/trans";
+import { toString, toArray, toPlainObject } from "@/shared/trans";
 import dayjs from "dayjs";
 
 const paths = [
@@ -75,16 +75,17 @@ export const useUserStore = defineStore(Namespace, {
     },
 
     actions: {
-        setup(source) {
-            const info = defineInfo(source);
+        setup(response) {
+            const info = defineInfo(toPlainObject(response));
 
             this.name = info.name;
             this.avatar = info.avatar;
             this.roles = info.roles;
             this.activeRole = info.activeRole;
         },
-        setupToken(value) {
-            this.token = defineToken(value);
+        setupToken(response) {
+            const source = toPlainObject(response);
+            this.token = defineToken(source.token);
             this.updateToken();
         },
         updateToken() {

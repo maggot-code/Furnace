@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/vite.config.js
+ * @FilePath: \Furnace\vite.config.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 00:21:08
+ * @LastEditTime: 2022-12-01 16:01:23
  * @Description: 
  */
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
@@ -25,11 +25,11 @@ export default defineConfig(() => {
         server: {
             hmr: true,
             proxy: {
-                '/api': {
-                    target: 'http://127.0.0.1:8899/',
-                    changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/api/, '/api')
-                }
+                // '/api': {
+                //     target: 'http://127.0.0.1:8899/',
+                //     changeOrigin: true,
+                //     rewrite: (path) => path.replace(/^\/api/, '/api')
+                // }
             }
         },
         resolve: {
