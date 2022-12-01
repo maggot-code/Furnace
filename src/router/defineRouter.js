@@ -3,16 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:38:22
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 01:38:20
+ * @LastEditTime: 2022-12-01 15:30:30
  * @Description: 
  */
 import FreezeRoutes from "@/assets/json/freeze.routes";
 import StateRoutes from "@/assets/json/state.routes";
 
+import BeforeAsync from "@/middleware/router/async.before";
 import BeforeUnknow from "@/middleware/router/unknow.before";
 import BeforeToken from "@/middleware/router/token.before";
 import BeforeLogin from "@/middleware/router/login.before";
-import BeforeAsync from "@/middleware/router/async.before";
+import BeforeBusiness from "@/middleware/router/business.before";
 import BeforeProgress from "@/middleware/router/nprogress.before";
 import AfterProgress from "@/middleware/router/nprogress.after";
 
@@ -33,6 +34,7 @@ const routerBefore = [
     BeforeUnknow,
     BeforeToken,
     BeforeLogin,
+    BeforeBusiness,
 ];
 const routerAfter = [
     AfterProgress

@@ -3,13 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 09:45:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 09:46:14
+ * @LastEditTime: 2022-12-01 15:15:03
  * @Description: 
  */
 function define() {
-    console.log("fragment");
-
-    return {}
+    return defineAsyncComponent(() => import("@/layout/Fragment.vue"));
 }
 
-export default () => { }
+export default (props) => define(props);

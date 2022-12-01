@@ -3,10 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 10:18:46
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 10:29:34
+ * @LastEditTime: 2022-12-01 12:27:08
  * @Description: 
  */
-import { UnknowModeName } from "./context";
+// import { UnknowModeName } from "./context";
 import { toPlainObject } from "@/shared/trans";
 
 let ModeGroup;
@@ -16,7 +16,7 @@ export function buildModeGroupKey() {
 }
 
 export function buildModeGroup() {
-    ModeGroup = ModeGroup ?? import.meta.glob("../store/**/*.js");
+    ModeGroup = ModeGroup ?? import.meta.glob("../store/**/*.js", { eager: true });
 
     return {
         modes: ModeGroup,
@@ -26,8 +26,10 @@ export function buildModeGroup() {
 
 export function matchMode(name) {
     const { modes, keys } = buildModeGroup();
+    const match = keys.find(key => key.includes(name));
+    const mode = modes[match];
 
-    return null;
+    return mode ?? null;
 }
 
 export default toPlainObject(ModeGroup);

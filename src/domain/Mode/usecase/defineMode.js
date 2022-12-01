@@ -3,15 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 09:44:43
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 10:22:04
+ * @LastEditTime: 2022-12-01 12:28:37
  * @Description: 
  */
 import { matchMode } from "../shared/group";
+import { toFunction } from "@/shared/trans";
 
 export function defineMode(mode) {
-    matchMode(mode);
+    const toMode = matchMode(mode);
+    const define = toFunction(toMode.default);
 
-    return {}
+    return {
+        define
+    };
 }
 
 export default defineMode;

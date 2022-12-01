@@ -3,15 +3,20 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 02:07:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:07:45
+ * @LastEditTime: 2022-12-01 13:56:56
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+const props = defineProps({
+    node: {
+        type: Object,
+        required: true
+    }
+});
+</script>
 
 <template>
-    <div class="furnace-menu-label">
-        菜单标签
-    </div>
+    <p class="furnace-menu-label">{{ node.title }}</p>
 </template>
 
 <style scoped lang='scss'>

@@ -3,15 +3,26 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 02:08:02
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:08:21
+ * @LastEditTime: 2022-12-01 14:53:35
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+const props = defineProps({
+    node: {
+        type: Object,
+        required: true
+    }
+});
+const className = computed(() => {
+    return [props.node.icon];
+});
+</script>
 
 <template>
-    <div class="furnace-menu-icon">
-        菜单图标
-    </div>
+    <i
+        class="furnace-menu-icon"
+        :class="className"
+    ></i>
 </template>
 
 <style scoped lang='scss'>

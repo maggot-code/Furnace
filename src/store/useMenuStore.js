@@ -3,12 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:17:16
+ * @LastEditTime: 2022-12-01 15:28:07
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { useRouterStore } from "@/store/useRouterStore";
 import { treeMap } from "@/shared/metadata/trans";
+import { mergePlainObject } from "@/shared/trans";
+import { uuid } from "@/shared/uuid";
 
 const paths = ["collapse"];
 
@@ -23,14 +25,14 @@ function transMenuNode(node) {
         node.children = node.children.sort(toSort);
     }
 
-    return node;
+    return mergePlainObject(node, node.meta);
 }
 
 export const Namespace = 'useMenuStore';
 
 export const useMenuStore = defineStore(Namespace, {
     state: () => ({
-        collapse: false
+        collapse: false,
     }),
 
     getters: {

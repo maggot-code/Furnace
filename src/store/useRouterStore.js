@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 01:37:40
+ * @LastEditTime: 2022-12-01 15:22:31
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -27,6 +27,11 @@ export const useRouterStore = defineStore(Namespace, {
     getters: {
         asyncRoutes() {
             return transRouteGroup(this.cache, ExternalNamespace);
+        },
+        firstRoute() {
+            if (this.asyncRoutes.length <= 0) return null;
+
+            return this.asyncRoutes[0];
         }
     },
 

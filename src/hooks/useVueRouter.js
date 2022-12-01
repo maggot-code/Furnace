@@ -3,11 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:09:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 01:20:20
+ * @LastEditTime: 2022-12-01 14:41:31
  * @Description: 
  */
 import { getCurrentInstance } from "vue";
-import { RedirectName, RootName } from "@/router/context";
+// import Router from "@/router/defineRouter";
+import { RedirectName } from "@/router/context";
 import { mergePlainObject } from "@/shared/trans";
 
 export function useRouter() {
@@ -15,6 +16,7 @@ export function useRouter() {
     if (!vm) throw new Error('useRouter must be called in setup()');
 
     return vm.proxy.$router;
+    // return Router;
 }
 
 export function useRoute() {
@@ -22,6 +24,7 @@ export function useRoute() {
     if (!vm) throw new Error('useRoute must be called in setup()');
 
     return vm.proxy.$route;
+    // return Router.currentRoute;
 }
 
 // 重定向路由

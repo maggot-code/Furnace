@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-29 14:18:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 10:12:58
+ * @LastEditTime: 2022-12-01 12:35:33
  * @Description: 
  */
 import {
@@ -34,12 +34,12 @@ export function wrapInternalNamespace(route) {
 export const ExternalNamespace = 'external';
 export function wrapExternalNamespace(route) {
     const mode = defineMode(route.mode);
-    console.log(mode);
+    const component = mode.define(route);
 
     const bind = {
         path: transPath(route),
         meta: transMate(route),
-        component: defineAsyncComponent(() => import("@/components/EmptyView.vue"))
+        component
     };
 
     return mergePlainObject(route, bind);

@@ -3,13 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 09:46:55
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 09:47:15
+ * @LastEditTime: 2022-12-01 12:44:18
  * @Description: 
  */
 function define() {
-    console.log("template");
-
-    return {}
+    return defineAsyncComponent(() => import("@/layout/TemplateView.vue"))
 }
 
-export default () => { }
+export default (props) => define(props);
