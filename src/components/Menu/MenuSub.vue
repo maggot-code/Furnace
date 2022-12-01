@@ -1,12 +1,15 @@
 <!--
- * @FilePath: \Furnace\src\components\Menu\MenuSub.vue
+ * @FilePath: /Furnace/src/components/Menu/MenuSub.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 02:05:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 13:57:30
+ * @LastEditTime: 2022-12-01 23:22:31
  * @Description: 
 -->
 <script setup>
+import { useMenu } from "@/domain/Menu";
+
+const { menuStore } = useMenu();
 const props = defineProps({
     node: {
         type: Object,
@@ -16,26 +19,28 @@ const props = defineProps({
 </script>
 
 <template>
-    <el-submenu
-        class="furance-menu-sub"
-        popper-class="furance-menu-sub"
-        :index="node.uid"
-    >
-        <div
-            slot="title"
-            style="display:flex;"
+    <div class="furance-menu-sub">
+        <el-submenu
+            popper-class="furance-menu-sub"
+            :popper-append-to-body="true"
+            :index="node.uid"
         >
-            <MenuIcon :node="node"></MenuIcon>
-            <MenuLabel :node="node"></MenuLabel>
-        </div>
+            <template slot="title">
+                <MenuIcon :node="node"></MenuIcon>
+                <MenuLabel
+                    v-show="menuStore.hiddenTitle(node.level)"
+                    :node="node"
+                ></MenuLabel>
+            </template>
 
-        <template v-for="(child) in node.children">
-            <MenuNode
-                :key="child.uid"
-                :node="child"
-            ></MenuNode>
-        </template>
-    </el-submenu>
+            <template v-for="(child) in node.children">
+                <MenuNode
+                    :key="child.uid"
+                    :node="child"
+                ></MenuNode>
+            </template>
+        </el-submenu>
+    </div>
 </template>
 
 <style scoped lang='scss'>

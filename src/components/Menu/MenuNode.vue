@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\components\Menu\MenuNode.vue
+ * @FilePath: /Furnace/src/components/Menu/MenuNode.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 02:06:43
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 14:08:19
+ * @LastEditTime: 2022-12-01 23:27:00
  * @Description: 
 -->
 <script setup>
@@ -43,7 +43,5 @@ function handlerClick() {
 </template>
 
 <style scoped lang='scss'>
-.furnace-menu-node {
-    display: flex;
-}
+
 </style>

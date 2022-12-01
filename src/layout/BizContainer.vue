@@ -1,19 +1,15 @@
 <!--
- * @FilePath: \Furnace\src\layout\BizContainer.vue
+ * @FilePath: /Furnace/src/layout/BizContainer.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 09:16:52
+ * @LastEditTime: 2022-12-01 23:50:57
  * @Description: 
 -->
 <script setup>
-const props = defineProps({
-    keyword: {
-        type: String,
-        default: "FurnaceMenu"
-    }
-});
-const { menuStore } = inject(props.keyword);
+import { useMenu } from "@/domain/Menu";
+
+const { menuStore } = useMenu();
 </script>
 
 <template>
@@ -53,16 +49,13 @@ const { menuStore } = inject(props.keyword);
     &-aside {
         transition: all 0.3s;
         overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     }
 
-    &-main {
-        &-head {
-            background-color: yellow;
-        }
+    // &-main {
+    //     &-head {}
 
-        &-body {
-            background-color: green;
-        }
-    }
+    //     &-body {}
+    // }
 }
 </style>

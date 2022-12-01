@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\shared\trans.js
+ * @FilePath: /Furnace/src/shared/trans.js
  * @Author: maggot-code
  * @Date: 2022-11-21 15:35:56
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 22:46:50
+ * @LastEditTime: 2022-12-01 22:53:21
  * @Description: 
  */
 // 函数类型转换
@@ -23,6 +23,11 @@ export function toNull(value) {
 // 字符串转换
 export function toString(value, replace = "") {
     return isString(value) ? value : replace;
+}
+
+// 数字转换
+export function toNumber(value, replace = -1) {
+    return isNumber(value) ? value : replace;
 }
 
 // 普通对象转换

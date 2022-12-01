@@ -1,16 +1,15 @@
 /*
- * @FilePath: \Furnace\src\store\useMenuStore.js
+ * @FilePath: /Furnace/src/store/useMenuStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:28:07
+ * @LastEditTime: 2022-12-01 23:07:13
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { useRouterStore } from "@/store/useRouterStore";
 import { treeMap } from "@/shared/metadata/trans";
-import { mergePlainObject } from "@/shared/trans";
-import { uuid } from "@/shared/uuid";
+import { toNumber, mergePlainObject } from "@/shared/trans";
 
 const paths = ["collapse"];
 
@@ -42,6 +41,13 @@ export const useMenuStore = defineStore(Namespace, {
         },
         menuWidth() {
             return this.collapse ? "64px" : "240px";
+        },
+        hiddenTitle: (state) => (level) => {
+            const levelState = toNumber(level, 0) > 0;
+
+            if (levelState) return true;
+
+            return !levelState && (!state.collapse);
         }
     },
 

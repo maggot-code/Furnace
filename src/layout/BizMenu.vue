@@ -1,45 +1,41 @@
 <!--
- * @FilePath: \Furnace\src\layout\BizMenu.vue
+ * @FilePath: /Furnace/src/layout/BizMenu.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 01:40:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:27:59
+ * @LastEditTime: 2022-12-01 23:49:55
  * @Description: 
 -->
 <script setup>
 import { useRoute } from "@/hooks/useVueRouter";
+import { useMenu } from "@/domain/Menu";
+import MenuNode from "@/components/Menu/MenuNode.vue";
 
-const props = defineProps({
-    keyword: {
-        type: String,
-        default: "FurnaceMenu"
-    }
-});
-const { menuStore } = inject(props.keyword);
+const { menuStore } = useMenu();
 const { menuGroup } = storeToRefs(menuStore);
 const route = useRoute();
-// watchEffect(() => {
-//     console.log(route);
-//     console.log(unref(menuGroup));
-// });
+function renderSub(node) {
+    return eq(node.mode, "fragment");
+}
 </script>
 
 <template>
     <el-menu
         class="furnace-menu"
         mode="vertical"
+        :collapse-transition="false"
         :default-active="route.meta.uid"
         :collapse="menuStore.collapse"
     >
         <template v-for="(node) in menuGroup">
             <MenuSub
-                v-if="(node.mode === 'fragment')"
+                v-if="renderSub(node)"
                 :node="node"
                 :key="node.uid"
             ></MenuSub>
 
             <MenuNode
-                v-if="(node.mode === 'template')"
+                v-else
                 :node="node"
                 :key="node.uid"
             ></MenuNode>
@@ -48,5 +44,8 @@ const route = useRoute();
 </template>
 
 <style scoped lang='scss'>
-
+.furnace-menu {
+    width: calc(100% + 3px);
+    min-height: 100%;
+}
 </style>

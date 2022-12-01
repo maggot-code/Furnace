@@ -1,29 +1,25 @@
 <!--
- * @FilePath: \Furnace\src\pages\Business\business.vue
+ * @FilePath: /Furnace/src/pages/Business/business.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:19:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:26:21
+ * @LastEditTime: 2022-12-01 22:47:18
  * @Description: 
 -->
 <script setup>
-import { useMenuStore } from "@/store/useMenuStore";
+import { defineMenu } from "@/domain/Menu";
 
-const menuStore = useMenuStore();
-
-provide("FurnaceMenu", {
-    menuStore
-});
+defineMenu();
 </script>
 
 <template>
-    <biz-container>
+    <BizContainer>
         <template #aside>
-            <biz-menu keyword="FurnaceMenu"></biz-menu>
+            <BizMenu></BizMenu>
         </template>
 
         <template #header>
-            <biz-header keyword="FurnaceMenu"></biz-header>
+            <BizHeader></BizHeader>
         </template>
 
         <template #body>
@@ -31,7 +27,7 @@ provide("FurnaceMenu", {
                 <router-view></router-view>
             </transition>
         </template>
-    </biz-container>
+    </BizContainer>
 </template>
 
 <style scoped lang='scss'>

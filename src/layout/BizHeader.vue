@@ -1,28 +1,28 @@
 <!--
- * @FilePath: \Furnace\src\layout\BizHeader.vue
+ * @FilePath: /Furnace/src/layout/BizHeader.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 09:17:10
+ * @LastEditTime: 2022-12-01 23:45:58
  * @Description: 
 -->
 <script setup>
-const props = defineProps({
-    keyword: {
-        type: String,
-        default: "FurnaceMenu"
-    }
+import { useMenu } from "@/domain/Menu";
+
+const { menuStore } = useMenu();
+const iconName = computed(() => {
+    return menuStore.collapse ? "el-icon-d-arrow-right" : "el-icon-d-arrow-left";
 });
-const { menuStore } = inject(props.keyword);
 </script>
 
 <template>
     <div class="furnace-header">
-        <!-- el-icon-s-fold el-icon-s-unfold -->
         <el-button
-            icon="el-icon-s-fold"
-            size="small"
+            :icon="iconName"
+            type="default"
+            size="mini"
             circle
+            plain
             @click="menuStore.switchCollapse"
         ></el-button>
     </div>
@@ -30,6 +30,8 @@ const { menuStore } = inject(props.keyword);
 
 <style scoped lang='scss'>
 .furnace-header {
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 100%;
     overflow: hidden;
