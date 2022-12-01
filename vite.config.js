@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 18:04:33
+ * @LastEditTime: 2022-12-01 18:07:40
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -20,7 +20,7 @@ import componentImport from "./plugins/component";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
-    console.log(mode, env.VITE_APP_BASE);
+    console.log(mode);
 
     return {
         base: env.VITE_APP_BASE,
