@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 21:59:47
+ * @LastEditTime: 2022-12-02 01:34:33
  * @Description: 
  */
 import Vue from 'vue';
@@ -33,7 +33,7 @@ const app = new Vue({
 });
 
 Mock.setup({
-    timeout: "300-600",
+    timeout: "600-800",
 });
 app.$mount("#app");
 

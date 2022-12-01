@@ -1,16 +1,16 @@
 /*
- * @FilePath: /Furnace/src/template/SimpleCurd/store/useFactorStore.js
+ * @FilePath: /Furnace/src/domain/Curd/store/useFactorStore.js
  * @Author: maggot-code
  * @Date: 2022-11-27 17:39:13
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 23:16:33
+ * @LastEditTime: 2022-12-02 01:53:57
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { toFormData, mergePlainObject } from "@/shared/trans";
 import { filterEmptyPlainObject } from "@/shared/filter";
 
-const paths = [];
+const paths = ["config"];
 
 export const Namespace = 'useFactorStore';
 

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 01:01:42
+ * @LastEditTime: 2022-12-02 01:59:26
  * @Description: 
 -->
 <script setup>
@@ -38,6 +38,7 @@ import { useWatchServer } from "@/hooks/useWatchServer";
 
 // Utils
 import { toArray, toPlainObject } from "@/shared/trans";
+import { notEmpty } from "@/shared/is";
 
 // Internal
 import { FormModelSymbol, TableModelSymbol, CurdModelSymbol } from "../shared/context";
@@ -70,7 +71,7 @@ const { usable: usableControl } = table.control.state.all();
 useWatchServer(ConfigCurdServer, {
     trans: (response) => toPlainObject(response.data),
     setup: curd.factor.setupConfig,
-    next: (source) => obtainLayoutCurd(source)
+    next: (source) => notEmpty(source) && obtainLayoutCurd(source)
 });
 useWatchServer(SearchCurdServer, {
     trans: (response) => toArray(response.data),
@@ -82,7 +83,7 @@ useWatchServer(TableCurdServer, {
 });
 useWatchServer(DataCurdServer, {
     trans: (response) => toPlainObject(response.data),
-    setup: table.setupSource,
+    setup: table.setupSource
 });
 watchEffect(() => {
     if (!curd.factor.factorReady) return;

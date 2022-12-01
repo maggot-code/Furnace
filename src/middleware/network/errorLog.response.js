@@ -3,16 +3,21 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 22:14:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:16:52
+ * @LastEditTime: 2022-12-02 01:54:32
  * @Description: 中断不做记录
  */
+const CodeGroup = ["ERR_CANCELED"];
+
 function define(response) {
     return response;
 }
 
 function defineError(error) {
     // TODO..
-    console.log("error log:", error);
+    if (!CodeGroup.includes(error.code)) {
+        // console.log("error log:", error);
+    }
+
     return Promise.reject(error);
 }
 

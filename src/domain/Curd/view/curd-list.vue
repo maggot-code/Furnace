@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\domain\Curd\view\curd-list.vue
+ * @FilePath: /Furnace/src/domain/Curd/view/curd-list.vue
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 12:05:03
+ * @LastEditTime: 2022-12-02 02:02:31
  * @Description: 
 -->
 <script setup>
@@ -37,10 +37,11 @@ watch(table.schema.struct.unusable, (state) => {
         <!--
             @rowEnter="rowEnter"
             @rowLeave="rowLeave"
+            @tableParams="curd.factor.setupTable"
         -->
         <mg-table
             ref="tableRefs"
-            ::defaultPageSize="defaultPageSize"
+            :defaultPageSize="defaultPageSize"
             :isLabel="isLabel"
             :openHeight="openHeight"
             :resetCurrentPage="resetCurrentPage"
@@ -51,11 +52,10 @@ watch(table.schema.struct.unusable, (state) => {
             :tableData="tableData"
             :tableSchema="{ uiSchema, mergeSchema, columnSchema }"
             :controller="row"
-            @cellEvent="cellEvent"
-            @handleRow="handleRow"
             @onChoice="table.choice.source.setup"
             @tableHandle="curd.factor.setupTable"
-            @tableParams="curd.factor.setupTable"
+            @cellEvent="cellEvent"
+            @handleRow="handleRow"
         ></mg-table>
     </div>
 </template>

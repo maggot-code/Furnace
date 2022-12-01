@@ -19,7 +19,7 @@
         "element-ui": "^2.15.12",
         "lodash-es": "^4.17.21",
         "maggot-form": "^1.4.13",
-        "maggot-table": "^3.0.7",
+        "maggot-table": "^3.0.8",
         "mockjs": "^1.1.0",
         "normalize.css": "^8.0.1",
         "nprogress": "^0.2.0",

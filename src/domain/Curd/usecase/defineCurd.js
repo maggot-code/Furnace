@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/template/SimpleCurd/usecase/defineCurd.js
+ * @FilePath: /Furnace/src/domain/Curd/usecase/defineCurd.js
  * @Author: maggot-code
  * @Date: 2022-11-27 17:13:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 17:46:59
+ * @LastEditTime: 2022-12-02 01:10:20
  * @Description: 
  */
 import { isUsable } from "@/shared/is";

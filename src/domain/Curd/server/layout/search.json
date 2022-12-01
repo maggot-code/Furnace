@@ -1,35 +1,26 @@
 {
     "code": -1,
     "message": "ok",
-    "data": {
-        "total": 3,
-        "data": [
-            {
-                "choicepower": false,
-                "rowpower": "delete",
-                "id": "599d451541404b13b7cd24f647eca37e",
-                "password": 111,
-                "name": "<i style='font-weight: bold;color:red;'>Bobby</i>",
-                "address": "中国",
-                "mail": "maggotCode@github.com"
+    "data": [
+        {
+            "field": "name",
+            "uiSchema": {
+                "clearable": true,
+                "placeholder": "请输入姓名"
             },
-            {
-                "choicepower": false,
-                "rowpower": "",
-                "id": "484ffad94d264208b8ce720ae31a2081",
-                "password": 222,
-                "name": "<i style='font-weight: bold;color:green;'>Header</i>",
-                "address": "中国上海",
-                "mail": "https://bilibili.com/"
+            "mold": "text",
+            "componentName": "mg-input",
+            "value": ""
+        },
+        {
+            "field": "address",
+            "uiSchema": {
+                "clearable": true,
+                "placeholder": "请输入地址"
             },
-            {
-                "choicepower": false,
-                "rowpower": "edit",
-                "id": "0c4995cbdfaa4083a6707c638d0ac1e6",
-                "password": 333,
-                "name": "<i style='font-weight: bold;color:blue;text-decoration:line-through;'>Maggot</i>",
-                "address": "中国北京"
-            }
-        ]
-    }
+            "mold": "text",
+            "componentName": "mg-input",
+            "value": ""
+        }
+    ]
 }
