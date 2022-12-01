@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\domain\Curd\view\curd.vue
+ * @FilePath: /Furnace/src/domain/Curd/view/curd.vue
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 15:11:49
+ * @LastEditTime: 2022-12-01 22:22:36
  * @Description: 
 -->
 <script setup>
@@ -12,7 +12,7 @@ import {
     ConfigCurdServer,
     obtainCurdConfig,
     abortConfigCurd
-} from "@/server/Template/config";
+} from "@/server/template/config";
 import {
     SearchCurdServer,
     TableCurdServer,

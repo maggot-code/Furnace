@@ -1,16 +1,16 @@
 /*
- * @FilePath: /Furnace/src/middleware/network/notfound.response.js
+ * @FilePath: /Furnace/src/middleware/network/crash.response.js
  * @Author: maggot-code
- * @Date: 2022-12-01 17:08:36
+ * @Date: 2022-12-01 22:11:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:12:58
+ * @LastEditTime: 2022-12-01 22:13:59
  * @Description: 
  */
 import { useErrorTips } from "@/hooks/useMessage";
 
-const CODE = "ERR_BAD_REQUEST";
-const STATUS = 404;
-const MESSAGE = "抱歉，访问资源不存在";
+const CODE = "ERR_BAD_RESPONSE";
+const STATUS = 500;
+const MESSAGE = "抱歉，服务器出现了点问题..";
 
 function define(response) {
     return response;

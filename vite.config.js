@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\vite.config.js
+ * @FilePath: /Furnace/vite.config.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 18:07:40
+ * @LastEditTime: 2022-12-01 22:04:16
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -28,10 +28,15 @@ export default defineConfig(({ mode }) => {
         server: {
             hmr: true,
             proxy: {
+                "/mock": {
+                    target: "http://127.0.0.1:8848/",
+                    changeOrigin: true,
+                    rewrite: (path) => path.replace(/^\/mock/, "/mock"),
+                },
                 "/ytxd": {
                     target: "http://192.1.1.5:8080/",
                     changeOrigin: true
-                },
+                }
             }
         },
         resolve: {

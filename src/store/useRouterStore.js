@@ -1,13 +1,13 @@
 /*
- * @FilePath: \Furnace\src\store\useRouterStore.js
+ * @FilePath: /Furnace/src/store/useRouterStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 17:22:46
+ * @LastEditTime: 2022-12-01 22:19:41
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { obtainGetRouter } from "@/server/Router/get";
+import { obtainGetRouter } from "@/server/router/get";
 import { toArray } from "@/shared/trans";
 import { reloadRouter } from "@/router/defineRouter";
 import { transRouteGroup } from "@/router/trans";

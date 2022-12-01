@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 21:19:05
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 21:20:00
+ * @LastEditTime: 2022-12-01 21:24:34
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { } from "@/shared/trans";
+import { uuid } from "@/shared/uuid";
 
 const paths = [];
 
@@ -15,14 +15,14 @@ export const Namespace = 'useServiceStore';
 
 export const useServiceStore = defineStore(Namespace, {
     state: () => ({
-        errorState: false
+        errorCue: uuid()
     }),
 
     getters: {},
 
     actions: {
-        setErrorState(errorState) {
-            this.errorState = errorState;
+        toErrorCue() {
+            this.errorCue = uuid();
         }
     },
 
