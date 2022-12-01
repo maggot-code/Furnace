@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:05:30
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 17:09:38
+ * @LastEditTime: 2022-12-01 18:06:10
  * @Description: 
  */
 import axios from "axios";
@@ -14,7 +14,7 @@ import ResponseNotFound from "@/middleware/network/notfound.response";
 import { defineService } from "@/service/defineService";
 
 const define = axios.create({
-    baseURL: "/api",
+    baseURL: import.meta.env.VITE_APP_SERVER_PREFIX,
     timeout: import.meta.env.DEV ? 0 : 30000,
 });
 

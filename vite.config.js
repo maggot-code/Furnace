@@ -3,10 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 16:01:23
+ * @LastEditTime: 2022-12-01 18:04:33
  * @Description: 
  */
-import { defineConfig, splitVendorChunkPlugin } from 'vite';
+import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
 import { visualizer } from "rollup-plugin-visualizer";
 
 import vue from '@vitejs/plugin-vue2';
@@ -18,18 +18,20 @@ import lodashImport from "./plugins/lodash";
 import componentImport from "./plugins/component";
 
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+    const env = loadEnv(mode, process.cwd(), "");
+    console.log(mode, env.VITE_APP_BASE);
+
     return {
-        base: "/",
+        base: env.VITE_APP_BASE,
         clearScreen: true,
         server: {
             hmr: true,
             proxy: {
-                // '/api': {
-                //     target: 'http://127.0.0.1:8899/',
-                //     changeOrigin: true,
-                //     rewrite: (path) => path.replace(/^\/api/, '/api')
-                // }
+                "/ytxd": {
+                    target: "http://192.1.1.5:8080/",
+                    changeOrigin: true
+                },
             }
         },
         resolve: {

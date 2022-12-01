@@ -5,7 +5,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite --host",
+        "dev:mock": "vite --host --mode mock",
+        "dev:common": "vite --host --mode common",
         "build": "vite build",
+        "build:mock": "vite build --mode mock",
         "build:common": "vite build --mode common",
         "preview": "vite preview --host"
     },
