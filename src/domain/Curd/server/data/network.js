@@ -1,21 +1,23 @@
 /*
- * @FilePath: \Furnace\src\domain\Curd\server\data.js
+ * @FilePath: /Furnace/src/domain/Curd/server/data/network.js
  * @Author: maggot-code
- * @Date: 2022-11-27 20:17:23
+ * @Date: 2022-12-02 00:47:34
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 17:07:05
+ * @LastEditTime: 2022-12-02 00:53:19
  * @Description: 
  */
 import { service } from "@/service/model/Application";
+import toMock from "./mock";
 
 export const DataCurdServer = service.define();
 
 export function abortDataCurd() {
     service.abort(DataCurdServer);
-}
+};
 
 export function obtainDataCurd({ url, method, params, data }) {
     abortDataCurd();
+    toMock(url, method);
 
     DataCurdServer.config.bind("url", url);
     DataCurdServer.config.bind("method", method);
@@ -23,6 +25,6 @@ export function obtainDataCurd({ url, method, params, data }) {
     DataCurdServer.config.bind("data", data);
 
     return service.send(DataCurdServer);
-}
+};
 
-export default obtainDataCurd;
+export default DataCurdServer;

@@ -28,5 +28,11 @@
         "component": "pages/Business/business.vue",
         "address": "/",
         "title": "业务"
+    },
+    {
+        "name": "curd",
+        "component": "template/Curd/simple.vue",
+        "address": "/curd",
+        "title": "增删改查"
     }
 ]

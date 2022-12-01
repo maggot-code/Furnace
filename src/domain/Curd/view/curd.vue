@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:22:36
+ * @LastEditTime: 2022-12-02 01:01:42
  * @Description: 
 -->
 <script setup>
@@ -32,13 +32,12 @@ import { defineCurd } from "../usecase/defineCurd";
 
 // UseCase
 import { useSlotServer } from "@/hooks/useSlotServer";
-// import { useRoute } from "@/hooks/useRouter";
+import { useRoute } from "@/hooks/useVueRouter";
 import { useServerLoad } from "@/hooks/useServerLoad";
 import { useWatchServer } from "@/hooks/useWatchServer";
 
 // Utils
 import { toArray, toPlainObject } from "@/shared/trans";
-import { notEmpty } from "@/shared/is";
 
 // Internal
 import { FormModelSymbol, TableModelSymbol, CurdModelSymbol } from "../shared/context";
@@ -60,7 +59,7 @@ const abortGroup = [
 ];
 const slots = useSlots();
 const slotServer = useSlotServer();
-// const route = useRoute();
+const route = useRoute();
 const loading = useServerLoad(serverGroup);
 
 const hasSearch = slotServer.slotState(slots.search, SearchCurdServer.finished);
@@ -71,7 +70,7 @@ const { usable: usableControl } = table.control.state.all();
 useWatchServer(ConfigCurdServer, {
     trans: (response) => toPlainObject(response.data),
     setup: curd.factor.setupConfig,
-    next: (source) => (notEmpty(source) && obtainLayoutCurd(source))
+    next: (source) => obtainLayoutCurd(source)
 });
 useWatchServer(SearchCurdServer, {
     trans: (response) => toArray(response.data),
@@ -90,7 +89,7 @@ watchEffect(() => {
 
     obtainDataCurd(curd.factor.sourceConfig);
 });
-// onBeforeMount(() => obtainCurdConfig(route.params));
+onBeforeMount(() => obtainCurdConfig(route.params));
 onBeforeUnmount(() => {
     abortGroup.forEach((abort) => abort());
     form.schema.formConfig.clear();
