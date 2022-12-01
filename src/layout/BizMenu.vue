@@ -3,17 +3,24 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 01:40:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:12:57
+ * @LastEditTime: 2022-12-01 09:41:51
  * @Description: 
 -->
 <script setup>
-import { storeToRefs } from "pinia";
-import { useRoute } from "@/hooks/useVueRouter";
-import { useMenuStore } from "@/store/useMenuStore";
+import { useRoute, useRouter } from "@/hooks/useVueRouter";
 
-const route = useRoute();
-const menuStore = useMenuStore();
+const props = defineProps({
+    keyword: {
+        type: String,
+        default: "FurnaceMenu"
+    }
+});
+const { menuStore } = inject(props.keyword);
 const { menuGroup } = storeToRefs(menuStore);
+const route = useRoute();
+const router = useRouter();
+
+console.table(router.getRoutes().map(item => pick(item.meta, ["address", "title", "mode", "template"])));
 
 watchEffect(() => {
     console.log(unref(menuGroup));
@@ -21,8 +28,6 @@ watchEffect(() => {
 </script>
 
 <template>
-    <!-- @open="handleOpen"
-    @close="handleClose" -->
     <el-menu
         class="furnace-menu"
         mode="vertical"

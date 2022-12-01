@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:11:39
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 01:38:31
+ * @LastEditTime: 2022-12-01 10:05:34
  * @Description: 
  */
 import VueRouter from "vue-router";
@@ -26,22 +26,6 @@ export function buildVueRouter(routes) {
     });
     router.matcher["tag"] = uuid();
     return { router, VueRouter };
-}
-
-// 构建路由视图集合
-let RouterViews;
-export function buildVueRouterViews() {
-    RouterViews = RouterViews ?? import.meta.glob("../{pages,biz,template}/**/*.{vue,tsx}");
-    return { views: RouterViews, keys: Object.keys(RouterViews) };
-}
-
-// 匹配路由视图
-export function matchVueRouterView(path) {
-    const { views, keys } = buildVueRouterViews();
-    const match = keys.find(key => key.includes(path));
-    const view = views[match];
-    // 存疑，是否应该返回一个固定的异常视图
-    return view ?? null;
 }
 
 export default VueRouter;

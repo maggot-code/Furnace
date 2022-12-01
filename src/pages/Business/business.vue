@@ -3,19 +3,27 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:19:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 01:40:57
+ * @LastEditTime: 2022-12-01 09:10:52
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { useMenuStore } from "@/store/useMenuStore";
+
+const menuStore = useMenuStore();
+
+provide("FurnaceMenu", {
+    menuStore
+});
+</script>
 
 <template>
     <biz-container>
         <template #aside>
-            <biz-menu></biz-menu>
+            <biz-menu keyword="FurnaceMenu"></biz-menu>
         </template>
 
         <template #header>
-            <biz-header></biz-header>
+            <biz-header keyword="FurnaceMenu"></biz-header>
         </template>
 
         <template #body>

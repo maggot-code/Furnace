@@ -3,13 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:19:23
+ * @LastEditTime: 2022-12-01 09:16:52
  * @Description: 
 -->
 <script setup>
-import { useMenuStore } from "@/store/useMenuStore";
-
-const menuStore = useMenuStore();
+const props = defineProps({
+    keyword: {
+        type: String,
+        default: "FurnaceMenu"
+    }
+});
+const { menuStore } = inject(props.keyword);
 </script>
 
 <template>

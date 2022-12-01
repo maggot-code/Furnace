@@ -3,13 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 11:36:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 15:38:58
+ * @LastEditTime: 2022-12-01 10:06:16
  * @Description: 
  */
-import { mergePlainObject } from "@/shared/trans";
+import { matchView } from "@/shared/metadata/views";
 import { arrayToTree, treeMap } from "@/shared/metadata/trans";
-import { checkParent, checkDataSource } from "@/router/shared";
-import { matchVueRouterView } from "@/router/internal";
+import { checkDataSource } from "@/router/shared";
 import { PickRouteKeyword, PickRouteMetaKeyword } from "@/router/context";
 import RouterNamespace, { UnknownNamespace } from "@/router/namespace";
 
@@ -20,7 +19,7 @@ export function transPath({ address }) {
 
 // 转换Component
 export function transComponent({ component }) {
-    const view = matchVueRouterView(component);
+    const view = matchView(component);
 
     if (isNil(view)) return;
 
