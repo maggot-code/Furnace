@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/pages/User/signin.vue
+ * @FilePath: \Furnace\src\pages\User\signin.vue
  * @Author: maggot-code
  * @Date: 2022-11-24 12:46:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:23:13
+ * @LastEditTime: 2022-12-02 17:44:55
  * @Description: 
 -->
 <script setup>
@@ -14,6 +14,7 @@ import { useWatchServer } from "@/hooks/useWatchServer";
 import { useElementRefs } from "@/hooks/useElement";
 import { useRedirect } from "@/hooks/useVueRouter";
 import { useUserStore } from "@/store/useUserStore";
+import { toFormData } from "@/shared/trans";
 
 const redo = useRedirect();
 const userStore = useUserStore();
@@ -22,7 +23,7 @@ const { refs } = useElementRefs();
 
 const form = reactive({
     username: "admin",
-    password: "furnace",
+    userpwd: "admin@1234",
     note: "",
     code: ""
 });
@@ -40,7 +41,7 @@ const rules = {
         //     trigger: "blur"
         // }
     ],
-    password: [
+    userpwd: [
         {
             required: true,
             message: "请输入密码",
@@ -56,15 +57,15 @@ const rules = {
 };
 
 function submitForm() {
-    unref(refs).validate((state) => state && obtainLogin(unref(form)));
+    unref(refs).validate((state) => state && obtainLogin(toFormData(unref(form))));
 }
 function resetForm() {
     unref(refs).resetFields();
 }
 
-useWatchServer(LoginServer, ({ data }) => {
-    userStore.setup(data);
-    userStore.setupToken(data);
+useWatchServer(LoginServer, (response) => {
+    userStore.setup(response);
+    userStore.setupToken(response);
     redo();
 });
 onBeforeUnmount(() => abortLogin());
@@ -91,9 +92,9 @@ onBeforeUnmount(() => abortLogin());
                     clearable
                 ></el-input>
             </el-form-item>
-            <el-form-item prop="password">
+            <el-form-item prop="userpwd">
                 <el-input
-                    v-model="form.password"
+                    v-model="form.userpwd"
                     :readonly="loading"
                     prefix-icon="el-icon-lock"
                     placeholder="密码：furnace"

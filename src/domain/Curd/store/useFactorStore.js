@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 17:39:13
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 13:53:00
+ * @LastEditTime: 2022-12-02 16:57:39
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -36,7 +36,7 @@ export const useFactorStore = defineStore(Namespace, {
         sourceConfig() {
             return mergePlainObject(this.config.source, {
                 params: this.sourceParams,
-                data: this.sourceData
+                data: this.sourceFormData
             });
         },
         configUsable() {

@@ -13,6 +13,14 @@
         "source": {
             "url": "/curd/source",
             "method": "POST"
+        },
+        "form": {
+            "url": "/form/struct",
+            "method": "GET"
+        },
+        "save": {
+            "url": "/form/save",
+            "method": "POST"
         }
     }
 }

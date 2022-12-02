@@ -34,5 +34,11 @@
         "component": "template/Curd/simple.vue",
         "address": "/curd/:cid",
         "title": "增删改查"
+    },
+    {
+        "name": "form",
+        "component": "template/Form/simple.vue",
+        "address": "/form/:type/:cid",
+        "title": "简单表单"
     }
 ]

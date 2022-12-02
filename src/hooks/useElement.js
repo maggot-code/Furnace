@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/hooks/useElement.js
+ * @FilePath: \Furnace\src\hooks\useElement.js
  * @Author: maggot-code
  * @Date: 2022-11-27 14:50:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 14:51:00
+ * @LastEditTime: 2022-12-02 15:57:23
  * @Description: 
  */
 export function useElementRefs() {
@@ -12,7 +12,7 @@ export function useElementRefs() {
 
     return {
         refs,
-        ready
+        ready,
     }
 }
 

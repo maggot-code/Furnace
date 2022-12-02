@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/hooks/useShallowObject.js
+ * @FilePath: \Furnace\src\hooks\useShallowObject.js
  * @Author: maggot-code
  * @Date: 2022-11-22 12:50:47
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 02:56:11
+ * @LastEditTime: 2022-12-02 16:21:57
  * @Description: 
  */
 import { toPlainObject } from "@/shared/trans";
@@ -29,6 +29,11 @@ export function defineShallowObject(rawSource) {
 
         return get(unref(source), path, defaultValue);
     }
+    function remove(keyword) {
+        const data = omit(unref(source), keyword);
+        console.log(data);
+        return setup({});
+    }
     function clear() {
         return setup({});
     }
@@ -42,6 +47,7 @@ export function defineShallowObject(rawSource) {
         setup,
         bind,
         take,
+        remove,
         clear
     }
 }

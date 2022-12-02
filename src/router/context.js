@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 10:31:12
+ * @LastEditTime: 2022-12-02 16:35:49
  * @Description: 
  */
 // 根基路由
@@ -33,7 +33,8 @@ export const OmitRouteGroup = [
     "debug",
     "notfound",
     "signin",
-    "curd"
+    "curd",
+    "form"
 ];
 
 // 关键字定义

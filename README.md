@@ -1,7 +1,9 @@
-# Vue 3 + Vite
+# Furnace
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+| 地址               | 说明                 |
+| ------------------ | -------------------- |
+| `/curd/:cid`       | 增删改查列表调试地址 |
+| `/form/:type/:cid` | 表单调试地址         |
 
-## Recommended IDE Setup
+> `/form/:type/:cid`主要用来对增删改查页面的增加功能进行调试，`type`表示的就是配置接口返回的`Map<Key>`
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)

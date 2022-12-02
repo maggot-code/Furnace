@@ -3,15 +3,27 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 15:02:51
+ * @LastEditTime: 2022-12-02 16:24:41
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { } from "@/domain/Popup";
+function createPopup() { }
+</script>
 
 <template>
-    <h1>debug</h1>
+    <div class="furnace-debug">
+        <el-button @click="createPopup">弹框</el-button>
+    </div>
 </template>
 
 <style scoped lang='scss'>
-
+.furnace-debug {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 </style>

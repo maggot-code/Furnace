@@ -3,11 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 14:06:38
+ * @LastEditTime: 2022-12-02 16:29:53
  * @Description: 
 -->
 <script setup>
-import { storeToRefs } from "pinia";
 // Server
 import { ConfigCurdServer, obtainCurdConfig, abortConfigCurd } from "@/server/template/config";
 import { SearchCurdServer, TableCurdServer, obtainLayoutCurd, abortLayoutCurd } from "../server/layout";
