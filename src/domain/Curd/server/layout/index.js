@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-02 00:47:04
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:30:10
+ * @LastEditTime: 2022-12-02 13:56:04
  * @Description: 
  */
 import { service } from "@/service/model/Application";
@@ -12,8 +12,10 @@ export const SearchCurdServer = service.define();
 export const TableCurdServer = service.define();
 
 export function abortLayoutCurd() {
-    service.abort(SearchCurdServer);
-    service.abort(TableCurdServer);
+    return Promise.allSettled([
+        service.abort(SearchCurdServer),
+        service.abort(TableCurdServer)
+    ]);
 }
 
 export function obtainLayoutCurd({ search, table }) {

@@ -5,7 +5,7 @@
         "keyname": "id",
         "uiSchema": {
             "sortProp": "id",
-            "sortOrder": "ascending",
+            "sortOrder": "asc",
             "border": true,
             "stripe": false,
             "isPage": true,

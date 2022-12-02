@@ -1,12 +1,12 @@
 /*
- * @FilePath: /Furnace/src/middleware/network/notfound.response.js
+ * @FilePath: \Furnace\src\middleware\network\notfound.response.js
  * @Author: maggot-code
  * @Date: 2022-12-01 17:08:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:12:58
+ * @LastEditTime: 2022-12-02 11:56:18
  * @Description: 
  */
-import { useErrorTips } from "@/hooks/useMessage";
+import { useWarningTips } from "@/hooks/useMessage";
 
 const CODE = "ERR_BAD_REQUEST";
 const STATUS = 404;
@@ -21,7 +21,7 @@ function defineError(error) {
     const matchStatus = eq(error?.response?.status, STATUS);
 
     if (matchCode || matchStatus) {
-        useErrorTips(MESSAGE);
+        useWarningTips(MESSAGE);
         return Promise.resolve({
             code: STATUS,
             message: MESSAGE,

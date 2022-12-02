@@ -3,14 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-12-02 11:19:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:37:46
+ * @LastEditTime: 2022-12-02 13:31:29
  * @Description: 
  */
 import Mock from "mockjs";
 
 const KEY_WORD = "mock";
 
-export function extendMockData(Vue) {
+export function extendMockData() {
     if (!eq(import.meta.env.MODE, KEY_WORD)) return;
 
     Mock.setup({

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-02 00:47:14
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:35:44
+ * @LastEditTime: 2022-12-02 12:46:19
  * @Description: 
  */
 import Mock from "mockjs";
@@ -20,12 +20,12 @@ const tableUrl = import.meta.env.VITE_APP_SERVER_PREFIX + TableAddress;
 const tableMethod = toLower(TableMethod);
 
 export default () => {
-    Mock.mock(searchUrl, searchMethod, (props) => {
+    Mock.mock(new RegExp(`^${searchUrl}.*`), searchMethod, (props) => {
         console.log(props);
         return SearchResponse;
     });
 
-    Mock.mock(tableUrl, tableMethod, (props) => {
+    Mock.mock(new RegExp(`^${tableUrl}.*`), tableMethod, (props) => {
         console.log(props);
         return TableResponse;
     });

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-02 00:47:04
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:28:08
+ * @LastEditTime: 2022-12-02 12:26:40
  * @Description: 
  */
 import { service } from "@/service/model/Application";
@@ -24,7 +24,6 @@ export function obtainCurdConfig(params) {
     abortConfigCurd();
 
     ConfigCurdServer.config.bind("params", params);
-
     return service.send(ConfigCurdServer);
 };
 

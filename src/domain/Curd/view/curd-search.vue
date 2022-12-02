@@ -3,15 +3,20 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 10:38:29
+ * @LastEditTime: 2022-12-02 14:04:02
  * @Description: 
 -->
 <script setup>
+import { storeToRefs } from "pinia";
 import { FormModelSymbol, CurdModelSymbol } from "../shared/context";
 
 const curd = inject(CurdModelSymbol);
 const form = inject(FormModelSymbol);
 const { formRefs, formSchema, cellSchema } = form;
+const { configUsable } = storeToRefs(curd.factor);
+
+function enums() { }
+function search() { }
 
 function monitorValue(props) {
     // console.log("monitor value", props);
@@ -30,9 +35,20 @@ async function onReset() {
     curd.factor.setupForm(source);
     return formData;
 }
-function enums() { }
-function search() { }
-onMounted(onSelect);
+
+const unwatch = watch(configUsable, (state) => {
+    if (!state) return;
+    onReset();
+    unwatch();
+});
+onMounted(() => {
+    if (isNil(unref(configUsable))) return;
+    onReset();
+    unwatch();
+});
+onBeforeUnmount(() => {
+    unwatch();
+});
 </script>
 
 <template>

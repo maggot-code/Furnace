@@ -1,16 +1,16 @@
 /*
- * @FilePath: /Furnace/src/domain/Curd/store/useFactorStore.js
+ * @FilePath: \Furnace\src\domain\Curd\store\useFactorStore.js
  * @Author: maggot-code
  * @Date: 2022-11-27 17:39:13
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 01:53:57
+ * @LastEditTime: 2022-12-02 13:53:00
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { toFormData, mergePlainObject } from "@/shared/trans";
+import { toFormData, toPlainObject, mergePlainObject } from "@/shared/trans";
 import { filterEmptyPlainObject } from "@/shared/filter";
 
-const paths = ["config"];
+const paths = [];
 
 export const Namespace = 'useFactorStore';
 
@@ -39,6 +39,9 @@ export const useFactorStore = defineStore(Namespace, {
                 data: this.sourceData
             });
         },
+        configUsable() {
+            return Object.keys(toPlainObject(this.config)).length > 0;
+        },
         factorReady() {
             return this.formReady && this.tableReady;
         }
@@ -46,11 +49,11 @@ export const useFactorStore = defineStore(Namespace, {
 
     actions: {
         reset() {
+            this.form = {};
+            this.table = {};
             this.config = {};
             this.formReady = false;
             this.tableReady = false;
-            this.form = {};
-            this.table = {};
         },
         setupConfig(source) {
             this.config = source;

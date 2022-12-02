@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:13:06
+ * @LastEditTime: 2022-12-02 14:05:59
  * @Description: 
 -->
 <script setup>
@@ -24,6 +24,12 @@ function cellEvent(event) {
 function handleRow(row) {
     console.log("handle row", row, table);
 }
+const unwatch = watch(table.schema.keyname, (value) => {
+    if (isNil(value)) return;
+    table.tableSizeKeyword.update();
+    table.refreshKeyword.update();
+    unwatch();
+});
 watch(table.schema.struct.unusable, (state) => {
     if (state) return;
     table.data.source.setup({
@@ -32,7 +38,13 @@ watch(table.schema.struct.unusable, (state) => {
     });
 }, { immediate: true });
 onMounted(() => {
+    if (isNil(unref(table.schema.keyname))) return;
+    table.tableSizeKeyword.update();
     table.refreshKeyword.update();
+    unwatch();
+});
+onBeforeUnmount(() => {
+    unwatch();
 });
 </script>
 
