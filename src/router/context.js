@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 10:49:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 13:08:01
+ * @LastEditTime: 2022-12-02 10:31:12
  * @Description: 
  */
 // 根基路由
@@ -32,7 +32,8 @@ export const AccidentRoute = {
 export const OmitRouteGroup = [
     "debug",
     "notfound",
-    "signin"
+    "signin",
+    "curd"
 ];
 
 // 关键字定义
@@ -78,7 +79,7 @@ export const PickRouteMetaKeyword = [
     "template",
     "icon",
     "title",
-    "sort",
+    "orderid",
     "menu",
     "hidden",
     "affix"

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/store/useMenuStore.js
+ * @FilePath: \Furnace\src\store\useMenuStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:07:13
+ * @LastEditTime: 2022-12-02 10:31:37
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -14,7 +14,7 @@ import { toNumber, mergePlainObject } from "@/shared/trans";
 const paths = ["collapse"];
 
 function toSort(prev, next) {
-    return prev.meta.sort - next.meta.sort;
+    return prev.meta.orderid - next.meta.orderid;
 }
 function transMenuNode(node) {
     const { children } = node;

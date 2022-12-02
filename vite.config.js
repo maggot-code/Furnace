@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/vite.config.js
+ * @FilePath: \Furnace\vite.config.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:04:16
+ * @LastEditTime: 2022-12-02 11:25:21
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -20,7 +20,8 @@ import componentImport from "./plugins/component";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
-    console.log(mode);
+
+    console.log(mode, env.VITE_APP_BASE, env.VITE_APP_SERVER_PREFIX);
 
     return {
         base: env.VITE_APP_BASE,
@@ -28,13 +29,12 @@ export default defineConfig(({ mode }) => {
         server: {
             hmr: true,
             proxy: {
-                "/mock": {
-                    target: "http://127.0.0.1:8848/",
-                    changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/mock/, "/mock"),
-                },
                 "/ytxd": {
                     target: "http://192.1.1.5:8080/",
+                    changeOrigin: true
+                },
+                "/mh": {
+                    target: "http://10.1.1.136:9096/",
                     changeOrigin: true
                 }
             }

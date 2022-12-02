@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-25 16:24:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 12:06:12
+ * @LastEditTime: 2022-12-02 11:45:42
  * @Description: 
 -->
 <script setup>
@@ -13,10 +13,12 @@ import {
     CurdControl,
     CurdList
 } from "@/domain/Curd";
+import { useRoute } from "@/hooks/useVueRouter";
+const route = useRoute();
 </script>
 
 <template>
-    <CurdView>
+    <CurdView :params="route.params">
         <template v-slot:search>
             <CurdSearch />
         </template>

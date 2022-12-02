@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/domain/Curd/view/curd-list.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd-list.vue
  * @Author: maggot-code
  * @Date: 2022-11-26 15:51:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 02:02:31
+ * @LastEditTime: 2022-12-02 11:13:06
  * @Description: 
 -->
 <script setup>
@@ -11,6 +11,7 @@ import { TableModelSymbol, CurdModelSymbol } from "../shared/context";
 
 const curd = inject(CurdModelSymbol);
 const table = inject(TableModelSymbol);
+
 const { tableRefs, resetCurrentPage, resizeTable, refresh, isLabel, openHeight, defaultPageSize } = table;
 const { uiSchema, mergeSchema, columnSchema } = table.schema;
 const { total, tableData } = table.data;
@@ -30,6 +31,9 @@ watch(table.schema.struct.unusable, (state) => {
         data: []
     });
 }, { immediate: true });
+onMounted(() => {
+    table.refreshKeyword.update();
+});
 </script>
 
 <template>

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-26 15:50:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 13:53:18
+ * @LastEditTime: 2022-12-02 10:38:29
  * @Description: 
 -->
 <script setup>
@@ -30,12 +30,8 @@ async function onReset() {
     curd.factor.setupForm(source);
     return formData;
 }
-
-form.schema.formConfig.setup({
-    inline: true,
-    labelWidth: "auto"
-});
-
+function enums() { }
+function search() { }
 onMounted(onSelect);
 </script>
 
@@ -45,6 +41,7 @@ onMounted(onSelect);
             <mg-form
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
+                :remote="{ enums, search }"
                 @monitor-value="monitorValue"
             ></mg-form>
         </div>

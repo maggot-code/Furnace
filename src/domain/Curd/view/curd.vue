@@ -1,29 +1,16 @@
 <!--
- * @FilePath: /Furnace/src/domain/Curd/view/curd.vue
+ * @FilePath: \Furnace\src\domain\Curd\view\curd.vue
  * @Author: maggot-code
  * @Date: 2022-11-25 16:22:24
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 01:59:26
+ * @LastEditTime: 2022-12-02 11:46:16
  * @Description: 
 -->
 <script setup>
 // Server
-import {
-    ConfigCurdServer,
-    obtainCurdConfig,
-    abortConfigCurd
-} from "@/server/template/config";
-import {
-    SearchCurdServer,
-    TableCurdServer,
-    obtainLayoutCurd,
-    abortLayoutCurd
-} from "../server/layout";
-import {
-    DataCurdServer,
-    obtainDataCurd,
-    abortDataCurd
-} from "../server/data";
+import { ConfigCurdServer, obtainCurdConfig, abortConfigCurd } from "@/server/template/config";
+import { SearchCurdServer, TableCurdServer, obtainLayoutCurd, abortLayoutCurd } from "../server/layout";
+import { DataCurdServer, obtainDataCurd, abortDataCurd } from "../server/data";
 
 // Model
 import { defineForm } from "@/domain/Form";
@@ -32,12 +19,11 @@ import { defineCurd } from "../usecase/defineCurd";
 
 // UseCase
 import { useSlotServer } from "@/hooks/useSlotServer";
-import { useRoute } from "@/hooks/useVueRouter";
 import { useServerLoad } from "@/hooks/useServerLoad";
 import { useWatchServer } from "@/hooks/useWatchServer";
 
 // Utils
-import { toArray, toPlainObject } from "@/shared/trans";
+import { toPlainObject } from "@/shared/trans";
 import { notEmpty } from "@/shared/is";
 
 // Internal
@@ -46,6 +32,12 @@ import { FormModelSymbol, TableModelSymbol, CurdModelSymbol } from "../shared/co
 const form = defineForm(FormModelSymbol);
 const table = defineTable(TableModelSymbol);
 const curd = defineCurd(CurdModelSymbol);
+const props = defineProps({
+    params: {
+        type: Object,
+        default: () => ({})
+    }
+});
 
 const serverGroup = [
     ConfigCurdServer,
@@ -60,7 +52,6 @@ const abortGroup = [
 ];
 const slots = useSlots();
 const slotServer = useSlotServer();
-const route = useRoute();
 const loading = useServerLoad(serverGroup);
 
 const hasSearch = slotServer.slotState(slots.search, SearchCurdServer.finished);
@@ -68,29 +59,30 @@ const hasList = slotServer.slotState(slots.list, TableCurdServer.finished);
 const hasControl = slotServer.slotState(slots.control, TableCurdServer.finished);
 const { usable: usableControl } = table.control.state.all();
 
-useWatchServer(ConfigCurdServer, {
-    trans: (response) => toPlainObject(response.data),
-    setup: curd.factor.setupConfig,
-    next: (source) => notEmpty(source) && obtainLayoutCurd(source)
-});
-useWatchServer(SearchCurdServer, {
-    trans: (response) => toArray(response.data),
-    setup: form.schema.cellConfig.setup
-});
-useWatchServer(TableCurdServer, {
-    trans: (response) => toPlainObject(response.data),
-    setup: table.schema.struct.setup
-});
-useWatchServer(DataCurdServer, {
-    trans: (response) => toPlainObject(response.data),
-    setup: table.setupSource
-});
-watchEffect(() => {
-    if (!curd.factor.factorReady) return;
+// useWatchServer(ConfigCurdServer, {
+//     trans: (response) => toPlainObject(response.data),
+//     setup: curd.factor.setupConfig,
+//     next: (source) => notEmpty(source) && obtainLayoutCurd(source)
+// });
+// useWatchServer(SearchCurdServer, (response) => {
+//     const source = toPlainObject(response.data);
+//     form.schema.cellConfig.setup(source.cellSchema);
+//     form.schema.formConfig.setup(source.formSchema);
+// });
+// useWatchServer(TableCurdServer, {
+//     trans: (response) => toPlainObject(response.data),
+//     setup: table.schema.struct.setup
+// });
+// useWatchServer(DataCurdServer, {
+//     trans: (response) => toPlainObject(response.data),
+//     setup: table.setupSource
+// });
+// watchEffect(() => {
+//     if (!curd.factor.factorReady) return;
 
-    obtainDataCurd(curd.factor.sourceConfig);
-});
-onBeforeMount(() => obtainCurdConfig(route.params));
+//     obtainDataCurd(curd.factor.sourceConfig);
+// });
+onBeforeMount(() => obtainCurdConfig(props.params));
 onBeforeUnmount(() => {
     abortGroup.forEach((abort) => abort());
     form.schema.formConfig.clear();

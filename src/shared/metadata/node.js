@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-24 12:59:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 02:10:30
+ * @LastEditTime: 2022-12-02 10:30:18
  * @Description: 
  */
 import { mergePlainObject } from "@/shared/trans";
@@ -17,7 +17,7 @@ export function defineNode(current) {
         hasParent: false,
         hasChild: false,
         disabled: false,
-        sort: 0,
+        orderid: 0,
         level: 0,
         map: [uid],
         uid,

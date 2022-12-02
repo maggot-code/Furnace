@@ -32,7 +32,7 @@
     {
         "name": "curd",
         "component": "template/Curd/simple.vue",
-        "address": "/curd",
+        "address": "/curd/:cid",
         "title": "增删改查"
     }
 ]
