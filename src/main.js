@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\main.js
+ * @FilePath: /Furnace/src/main.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:22:48
+ * @LastEditTime: 2022-12-04 00:37:02
  * @Description: 
  */
 import Vue from 'vue';
@@ -20,8 +20,8 @@ import "normalize.css";
 import "nprogress/nprogress.css";
 import "@/assets/style/index.scss";
 
-const pinia = extendPinia(Vue);
 const router = extendRouter(Vue);
+const pinia = extendPinia(Vue);
 extendElement(Vue);
 extendTable(Vue);
 extendForm(Vue);

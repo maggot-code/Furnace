@@ -1,14 +1,14 @@
 /*
- * @FilePath: \Furnace\src\hooks\useVueRouter.js
+ * @FilePath: /Furnace/src/hooks/useVueRouter.js
  * @Author: maggot-code
  * @Date: 2022-11-23 23:09:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 14:41:31
+ * @LastEditTime: 2022-12-04 00:39:37
  * @Description: 
  */
 import { getCurrentInstance } from "vue";
 // import Router from "@/router/defineRouter";
-import { RedirectName } from "@/router/context";
+import { RouteName } from "~/router/shared/context";
 import { mergePlainObject } from "@/shared/trans";
 
 export function useRouter() {
@@ -35,10 +35,10 @@ export function useRedirect() {
 
     function redo(to) {
         return new Promise((resolve) => {
-            if (eq(route.name, RedirectName)) return resolve(false);
+            if (eq(route.name, RouteName.RedirectName)) return resolve(false);
 
             const params = mergePlainObject(to, { query: route.query });
-            return router.push({ name: RedirectName, params })
+            return router.push({ name: RouteName.RedirectName, params })
                 .then(() => resolve(true))
                 .catch((error) => {
                     console.log(error);

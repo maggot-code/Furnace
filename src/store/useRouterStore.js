@@ -3,16 +3,15 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:19:41
+ * @LastEditTime: 2022-12-04 00:38:20
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { obtainGetRouter } from "@/server/router/get";
 import { toArray } from "@/shared/trans";
-import { reloadRouter } from "@/router/defineRouter";
-import { transRouteGroup } from "@/router/trans";
-import { ExternalNamespace } from "@/router/namespace";
-import { BusinessName } from "@/router/context";
+import { reloadRouter } from "~/router";
+import { GroupEntity } from "~/router/entity/Group";
+import { RouteName, RouterNamespace } from "~/router/shared/context";
 
 const paths = ["cache"];
 
@@ -26,7 +25,7 @@ export const useRouterStore = defineStore(Namespace, {
 
     getters: {
         asyncRoutes() {
-            return transRouteGroup(this.cache, ExternalNamespace);
+            return GroupEntity(RouterNamespace.External, this.cache);
         },
         firstRoute() {
             if (this.asyncRoutes.length <= 0) return null;
@@ -48,7 +47,7 @@ export const useRouterStore = defineStore(Namespace, {
 
             const router = reloadRouter();
             this.asyncRoutes.forEach((route) => {
-                router.addRoute(BusinessName, route);
+                router.addRoute(RouteName.BusinessName, route);
             });
 
             return this.mounted;

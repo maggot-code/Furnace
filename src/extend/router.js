@@ -3,16 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:54:32
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:07:22
+ * @LastEditTime: 2022-12-04 00:24:25
  * @Description: 
  */
 import { defineRouter } from "~/router";
-// import { defineRouter } from "@/router/defineRouter";
 
-const { router, VueRouter } = defineRouter();
+const RouterBefore = [];
+const RouterAfter = [];
+const { router, VueRouter } = defineRouter({
+    before: RouterBefore,
+    after: RouterAfter
+});
 
 export function extendRouter(Vue) {
-    console.log(router.getRoutes());
     Vue.use(VueRouter);
 
     return router;

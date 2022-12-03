@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\store\definePinia.js
+ * @FilePath: /Furnace/src/internal/pinia/index.js
  * @Author: maggot-code
- * @Date: 2022-11-23 16:31:19
+ * @Date: 2022-12-04 00:26:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 17:05:39
+ * @LastEditTime: 2022-12-04 00:26:33
  * @Description: 
  */
 import { createPinia, PiniaVuePlugin } from "pinia";
@@ -23,4 +23,4 @@ export function definePinia() {
     }
 }
 
-export default definePinia;
+export default pinia;

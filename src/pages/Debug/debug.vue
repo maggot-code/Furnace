@@ -3,12 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-03 22:14:51
+ * @LastEditTime: 2022-12-04 00:41:40
  * @Description: 
 -->
 <script setup>
-import { buildFreezeRoutes } from "~/router/shared/collector";
-console.log(buildFreezeRoutes());
 function createPopup() { }
 </script>
 
