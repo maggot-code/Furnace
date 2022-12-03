@@ -1,13 +1,14 @@
 <!--
- * @FilePath: \Furnace\src\pages\Debug\debug.vue
+ * @FilePath: /Furnace/src/pages/Debug/debug.vue
  * @Author: maggot-code
  * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 16:24:41
+ * @LastEditTime: 2022-12-03 22:14:51
  * @Description: 
 -->
 <script setup>
-import { } from "@/domain/Popup";
+import { buildFreezeRoutes } from "~/router/shared/collector";
+console.log(buildFreezeRoutes());
 function createPopup() { }
 </script>
 

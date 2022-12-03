@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\plugins\lodash.js
+ * @FilePath: /Furnace/plugins/lodash.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-29 22:47:34
+ * @LastEditTime: 2022-12-03 18:17:44
  * @Description: 
  */
 export default [
@@ -15,6 +15,7 @@ export default [
     "isBoolean",
     "isFunction",
     "isPlainObject",
+    "capitalize",
     "toLower",
     "toUpper",
     "eq",
@@ -31,5 +32,6 @@ export default [
     "flow",
     "flowRight",
     "cloneDeep",
+    "flatten",
     "flattenDeep"
 ];
