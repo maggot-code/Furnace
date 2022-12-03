@@ -9,6 +9,9 @@
         "paths": {
             "@/*": [
                 "src/*"
+            ],
+            "~/*": [
+                "src/internal/*"
             ]
         },
         "types": [
