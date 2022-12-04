@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 02:06:43
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:27:00
+ * @LastEditTime: 2022-12-04 17:12:29
  * @Description: 
 -->
 <script setup>
-import { useRouter } from "@/hooks/useVueRouter";
+import { useRouter } from "@/hooks/router/useRouter";
 
 const router = useRouter();
 const props = defineProps({

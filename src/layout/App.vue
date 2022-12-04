@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\layout\App.vue
+ * @FilePath: /Furnace/src/layout/App.vue
  * @Author: maggot-code
- * @Date: 2022-11-21 14:19:59
+ * @Date: 2022-12-04 01:17:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 14:58:19
+ * @LastEditTime: 2022-12-04 17:20:43
  * @Description: 
 -->
 <script setup></script>

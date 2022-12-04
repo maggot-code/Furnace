@@ -1,21 +1,21 @@
 /*
- * @FilePath: \Furnace\src\server\router\get\mock.js
+ * @FilePath: /Furnace/src/server/router/get/mock.js
  * @Author: maggot-code
- * @Date: 2022-12-01 21:31:40
+ * @Date: 2022-12-04 05:25:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 11:29:16
+ * @LastEditTime: 2022-12-04 05:28:56
  * @Description: 
  */
-import Mock from "mockjs";
 import Response from "./response.json";
-import { ServerAddress, ServerMethod } from "./index";
+import { defineMock, defineResponse } from "~/mock";
+import { Address, Method } from "./config";
 
-const url = import.meta.env.VITE_APP_SERVER_PREFIX + ServerAddress;
-const method = toLower(ServerMethod);
+const mock = defineMock({
+    url: Address,
+    method: Method
+});
 
-export default () => {
-    Mock.mock(url, method, (props) => {
-        console.log(props);
-        return Response;
-    });
-}
+export default mock((props) => {
+    console.log(props);
+    return defineResponse(Response);
+});

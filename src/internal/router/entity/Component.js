@@ -3,13 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 23:53:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:21:08
+ * @LastEditTime: 2022-12-04 17:53:25
  * @Description: 
  */
-import { matchView } from "~/shared/views";
+import { wrapViews, matchView } from "~/shared/views";
 
 export function ComponentEntity(route) {
-    return matchView(route.component);
+    const views = wrapViews();
+    return matchView(route.component, views);
 }
 
 export default ComponentEntity;

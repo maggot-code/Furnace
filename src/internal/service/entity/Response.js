@@ -3,20 +3,23 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 00:48:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 01:11:25
+ * @LastEditTime: 2022-12-04 22:39:06
  * @Description: 
  */
-import { defineShallowObject } from "@/hooks/useShallowObject";
-import { defineState } from "@/hooks/useState";
 import { ConfigEntity } from "~/service/entity/Config";
 import { NormResult } from "~/service/shread/constant";
+import { useShallowObject } from "@/hooks/ref/useShallowObject";
+import { useBooleanState } from "@/hooks/ref/useRefState";
+// import { useProgress } from "@/hooks/useProgress";
 
-export function ResponseEntity(defineResult, props) {
+// const progress = useProgress();
+
+export function ResponseEntity(props, defineResult) {
     const config = ConfigEntity(props);
-    const result = defineShallowObject(NormResult);
-    const startup = defineState(false);
-    const pend = defineState(false);
-    const finish = defineState(true);
+    const result = useShallowObject(NormResult);
+    const startup = useBooleanState(false);
+    const pend = useBooleanState(false);
+    const finish = useBooleanState(true);
 
     const started = computed(() => unref(startup.state));
     const loading = computed(() => unref(pend.state));
@@ -28,7 +31,6 @@ export function ResponseEntity(defineResult, props) {
         startup.toEnable();
     }
     function toStart() {
-        // progress.start();
         pend.toEnable();
         finish.toDisable();
     }
@@ -36,7 +38,6 @@ export function ResponseEntity(defineResult, props) {
         toRecord();
         pend.toDisable();
         finish.toEnable();
-        // progress.done();
     }
 
     return {

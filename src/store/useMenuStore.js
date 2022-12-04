@@ -1,20 +1,21 @@
 /*
- * @FilePath: \Furnace\src\store\useMenuStore.js
+ * @FilePath: /Furnace/src/store/useMenuStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 10:31:37
+ * @LastEditTime: 2022-12-04 17:23:19
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { useRouterStore } from "@/store/useRouterStore";
-import { treeMap } from "@/shared/metadata/trans";
-import { toNumber, mergePlainObject } from "@/shared/trans";
+import { treeMap } from "~/metadata/useTree";
+import { transNumber } from "~/shared/trans";
+import { mergeObject } from "~/shared/merge";
 
 const paths = ["collapse"];
 
 function toSort(prev, next) {
-    return prev.meta.orderid - next.meta.orderid;
+    return prev.meta.sort - next.meta.sort;
 }
 function transMenuNode(node) {
     const { children } = node;
@@ -24,7 +25,7 @@ function transMenuNode(node) {
         node.children = node.children.sort(toSort);
     }
 
-    return mergePlainObject(node, node.meta);
+    return mergeObject(node, node.meta);
 }
 
 export const Namespace = 'useMenuStore';
@@ -43,7 +44,7 @@ export const useMenuStore = defineStore(Namespace, {
             return this.collapse ? "64px" : "240px";
         },
         hiddenTitle: (state) => (level) => {
-            const levelState = toNumber(level, 0) > 0;
+            const levelState = transNumber(level, 0) > 0;
 
             if (levelState) return true;
 

@@ -1,15 +1,16 @@
 /*
- * @FilePath: \Furnace\src\store\useUserStore.js
+ * @FilePath: /Furnace/src/store/user/useUserStore.js
  * @Author: maggot-code
- * @Date: 2022-11-29 15:51:18
+ * @Date: 2022-12-04 03:44:55
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 18:10:17
+ * @LastEditTime: 2022-12-04 03:56:23
  * @Description: 
  */
 import { defineStore } from 'pinia';
-import { isUnusable } from "@/shared/is";
-import { toString, toArray, toPlainObject } from "@/shared/trans";
+import { isUnusable } from "~/shared/is";
 import dayjs from "dayjs";
+
+const OverdueInfo = ["已过期", "未过期"];
 
 const paths = [
     "token",
@@ -19,81 +20,72 @@ const paths = [
     "activeRole"
 ];
 
-export function defineToken(value) {
-    return {
-        value,
-        overdue: Date.now()
-    }
-}
-
-export function defineInfo(source) {
-    return {
-        name: toString(source.name),
-        avatar: toString(source.avatar),
-        roles: toArray(source.roles),
-        activeRole: source.activeRole ?? null
-    }
-}
-
 export const Namespace = 'useUserStore';
 
 export const useUserStore = defineStore(Namespace, {
     state: () => ({
-        token: defineToken(),
+        token: {
+            value: "",
+            overdue: Date.now()
+        },
         name: "",
         avatar: "",
         roles: [],
-        activeRole: null,
+        activeRole: null
     }),
 
     getters: {
         tokenValue() {
             return this.token.value;
         },
+        tokenOverdue() {
+            return [
+                this.token.overdue,
+                dayjs(this.token.overdue).format("YYYY-MM-DD HH:mm:ss")
+            ]
+        },
         tokenUnusable() {
-            const untoken = isUnusable([this.tokenValue]);
-            const date = this.token.overdue < Date.now();
+            const [overdue] = this.tokenOverdue;
+            const untoken = isUnusable(this.tokenValue);
+            const date = overdue < Date.now();
             return untoken || date;
         },
         tokenUsable() {
             return !this.tokenUnusable;
         },
-        tokenOverdue() {
-            return dayjs(this.token.overdue).format("YYYY-MM-DD HH:mm:ss");
-        },
         overdueView() {
-            return this.tokenUnusable ? "已过期" : "未过期";
+            const [unusable, usable] = OverdueInfo;
+            return this.tokenUnusable ? unusable : usable;
         },
-        info() {
+        userInfo() {
             return {
                 name: this.name,
                 avatar: this.avatar,
                 roles: this.roles,
-                activeRole: this.activeRole,
+                activeRole: this.activeRole
             }
         }
     },
 
     actions: {
-        setup(response) {
-            const info = defineInfo(toPlainObject(response));
-
-            this.name = info.name;
-            this.avatar = info.avatar;
-            this.roles = info.roles;
-            this.activeRole = info.activeRole;
+        clearToken() {
+            this.token.value = "";
+            this.token.overdue = Date.now();
         },
-        setupToken(response) {
-            const source = toPlainObject(response);
-            this.token = defineToken(source.token);
-            this.updateToken();
-        },
-        updateToken() {
+        renewToken() {
             this.token.overdue = Date.now() + 1000 * 60 * 60 * 24;
         },
-        clearToken() {
-            this.token = defineToken();
-        }
+        setupToken(response) {
+            this.token.value = get(response, "token", "");
+            this.renewToken();
+        },
+        setup(response) {
+            this.setupToken(response);
+            this.name = get(response, "name");
+            this.avatar = get(response, "avatar");
+            this.roles = get(response, "roles");
+            this.activeRole = get(response, "activeRole");
+        },
     },
 
     persist: {

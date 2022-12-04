@@ -1,13 +1,11 @@
 /*
- * @FilePath: /Furnace/src/domain/Form/entity/Event.js
+ * @FilePath: /Furnace/src/domain/form/entity/Event.js
  * @Author: maggot-code
- * @Date: 2022-11-27 16:48:52
+ * @Date: 2022-12-04 21:25:04
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 17:09:39
+ * @LastEditTime: 2022-12-04 22:22:40
  * @Description: 
  */
-import { isUnusable } from "@/shared/is";
-
 function examine(validate) {
     return new Promise((resolve) => {
         validate().then(() => {
@@ -18,30 +16,29 @@ function examine(validate) {
         });
     });
 }
+
 export function EventEntity(element) {
-    const { refs, ready } = element;
-
-    async function getDataSource() {
+    async function getData() {
         await nextTick();
-        if (isUnusable(unref(ready))) return [{}, false];
+        if (!unref(element.ready)) return [{}, false];
 
-        const { validate, data } = unref(refs).formOutput();
+        const { validate, data } = unref(element.refs).formOutput();
         const state = await examine(validate);
 
         return [state ? data : {}, state];
     }
 
-    async function resetDataSource() {
+    async function resetData() {
         await nextTick();
-        if (isUnusable(unref(ready))) return [{}, false];
+        if (!unref(element.ready)) return [{}, false];
 
-        unref(refs).resetForm();
-        return getDataSource();
+        unref(element.refs).resetForm();
+        return getData();
     }
 
     return {
-        getDataSource,
-        resetDataSource
+        getData,
+        resetData
     }
 }
 

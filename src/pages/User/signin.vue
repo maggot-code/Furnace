@@ -1,90 +1,46 @@
 <!--
- * @FilePath: \Furnace\src\pages\User\signin.vue
+ * @FilePath: /Furnace/src/pages/User/signin.vue
  * @Author: maggot-code
- * @Date: 2022-11-24 12:46:53
+ * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 17:44:55
+ * @LastEditTime: 2022-12-04 05:14:54
  * @Description: 
 -->
 <script setup>
-import { LoginServer, obtainLogin, abortLogin } from "@/server/user/login";
-import { GetRouterServer } from "@/server/Router/get";
-import { useServerLoad } from "@/hooks/useServerLoad";
-import { useWatchServer } from "@/hooks/useWatchServer";
-import { useElementRefs } from "@/hooks/useElement";
-import { useRedirect } from "@/hooks/useVueRouter";
+import { UserLoginServer, UserLoginObtain } from "@/server/user/login";
+import { useWatch } from "@/hooks/service/useWatch";
 import { useUserStore } from "@/store/useUserStore";
-import { toFormData } from "@/shared/trans";
+import { useLogin } from "@/biz/user/usecase/useLogin";
+import { useRedirect } from "@/hooks/router/useRedirect";
 
 const redo = useRedirect();
 const userStore = useUserStore();
-const loading = useServerLoad([GetRouterServer, LoginServer]);
-const { refs } = useElementRefs();
+const login = useLogin();
+const { loginRefs, loginForm, loginRules } = login;
+const { loading } = UserLoginServer.server;
 
-const form = reactive({
-    username: "admin",
-    userpwd: "admin@1234",
-    note: "",
-    code: ""
-});
-const rules = {
-    username: [
-        {
-            required: true,
-            message: "请输入用户名",
-            trigger: "change"
-        },
-        // {
-        //     min: 4,
-        //     max: 16,
-        //     message: "用户名长度在 4 到 16 个字符",
-        //     trigger: "blur"
-        // }
-    ],
-    userpwd: [
-        {
-            required: true,
-            message: "请输入密码",
-            trigger: "change"
-        },
-        // {
-        //     min: 6,
-        //     max: 16,
-        //     message: "密码长度在 6 到 16 个字符",
-        //     trigger: "blur"
-        // }
-    ],
-};
+login.onAfterSubmit((props) => UserLoginObtain(props.data));
 
-function submitForm() {
-    unref(refs).validate((state) => state && obtainLogin(toFormData(unref(form))));
-}
-function resetForm() {
-    unref(refs).resetFields();
-}
-
-useWatchServer(LoginServer, (response) => {
+useWatch(UserLoginServer, (response) => {
     userStore.setup(response);
-    userStore.setupToken(response);
     redo();
 });
-onBeforeUnmount(() => abortLogin());
 </script>
 
 <template>
     <div class="furnace-signin">
         <el-form
-            ref="refs"
+            ref="loginRefs"
             label-width="auto"
             show-message
             status-icon
             :hide-required-asterisk="true"
-            :model="form"
-            :rules="rules"
+            :model="loginForm"
+            :rules="loginRules"
         >
             <el-form-item prop="username">
                 <el-input
-                    v-model="form.username"
+                    v-model="loginForm.username"
                     :readonly="loading"
                     prefix-icon="el-icon-user"
                     placeholder="账户：admin"
@@ -92,9 +48,9 @@ onBeforeUnmount(() => abortLogin());
                     clearable
                 ></el-input>
             </el-form-item>
-            <el-form-item prop="userpwd">
+            <el-form-item prop="userpassword">
                 <el-input
-                    v-model="form.userpwd"
+                    v-model="loginForm.userpassword"
                     :readonly="loading"
                     prefix-icon="el-icon-lock"
                     placeholder="密码：furnace"
@@ -103,23 +59,14 @@ onBeforeUnmount(() => abortLogin());
                     show-password
                 ></el-input>
             </el-form-item>
-            <!-- <el-form-item>
-                <el-input
-                    v-model="form.note"
-                    prefix-icon="el-icon-message"
-                    placeholder="短信验证码"
-                >
-                    <el-button slot="append">获取短信验证码</el-button>
-                </el-input>
-            </el-form-item> -->
             <el-form-item>
                 <el-button
                     :loading="loading"
-                    @click="submitForm"
+                    @click="login.onSubmit"
                 >登录</el-button>
                 <el-button
                     :disabled="loading"
-                    @click="resetForm"
+                    @click="login.onReset"
                 >重置</el-button>
             </el-form-item>
         </el-form>

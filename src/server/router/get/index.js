@@ -1,29 +1,29 @@
 /*
- * @FilePath: \Furnace\src\server\router\get\index.js
+ * @FilePath: /Furnace/src/server/router/get/index.js
  * @Author: maggot-code
- * @Date: 2022-12-01 21:31:27
+ * @Date: 2022-12-04 05:25:48
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 17:46:17
+ * @LastEditTime: 2022-12-04 06:18:28
  * @Description: 
  */
-import { service } from "@/service/model/Application";
+import { Address, Method, ResponseMapper } from "./config";
+import { service } from "@/service/Application";
+import { useMapper } from "@/hooks/service/useMapper";
 
-export const ServerAddress = "/SystemManage/SM_Router/GetSMRouterListByUser.do";
-export const ServerMethod = "POST";
+const { arrayMapper } = useMapper(ResponseMapper);
+function transResponse(response) {
+    const source = get(response, "data.data", []);
+    const data = arrayMapper(source);
+    return { data };
+}
 
-export const GetRouterServer = service.define({
-    url: ServerAddress,
-    method: ServerMethod
+export const RouterGetServer = service.define({
+    url: Address,
+    method: Method,
 });
 
-export function abortGetRouter() {
-    service.abort(GetRouterServer);
-};
+export function RouterGetObtain() {
+    return RouterGetServer.obtain({ transResponse });
+}
 
-export function obtainGetRouter() {
-    abortGetRouter();
-
-    return service.send(GetRouterServer);
-};
-
-export default GetRouterServer;
+export default RouterGetServer;

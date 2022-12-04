@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:50:57
+ * @LastEditTime: 2022-12-04 22:38:04
  * @Description: 
 -->
 <script setup>
-import { useMenu } from "@/domain/Menu";
+import { useMenu } from "~/menu/usecase/useMenu";
 
 const { menuStore } = useMenu();
 </script>
@@ -53,9 +53,9 @@ const { menuStore } = useMenu();
     }
 
     // &-main {
-    //     &-head {}
+    //     // &-head {}
 
-    //     &-body {}
+    //     // &-body {}
     // }
 }
 </style>

@@ -1,23 +1,29 @@
 /*
- * @FilePath: /Furnace/src/domain/Form/entity/Schema.js
+ * @FilePath: /Furnace/src/domain/form/entity/Schema.js
  * @Author: maggot-code
- * @Date: 2022-11-26 16:47:18
+ * @Date: 2022-12-04 21:09:49
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-27 01:56:39
+ * @LastEditTime: 2022-12-04 21:15:46
  * @Description: 
  */
-import { defineShallowObject } from "@/hooks/useShallowObject";
-import { defineShallowArray } from "@/hooks/useShallowArray";
+import { useShallowObject } from "@/hooks/ref/useShallowObject";
+import { useShallowArray } from "@/hooks/ref/useShallowArray";
 
 export function SchemaEntity() {
-    const formConfig = defineShallowObject();
-    const cellConfig = defineShallowArray();
+    const formConfig = useShallowObject();
+    const cellConfig = useShallowArray();
+    const formSchema = computed(() => {
+        return unref(formConfig.source)
+    });
+    const cellSchema = computed(() => {
+        return unref(cellConfig.source)
+    });
 
     return {
         formConfig,
         cellConfig,
-        formSchema: formConfig.source,
-        cellSchema: cellConfig.source
+        formSchema,
+        cellSchema,
     }
 }
 

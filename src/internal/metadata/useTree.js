@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 20:25:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:20:16
+ * @LastEditTime: 2022-12-04 06:20:25
  * @Description: 
  */
 import { NormTreeProps } from "~/metadata/shared/constant";
@@ -35,10 +35,8 @@ export function arrayToTree(dataSource, props) {
             cache[item[self]].map = concat(cache[item[parent]].map, cache[item[self]].uid);
 
             cache[item[parent]].children.push(trans(cache[item[self]]));
-            delete cache[item[self]];
         } else {
             store.push(trans(cache[item[self]]));
-            delete cache[item[self]];
         }
     });
 

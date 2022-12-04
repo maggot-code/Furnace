@@ -1,75 +1,38 @@
 <!--
- * @FilePath: \Furnace\src\template\Form\simple.vue
+ * @FilePath: /Furnace/src/template/Form/simple.vue
  * @Author: maggot-code
- * @Date: 2022-12-02 16:28:55
+ * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 18:18:27
+ * @LastEditTime: 2022-12-04 22:36:51
  * @Description: 
 -->
 <script setup>
-import { ConfigCurdServer, obtainCurdConfig, abortConfigCurd } from "@/server/template/config";
-import { FormStructServer, obtainFormStruct, abortFormStruct } from "@/server/template/form";
-import { FormSaveServer, obtainFormSave, abortFormSave } from "@/server/template/save";
+import { ConfigFormServer, ConfigFormObtain } from "@/server/config/form";
+import { useTemplateProps } from "@/hooks/template/usecase/useTemplateProps";
+import { useWatch } from "@/hooks/service/useWatch";
+import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
+import { defineForm } from "@/domain/form/usecase/defineForm";
 
-import { defineForm } from "@/domain/Form";
-
-import { useErrorTips } from "@/hooks/useMessage";
-import { useRoute } from "@/hooks/useVueRouter";
-import { useServerLoad } from "@/hooks/useServerLoad";
-import { useWatchServer } from "@/hooks/useWatchServer";
-
-import { mergePlainObject, toFormData } from "@/shared/trans";
-
+const meta = useTemplateProps();
 const form = defineForm();
+const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
-const serverGroup = [
-    ConfigCurdServer,
-    FormStructServer,
-    FormSaveServer
-];
-const abortGroup = [
-    abortConfigCurd,
-    abortFormStruct,
-    abortFormSave
-];
-const loading = useServerLoad(serverGroup);
-const route = useRoute();
-
+const { loading, finished } = ConfigFormServer.server;
 function enums() { }
 function search() { }
 
-function monitorValue(props) {
-    // console.log("monitor value", props);
-}
-async function onSubmit() {
-    const formData = await form.event.getDataSource();
-    const [source, state] = formData;
-
-    if (!state) return useErrorTips("请检查表单是否已经填写完整");
-
-    const options = mergePlainObject({
-        data: toFormData(source)
-        // data: source
-    }, ConfigCurdServer.result.take("data.save"));
-    obtainFormSave(options);
-}
-
-useWatchServer(ConfigCurdServer, (response) => {
-    obtainFormStruct(response.data[route.params.type]);
+formEvent.onSubmit((source) => {
+    console.log(source);
 });
-useWatchServer(FormStructServer, (response) => {
-    const { formSchema, cellSchema } = response.data;
-
-    form.schema.formConfig.setup(formSchema);
-    form.schema.cellConfig.setup(cellSchema);
+formEvent.onReset((source) => {
+    console.log(source);
 });
+useWatch(ConfigFormServer, form.setup);
 onBeforeMount(() => {
-    obtainCurdConfig(route.params);
+    ConfigFormObtain(meta);
 });
 onBeforeUnmount(() => {
-    form.schema.formConfig.clear();
-    form.schema.cellConfig.clear();
-    abortGroup.forEach((abort) => abort());
+    ConfigFormServer.abort();
 });
 </script>
 
@@ -79,27 +42,23 @@ onBeforeUnmount(() => {
         v-loading="loading"
     >
         <div class="template-form-simple-body">
+            <!-- @monitor-value="monitorValue" -->
             <mg-form
+                v-if="finished"
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
                 :remote="{ enums, search }"
-                @monitor-value="monitorValue"
             ></mg-form>
         </div>
         <div class="template-form-simple-footer">
             <el-button
                 size="mini"
-                @click="onSubmit"
-            >
-                提交
-            </el-button>
-
+                @click="formEvent.formSubmit"
+            >提交</el-button>
             <el-button
                 size="mini"
-                @click="form.event.resetDataSource"
-            >
-                重置
-            </el-button>
+                @click="formEvent.formReset"
+            >重置</el-button>
         </div>
     </div>
 </template>

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 17:33:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-03 21:59:14
+ * @LastEditTime: 2022-12-04 04:30:47
  * @Description: 
  */
 // 默认值转换
@@ -44,4 +44,20 @@ export function transNumber(value, replace = 0) {
 // Null转换
 export function transNull(value, replace = null) {
     return isNull(value) ? value : replace;
+}
+
+// URL参数转换
+export function transURL(url) {
+    const paramsString = url.split("?")[1];
+    const searchParams = new URLSearchParams(paramsString);
+    return Object.fromEntries(searchParams.entries());
+}
+
+// 表单数据转换
+export function transFormData(data) {
+    const formData = new FormData();
+    for (const key in data) {
+        formData.append(key, data[key]);
+    }
+    return formData;
 }

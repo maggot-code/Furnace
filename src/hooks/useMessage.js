@@ -1,27 +1,27 @@
 /*
- * @FilePath: \Furnace\src\hooks\useMessage.js
+ * @FilePath: /Furnace/src/hooks/useMessage.js
  * @Author: maggot-code
  * @Date: 2022-11-23 01:30:31
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 02:02:06
+ * @LastEditTime: 2022-12-04 01:28:52
  * @Description: 
  */
 import { Message } from "element-ui";
-import { mergePlainObject } from "@/shared/trans";
-import { isEmptyString } from "@/shared/is";
+import { mergeObject } from "~/shared/merge";
+import { isEmptyString } from "~/shared/is";
 
 export const NormProps = {
     type: "info",
     customClass: "furnace-message",
     offset: 60,
-    duration: import.meta.env.DEV ? 6000 : 3000,
+    duration: import.meta.env.DEV ? 3000 : 1200,
     showClose: true,
     center: false,
     dangerouslyUseHTMLString: false
 }
 
 export function useMessage(props) {
-    const config = mergePlainObject(NormProps, props);
+    const config = mergeObject(NormProps, props);
 
     if (isEmptyString(config.message)) return;
 

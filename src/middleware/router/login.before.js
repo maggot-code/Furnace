@@ -1,28 +1,28 @@
 /*
- * @FilePath: \Furnace\src\middleware\router\login.before.js
+ * @FilePath: /Furnace/src/middleware/router/login.before.js
  * @Author: maggot-code
  * @Date: 2022-11-30 17:36:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-30 20:39:05
+ * @LastEditTime: 2022-12-04 06:12:12
  * @Description: 
  */
 import { useUserStore } from "@/store/useUserStore";
-import { OmitRouteGroup, RootName, SigninName } from "@/router/context";
+import { RouteOmitGroup, RouteName } from "~/router/shared/context";
 
 function toOmit(to) {
-    return OmitRouteGroup.some((name) => eq(to.name, name));
+    return RouteOmitGroup.some((name) => eq(to.name, name));
 }
 
 function define(to, form, next) {
     const userStore = useUserStore();
-    const isSignin = eq(to.name, SigninName);
+    const isSignin = eq(to.name, RouteName.SigninName);
 
-    if (isSignin && !userStore.tokenUnusable) {
-        next({ name: RootName });
-    } else if (toOmit(to) || !userStore.tokenUnusable) {
+    if (isSignin && userStore.tokenUsable) {
+        next({ name: RouteName.WelcomeName });
+    } else if (toOmit(to) || userStore.tokenUsable) {
         next();
     } else {
-        next({ name: SigninName });
+        next({ name: RouteName.SigninName });
     }
 }
 

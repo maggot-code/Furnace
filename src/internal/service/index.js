@@ -3,13 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 00:42:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 01:07:25
+ * @LastEditTime: 2022-12-04 22:35:50
  * @Description: 
  */
 import { ResponseEntity } from "~/service/entity/Response";
 import { NormServiceProps } from "~/service/shread/constant";
 import { mergeObject } from "~/shared/merge";
 import { transBoolean, transArray } from "~/shared/trans";
+import { isMock } from "~/mock";
 
 export function defineService(tofetch, props) {
     // entity => ResponseEntity
@@ -40,6 +41,8 @@ export function defineService(tofetch, props) {
             : Promise.all(groupServer.map((entity) => send(entity)));
     }
     function abort(entity) {
+        if (isMock()) return;
+
         const controller = entity.config.take("controller");
 
         controller && controller.abort();
@@ -47,13 +50,24 @@ export function defineService(tofetch, props) {
     function abortAll(group) {
         transArray(group, [group]).forEach((entity) => abort(entity));
     }
+    function define(props, defineResult) {
+        const server = ResponseEntity(props, defineResult);
+        return {
+            server,
+            abort: () => abort(server),
+            obtain: (extend) => {
+                abort(server);
+                return send(server, extend);
+            }
+        }
+    }
 
     return {
         send,
         sendAll,
         abort,
         abortAll,
-        define: ResponseEntity
+        define
     }
 }
 

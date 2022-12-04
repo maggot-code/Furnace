@@ -3,6 +3,38 @@
     "message": "ok",
     "data": [
         {
+            "name": "router",
+            "mode": "fragment",
+            "address": "/router",
+            "redirect": "/router/views",
+            "icon": "el-icon-coordinate",
+            "title": "路由管理",
+            "orderid": 0,
+            "menu": true,
+            "pid": null,
+            "id": 1
+        },
+        {
+            "name": "router_views",
+            "mode": "view",
+            "address": "/router/views",
+            "title": "路由视图",
+            "orderid": 0,
+            "menu": true,
+            "pid": 1,
+            "id": 2
+        },
+        {
+            "name": "router_enter",
+            "mode": "view",
+            "address": "/router/enter",
+            "title": "路由录入",
+            "orderid": 0,
+            "menu": true,
+            "pid": 1,
+            "id": 3
+        },
+        {
             "name": "system",
             "mode": "fragment",
             "address": "/system",
@@ -17,7 +49,7 @@
         {
             "name": "system_monitor",
             "mode": "template",
-            "template": "unknow",
+            "template": "curd/simple",
             "address": "/system/monitor",
             "title": "系统监控",
             "orderid": 100,
@@ -41,7 +73,7 @@
         {
             "name": "system_log_view",
             "mode": "template",
-            "template": "unknow",
+            "template": "curd/simple",
             "address": "/system/log/view",
             "title": "日志列表",
             "orderid": 100,
@@ -54,7 +86,7 @@
         {
             "name": "system_log_chart",
             "mode": "template",
-            "template": "unknow",
+            "template": "curd/simple",
             "address": "/system/log/chart",
             "title": "日志分析",
             "orderid": 200,
@@ -79,7 +111,7 @@
         {
             "name": "power_user",
             "mode": "template",
-            "template": "unknow",
+            "template": "curd/simple",
             "address": "/power/user",
             "title": "用户权限",
             "orderid": 100,
@@ -92,7 +124,7 @@
         {
             "name": "power_router",
             "mode": "template",
-            "template": "unknow",
+            "template": "curd/simple",
             "address": "/power/router",
             "title": "路由权限",
             "orderid": 200,
@@ -105,7 +137,7 @@
         {
             "name": "odometer",
             "mode": "template",
-            "template": "unknow",
+            "template": "form/simple",
             "address": "/odometer",
             "icon": "el-icon-odometer",
             "title": "指标记录",

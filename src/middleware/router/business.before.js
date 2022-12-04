@@ -1,18 +1,18 @@
 /*
- * @FilePath: \Furnace\src\middleware\router\business.before.js
+ * @FilePath: /Furnace/src/middleware/router/business.before.js
  * @Author: maggot-code
  * @Date: 2022-12-01 15:28:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:32:05
+ * @LastEditTime: 2022-12-04 05:55:13
  * @Description: 
  */
 import { useRouterStore } from "@/store/useRouterStore";
-import { BusinessName } from "@/router/context";
+import { RouteName } from "~/router/shared/context";
 
 function define(to, form, next) {
     const routerStore = useRouterStore();
 
-    if (eq(to.name, BusinessName)) {
+    if (eq(to.name, RouteName.BusinessName)) {
         routerStore.firstRoute ? next(routerStore.firstRoute) : next();
     } else {
         next();

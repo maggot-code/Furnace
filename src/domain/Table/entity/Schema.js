@@ -1,13 +1,13 @@
 /*
- * @FilePath: \Furnace\src\domain\Table\entity\Schema.js
+ * @FilePath: /Furnace/src/domain/table/entity/Schema.js
  * @Author: maggot-code
- * @Date: 2022-11-26 23:58:26
+ * @Date: 2022-12-04 23:18:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 13:13:12
+ * @LastEditTime: 2022-12-04 23:44:08
  * @Description: 
  */
-import { mergePlainObject, toPlainObject, toArray } from "@/shared/trans";
-import { defineShallowObject } from "@/hooks/useShallowObject";
+import { useShallowObject } from "@/hooks/ref/useShallowObject";
+import { isEmptyString } from "~/shared/is";
 
 const NormOrder = {
     ascending: "ascending",
@@ -20,32 +20,17 @@ function toSortOrder(schema) {
 }
 
 export function SchemaEntity() {
-    const struct = defineShallowObject();
-    const keyname = computed(() => {
-        return unref(struct.source).keyname;
-    });
-    const controller = computed(() => {
-        return toPlainObject(unref(struct.source).controller);
-    });
-    const uiSchema = computed(() => {
-        return mergePlainObject(unref(struct.source).uiSchema, {
-            sortOrder: toSortOrder(unref(struct.source).uiSchema)
-        });
-    });
-    const mergeSchema = computed(() => {
-        return toPlainObject(unref(struct.source).mergeSchema);
-    });
-    const columnSchema = computed(() => {
-        return toArray(unref(struct.source).columnSchema);
-    });
+    const struct = useShallowObject();
+
+    function getStruct(path, replace = null) {
+        if (isEmptyString(path)) return unref(struct.source);
+        return get(unref(struct.source), path, replace);
+    }
 
     return {
         struct,
-        keyname,
-        controller,
-        uiSchema,
-        mergeSchema,
-        columnSchema
+        getStruct,
+        toSortOrder
     }
 }
 

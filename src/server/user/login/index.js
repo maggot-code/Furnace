@@ -1,43 +1,37 @@
 /*
- * @FilePath: \Furnace\src\server\user\login\index.js
+ * @FilePath: /Furnace/src/server/user/login/index.js
  * @Author: maggot-code
- * @Date: 2022-12-01 21:39:15
+ * @Date: 2022-12-04 02:16:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 17:45:45
+ * @LastEditTime: 2022-12-04 05:35:33
  * @Description: 
  */
-import { service } from "@/service/model/Application";
-import { mergePlainObject } from "@/shared/trans";
+import { Address, Method, RequestMapper, ResponseMapper } from "./config";
+import { service } from "@/service/Application";
+import { transFormData } from "~/shared/trans";
+import { isMock } from "~/mock";
+import { useMapper } from "@/hooks/service/useMapper";
 
+const { objectMapper: toRequest } = useMapper(RequestMapper);
+const { objectMapper: toResponse } = useMapper(ResponseMapper);
+function transRequest(rawSource) {
+    const source = toRequest(rawSource);
+    return isMock() ? source : transFormData(source);
+}
 function transResponse(response) {
-    const { data } = response.data;
-
-    return mergePlainObject(data, {
-        activeRole: data.roletype,
-        name: data.truename
-    });
+    const source = get(response, "data.data", {});
+    return toResponse(source);
 }
 
-export const ServerAddress = "/signin_vue";
-export const ServerMethod = "POST";
-
-export const LoginServer = service.define({
-    url: ServerAddress,
-    method: ServerMethod
+export const UserLoginServer = service.define({
+    url: Address,
+    method: Method,
 });
 
-export function abortLogin() {
-    service.abort(LoginServer);
-};
+export function UserLoginObtain(source) {
+    UserLoginServer.server.config.bind("data", transRequest(source));
 
-export function obtainLogin(data) {
-    abortLogin();
+    return UserLoginServer.obtain({ transResponse });
+}
 
-    LoginServer.config.bind("data", data);
-
-    return service.send(LoginServer, {
-        transResponse
-    });
-};
-
-export default LoginServer;
+export default UserLoginServer;

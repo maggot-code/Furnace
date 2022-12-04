@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 02:05:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:22:31
+ * @LastEditTime: 2022-12-04 17:21:09
  * @Description: 
 -->
 <script setup>
-import { useMenu } from "@/domain/Menu";
+import { useMenu } from "~/menu/usecase/useMenu";
 
 const { menuStore } = useMenu();
 const props = defineProps({

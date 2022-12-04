@@ -1,19 +1,23 @@
 <!--
- * @FilePath: \Furnace\src\layout\Fragment.vue
+ * @FilePath: /Furnace/src/layout/Fragment.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 12:37:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 15:15:32
+ * @LastEditTime: 2022-12-04 17:51:47
  * @Description: 
 -->
 <template>
-    <transition name="el-fade-in-linear">
-        <router-view :key="keyword"></router-view>
-    </transition>
+    <router-view v-slot="{ Component }">
+        <components
+            :is="Component"
+            :key="keyword"
+            v-bind="meta"
+        ></components>
+    </router-view>
 </template>
 
 <script>
-import { uuid } from "@/shared/uuid";
+import { uuid } from "~/shared/uuid";
 export default {
     name: 'FragmentView',
     mixins: [],
@@ -26,10 +30,14 @@ export default {
         };
     },
     //监听属性 类似于data概念
-    computed: {},
+    computed: {
+        meta() {
+            return this.$route.meta;
+        }
+    },
     //监控data中的数据变化
     watch: {
-        $route(target) {
+        $route() {
             this.keyword = uuid();
         }
     }

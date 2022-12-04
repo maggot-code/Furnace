@@ -1,17 +1,11 @@
 <!--
  * @FilePath: /Furnace/src/pages/Business/business.vue
  * @Author: maggot-code
- * @Date: 2022-11-23 23:19:15
+ * @Date: 2022-12-04 17:04:02
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 22:47:18
+ * @LastEditTime: 2022-12-04 17:51:35
  * @Description: 
 -->
-<script setup>
-import { defineMenu } from "@/domain/Menu";
-
-defineMenu();
-</script>
-
 <template>
     <BizContainer>
         <template #aside>
@@ -24,12 +18,47 @@ defineMenu();
 
         <template #body>
             <transition name="el-fade-in-linear">
-                <router-view></router-view>
+                <router-view v-slot="{ Component }">
+                    <components
+                        :is="Component"
+                        :key="keyword"
+                        v-bind="meta"
+                    ></components>
+                </router-view>
             </transition>
         </template>
     </BizContainer>
 </template>
 
-<style scoped lang='scss'>
+<script>
+import { defineMenu } from "~/menu/usecase/defineMenu";
+import { uuid } from "~/shared/uuid";
+export default {
+    name: 'Business',
+    mixins: [],
+    components: {},
+    props: {},
+    setup() {
+        defineMenu();
+        return {}
+    },
+    data() {
+        return {
+            keyword: uuid()
+        }
+    },
+    computed: {
+        meta() {
+            return this.$route.meta;
+        }
+    },
+    watch: {
+        $route() {
+            this.keyword = uuid();
+        }
+    }
+};
+</script>
+<style lang='scss' scoped>
 
 </style>

@@ -1,13 +1,13 @@
 /*
- * @FilePath: /Furnace/src/domain/Table/entity/Data.js
+ * @FilePath: /Furnace/src/domain/table/entity/Data.js
  * @Author: maggot-code
- * @Date: 2022-11-27 16:04:56
+ * @Date: 2022-12-04 23:15:21
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-28 00:39:04
+ * @LastEditTime: 2022-12-04 23:16:10
  * @Description: 
  */
-import { toArray } from "@/shared/trans";
-import { defineShallowObject } from "@/hooks/useShallowObject";
+import { useShallowObject } from "@/hooks/ref/useShallowObject";
+import { transArray } from "~/shared/trans";
 
 const NormDataSource = {
     total: 0,
@@ -15,10 +15,10 @@ const NormDataSource = {
 }
 
 export function DataEntity() {
-    const source = defineShallowObject(NormDataSource);
+    const source = useShallowObject(NormDataSource);
     const total = computed(() => unref(source.source).total);
     const tableData = computed(() => {
-        return toArray(unref(source.source).data);
+        return transArray(unref(source.source).data);
     });
 
     return {

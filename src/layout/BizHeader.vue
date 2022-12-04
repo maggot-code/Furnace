@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:45:58
+ * @LastEditTime: 2022-12-04 17:20:12
  * @Description: 
 -->
 <script setup>
-import { useMenu } from "@/domain/Menu";
+import { useMenu } from "~/menu/usecase/useMenu";
 
 const { menuStore } = useMenu();
 const iconName = computed(() => {
