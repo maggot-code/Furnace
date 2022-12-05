@@ -3,15 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 01:54:34
+ * @LastEditTime: 2022-12-06 02:49:58
  * @Description: 
 -->
 <script setup>
 import { CurdAsyncServer } from "@/server/curd/async";
 import { CurdFormObtain, CurdSaveObtain } from "@/server/curd/layout";
+import { useWarningTips } from "@/hooks/useMessage";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 
 const titleMapper = {
@@ -26,17 +28,13 @@ const dialog = useDialog(props.popupKeyword);
 const mode = computed(() => get(unref(dialog.config), "mode"));
 const params = computed(() => get(unref(dialog.config), "row", {}));
 const form = defineForm();
+const formWorker = useFormWorker(form);
 const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
 const { loading } = CurdAsyncServer.server;
-function enums() { }
-function search() { }
 
 formEvent.onSubmit(async ({ data, state }) => {
-    if (!state) {
-        // TODO message
-        return;
-    }
+    if (!state) return useWarningTips("抱歉,请完善必填项");
 
     await CurdSaveObtain(unref(params), data);
     dialog.destroy();
@@ -61,7 +59,9 @@ onBeforeUnmount(() => {
             <mg-form
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
-                :remote="{ enums, search }"
+                :remote="{ enums: formWorker.enums, search: formWorker.search }"
+                :upload="{ call: formWorker.call, down: formWorker.down }"
+                @form-error="formEvent.formError"
             ></mg-form>
         </div>
         <div class="template-curd-form-footer">

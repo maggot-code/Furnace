@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 22:44:40
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:01:56
+ * @LastEditTime: 2022-12-06 02:12:43
  * @Description: 
 -->
 <script setup>
@@ -73,7 +73,7 @@ async function handlerDelete() {
 
     &-tips {
         line-height: 24px;
-        font-size: 16px;
+        font-size: 14px;
         color: #606266;
     }
 

@@ -8,6 +8,27 @@
         },
         "cellSchema": [
             {
+                "componentName": "mg-search",
+                "dataSchema": {
+                    "api": "/SystemManage/SM_Users/GetListForCombobox",
+                    "textField": "truename",
+                    "valueField": "userid",
+                    "attachField": "departmentidname",
+                    "isAttach": true,
+                    "lib": {}
+                },
+                "field": "userid",
+                "mold": "default",
+                "ruleSchema": [],
+                "uiSchema": {
+                    "col": 24,
+                    "label": "作者姓名",
+                    "multiple": true,
+                    "collapseTags": false
+                },
+                "value": []
+            },
+            {
                 "field": "sttype",
                 "leaderTag": {
                     "request.sttype": {
@@ -257,6 +278,36 @@
                 "mold": "textarea",
                 "componentName": "mg-input",
                 "value": ""
+            },
+            {
+                "componentName": "mg-upload",
+                "mold": "default",
+                "field": "doc",
+                "value": [],
+                "leaderTag": {},
+                "workerTag": [],
+                "dataSchema": {},
+                "uiSchema": {
+                    "col": 24,
+                    "label": "文档",
+                    "tips": "上传文档",
+                    "multiple": true,
+                    "limit": 3,
+                    "download": false,
+                    "speed": true,
+                    "current": true,
+                    "total": true,
+                    "percentage": true,
+                    "types": [
+                        "pdf",
+                        "txt",
+                        "gif",
+                        "csv",
+                        "doc"
+                    ],
+                    "blacklist": []
+                },
+                "ruleSchema": []
             }
         ]
     }

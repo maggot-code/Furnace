@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 21:17:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 23:22:33
+ * @LastEditTime: 2022-12-06 02:17:26
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
+import { JobEntity } from "../entity/Job";
 import { EventEntity } from "../entity/Event";
 import { useElementRefs } from "@/hooks/useElement";
 import { isUsable } from "~/shared/is";
@@ -19,6 +20,7 @@ function provideForm(namespace, wrap) {
 export function defineForm(namespace) {
     const element = useElementRefs();
     const schema = SchemaEntity();
+    const job = JobEntity();
     const event = EventEntity(element);
     function setup(struct) {
         schema.formConfig.setup(get(struct, "formSchema", {}));
@@ -32,6 +34,7 @@ export function defineForm(namespace) {
 
     return provideForm(namespace, {
         formRefs: element.refs,
+        formJob: job,
         formSchema: schema.formSchema,
         cellSchema: schema.cellSchema,
         getFormData: event.getData,

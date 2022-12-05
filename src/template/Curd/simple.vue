@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 01:52:24
+ * @LastEditTime: 2022-12-06 02:50:02
  * @Description: 
 -->
 <script setup>
@@ -13,11 +13,13 @@ import { CurdTableServer } from "@/server/curd/table";
 import { CurdDataServer } from "@/server/curd/data";
 import { CurdLayoutObtain, CurdDataObtain } from "@/server/curd/layout";
 import { useTemplateProps } from "@/hooks/template/useTemplateProps";
+import { useWarningTips } from "@/hooks/useMessage";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
 import { usePopup } from "@/domain/popup/usecase/usePopup";
 import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 import { defineTable } from "@/domain/Table/usecase/defineTable";
 import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
@@ -40,6 +42,7 @@ const loading = useLoad(serverGroup);
 const curd = defineCurd();
 const table = defineTable();
 const form = defineForm();
+const formWorker = useFormWorker(form);
 const formEvent = useFormEvent(form);
 const modifyDialog = popup.define({
     width: "80%",
@@ -75,8 +78,6 @@ const unwatch = watch(curd.ready, (state) => {
 }, { immediate: true });
 const { tableRefs, refresh, total, tableData, tableChoice, hasAllControl, allControl, rowControl, uiSchema, mergeSchema, columnSchema } = table;
 const { formRefs, formSchema, cellSchema } = form;
-function enums() { }
-function search() { }
 function tableEvent(event) {
     const { mode } = event;
     dialogMatch[mode].show(mergeObject(event, { table }));
@@ -86,10 +87,7 @@ function tableHandle(factor) {
     formEvent.formSave();
 }
 formEvent.onSubmit(({ data, state }) => {
-    if (!state) {
-        // TODO message
-        return;
-    }
+    if (!state) return useWarningTips("抱歉,需要搜索条件");
 
     curd.formFactor(data);
     CurdDataObtain(curd.toFactor());
@@ -126,8 +124,9 @@ onBeforeUnmount(() => {
             <div class="template-curd-simple-head-search">
                 <mg-form
                     ref="formRefs"
-                    :schema="{ formSchema, cellSchema }"
-                    :remote="{ enums, search }"
+                    :remote="{ enums: formWorker.enums, search: formWorker.search }"
+                    :upload="{ call: formWorker.call, down: formWorker.down }"
+                    @form-error="formEvent.formError"
                 ></mg-form>
             </div>
             <div class="template-curd-simple-head-handler">

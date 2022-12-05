@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 01:03:30
+ * @LastEditTime: 2022-12-06 02:49:46
  * @Description: 
 -->
 <script setup>
@@ -12,6 +12,7 @@ import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 
 const props = defineProps({
@@ -20,13 +21,10 @@ const props = defineProps({
 const dialog = useDialog(props.popupKeyword);
 const meta = useTemplateProps(dialog.config);
 const form = defineForm();
+const formWorker = useFormWorker(form);
 const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
 const { loading } = ConfigFormServer.server;
-function enums() { }
-function search() { }
-
-console.log(unref(meta));
 
 formEvent.onSubmit((source) => {
     console.log(source);
@@ -53,7 +51,9 @@ onBeforeUnmount(() => {
             <mg-form
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
-                :remote="{ enums, search }"
+                :remote="{ enums: formWorker.enums, search: formWorker.search }"
+                :upload="{ call: formWorker.call, down: formWorker.down }"
+                @form-error="formEvent.formError"
             ></mg-form>
         </div>
         <div class="template-form-simple-footer">

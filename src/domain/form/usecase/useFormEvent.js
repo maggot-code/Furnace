@@ -1,13 +1,13 @@
 /*
- * @FilePath: \Furnace\src\domain\form\usecase\useFormEvent.js
+ * @FilePath: /Furnace/src/domain/form/usecase/useFormEvent.js
  * @Author: maggot-code
  * @Date: 2022-12-04 22:11:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 12:47:37
+ * @LastEditTime: 2022-12-06 02:51:57
  * @Description: 
  */
 import { createEventHook } from "@vueuse/core";
-// import { useErrorTips } from "@/hooks/useMessage";
+import { useWarningTips } from "@/hooks/useMessage";
 
 export function useFormEvent(form) {
     const submitEvent = createEventHook();
@@ -30,6 +30,11 @@ export function useFormEvent(form) {
         resetEvent.trigger({ data, state });
     }
 
+    function formError(abnormal) {
+        const tips = get(abnormal, "error.txt", "抱歉,表单提交失败,请稍后再试!");
+        useWarningTips(tips);
+    }
+
     onBeforeUnmount(() => {
         submitEvent.off();
         resetEvent.off();
@@ -38,6 +43,7 @@ export function useFormEvent(form) {
         formSubmit,
         formSave,
         formReset,
+        formError,
         onSubmit: submitEvent.on,
         onReset: resetEvent.on
     }
