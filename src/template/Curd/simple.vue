@@ -1,16 +1,17 @@
 <!--
- * @FilePath: /Furnace/src/template/CURD/simple.vue
+ * @FilePath: \Furnace\src\template\Curd\simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 00:59:10
+ * @LastEditTime: 2022-12-05 09:51:39
  * @Description: 
 -->
 <script setup>
 import { ConfigCurdServer, ConfigCurdObtain } from "@/server/config/curd";
 import { CurdSearchServer } from "@/server/curd/search";
 import { CurdTableServer } from "@/server/curd/table";
-import { CurdLayoutObtain } from "@/server/curd/layout";
+import { CurdDataServer } from "@/server/curd/data";
+import { CurdLayoutObtain, CurdDataObtain } from "@/server/curd/layout";
 import { useTemplateProps } from "@/hooks/template/usecase/useTemplateProps";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
@@ -22,6 +23,7 @@ const serverGroup = [
     ConfigCurdServer,
     CurdSearchServer,
     CurdTableServer,
+    CurdDataServer
 ];
 const { finished: searchFinished } = CurdSearchServer.server;
 const { finished: tableFinished } = CurdTableServer.server;
@@ -44,9 +46,11 @@ formEvent.onReset((source) => {
 useWatch(ConfigCurdServer, ConfigCurdServer.server.result.setup);
 useWatch(CurdSearchServer, form.setup);
 useWatch(CurdTableServer, table.setupSchema);
+useWatch(CurdDataServer, table.setupSource);
 onBeforeMount(async () => {
     await ConfigCurdObtain(meta);
     await CurdLayoutObtain();
+    await CurdDataObtain();
 });
 onBeforeUnmount(() => {
     serverGroup.forEach((server) => server.abort());
@@ -163,13 +167,11 @@ onBeforeUnmount(() => {
 
         &-control {
             height: 48px;
-            background-color: #f0f0f0;
         }
 
         &-table {
             flex: 1;
             height: 100%;
-            background-color: #f0f0f0;
         }
     }
 }

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/table/usecase/defineTable.js
+ * @FilePath: \Furnace\src\domain\table\usecase\defineTable.js
  * @Author: maggot-code
  * @Date: 2022-12-04 23:21:34
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 00:58:02
+ * @LastEditTime: 2022-12-05 09:52:39
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
@@ -49,9 +49,13 @@ export function defineTable(namespace) {
         schema.struct.setup(struct);
     }
     function setupSource(source) {
-        console.log(source);
+        data.source.setup(source);
     }
 
+    onBeforeUnmount(() => {
+        schema.struct.clear();
+        data.source.clear();
+    });
     return provideTable(namespace, {
         tableRefs: element.refs,
         total: data.total,

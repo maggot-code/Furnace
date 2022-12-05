@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/store/useRouterStore.js
+ * @FilePath: \Furnace\src\store\useRouterStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 18:20:38
+ * @LastEditTime: 2022-12-05 09:35:43
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -14,6 +14,7 @@ import { GroupEntity } from "~/router/entity/Group";
 import { RouteName, RouterNamespace } from "~/router/shared/context";
 
 const paths = ["cache"];
+const storage = import.meta.env.DEV ? window.sessionStorage : window.localStorage;
 
 export const Namespace = 'useRouterStore';
 
@@ -60,7 +61,8 @@ export const useRouterStore = defineStore(Namespace, {
 
     persist: {
         key: Namespace,
-        paths
+        paths,
+        storage
     }
 });
 

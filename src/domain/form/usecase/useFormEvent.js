@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/form/usecase/useFormEvent.js
+ * @FilePath: \Furnace\src\domain\form\usecase\useFormEvent.js
  * @Author: maggot-code
  * @Date: 2022-12-04 22:11:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 22:22:46
+ * @LastEditTime: 2022-12-05 09:56:54
  * @Description: 
  */
 import { createEventHook } from "@vueuse/core";
@@ -13,8 +13,15 @@ export function useFormEvent(form) {
     const submitEvent = createEventHook();
     const resetEvent = createEventHook();
 
+    // 检查必填
     async function formSubmit() {
-        const [data, state] = await form.getFormData();
+        const [data, state] = await form.getFormData(true);
+        submitEvent.trigger({ data, state });
+    }
+
+    // 不检查必填
+    async function formSave() {
+        const [data, state] = await form.getFormData(false);
         submitEvent.trigger({ data, state });
     }
 
@@ -29,6 +36,7 @@ export function useFormEvent(form) {
     });
     return {
         formSubmit,
+        formSave,
         formReset,
         onSubmit: submitEvent.on,
         onReset: resetEvent.on
