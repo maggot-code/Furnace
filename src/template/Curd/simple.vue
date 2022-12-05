@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 13:17:26
+ * @LastEditTime: 2022-12-05 13:27:44
  * @Description: 
 -->
 <script setup>
@@ -34,10 +34,21 @@ const table = defineTable();
 const form = defineForm();
 const curd = defineCurd();
 const formEvent = useFormEvent(form);
+
+// hack tablehandle trigger
+const unwatch = watch(curd.ready, (state) => {
+    if (!state) return;
+    table.refreshRef.update();
+    unwatch();
+}, { immediate: true });
 const { tableRefs, refresh, total, tableData, tableChoice, hasAllControl, allControl, rowControl, uiSchema, mergeSchema, columnSchema } = table;
 const { formRefs, formSchema, cellSchema } = form;
 function enums() { }
 function search() { }
+function tableEvent(event) {
+    const { mode } = event;
+    console.log(mode, event);
+}
 function tableHandle(factor) {
     curd.tableFactor(factor);
     formEvent.formSave();
@@ -55,10 +66,6 @@ formEvent.onReset(({ data }) => {
     curd.formFactor(data);
     CurdDataObtain(curd.toFactor());
 });
-watch(curd.ready, (state) => {
-    if (!state) return;
-    table.refreshRef.update();
-}, { immediate: true });
 useWatch(ConfigCurdServer, ConfigCurdServer.server.result.setup);
 useWatch(CurdSearchServer, form.setup);
 useWatch(CurdTableServer, table.setupSchema);
@@ -70,6 +77,7 @@ onBeforeMount(async () => {
     curd.setupTableReady();
 });
 onBeforeUnmount(() => {
+    unwatch();
     serverGroup.forEach((server) => server.abort());
 });
 </script>
@@ -114,6 +122,7 @@ onBeforeUnmount(() => {
                         :key="key"
                         size="mini"
                         v-bind="cell"
+                        @click="tableEvent(cell)"
                     >{{ cell.label }}</el-button>
                 </template>
             </div>
@@ -123,7 +132,6 @@ onBeforeUnmount(() => {
                 :resizeTable="resizeTable"
                 :refresh="refresh"
                 @onChoice="table.choice.source.setup"
-                @tableHandle="curd.factor.setupTable"
                 @cellEvent="cellEvent"
                 @handleRow="handleRow" -->
                 <mg-table
@@ -138,6 +146,8 @@ onBeforeUnmount(() => {
                     :tableSchema="{ uiSchema, mergeSchema, columnSchema }"
                     @onChoice="table.setupChoice"
                     @tableHandle="tableHandle"
+                    @cellEvent="tableEvent"
+                    @handleRow="tableEvent"
                 ></mg-table>
             </div>
         </div>

@@ -1,18 +1,31 @@
 <!--
- * @FilePath: /Furnace/src/pages/Debug/debug.vue
+ * @FilePath: \Furnace\src\pages\Debug\debug.vue
  * @Author: maggot-code
  * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:41:40
+ * @LastEditTime: 2022-12-05 17:50:59
  * @Description: 
 -->
 <script setup>
-function createPopup() { }
+import { usePopup } from "@/domain/Popup/usecase/usePopup";
+
+const popup = usePopup();
+
+const curd = popup.define({
+    title: "增删改查",
+    options: { id: 8849 }
+});
+
+function createPopup() {
+    curd.show();
+}
 </script>
 
 <template>
     <div class="furnace-debug">
-        <el-button @click="createPopup">弹框</el-button>
+        <el-button-group>
+            <el-button @click="createPopup">弹框</el-button>
+        </el-button-group>
     </div>
 </template>
 

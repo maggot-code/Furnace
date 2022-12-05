@@ -3,21 +3,38 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 17:32:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-02 16:23:42
+ * @LastEditTime: 2022-12-05 17:27:46
  * @Description: 
 -->
-<script setup></script>
+<script setup>
+import { definePopup } from "@/domain/Popup/usecase/definePopup";
+
+const { pond, pondFind, pondRelease } = definePopup();
+</script>
 
 <template>
     <div class="furnace-container furnace-popup">
-        <!-- <template>
+        <template v-for="(key) in pond">
             <el-dialog
                 :key="key"
-                v-bind="ConstantDialogProps"
+                :before-close="pondRelease(key)"
+                :visible="pondFind(key).visible.value"
+                :title="pondFind(key).title.value"
+                :width="pondFind(key).width.value"
+                :top="pondFind(key).top.value"
+                v-bind="pondFind(key).constProps"
             >
-                <component/>
+                <div
+                    :ref="pondFind(key).refs"
+                    :style="{ height: pondFind(key).height.value }"
+                >
+                    <component
+                        :is="pondFind(key).template"
+                        :popupKeyword="key"
+                    />
+                </div>
             </el-dialog>
-        </template> -->
+        </template>
         <slot></slot>
     </div>
 </template>

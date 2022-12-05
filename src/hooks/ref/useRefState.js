@@ -3,16 +3,18 @@
  * @Author: maggot-code
  * @Date: 2022-11-27 02:46:28
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 11:29:09
+ * @LastEditTime: 2022-12-05 15:38:07
  * @Description: 
  */
-import { transArray, transBoolean } from "~/shared/trans";
+import { transFunction, transArray, transBoolean } from "~/shared/trans";
 import { uuid } from "~/shared/uuid";
 
 export function useComplexState(source, trans) {
-    const wrap = flow([trans ?? transArray, transArray])
+    const wrap = transFunction(trans, transArray);
 
-    const size = computed(() => wrap(unref(source))?.length);
+    const size = computed(() => {
+        return wrap(unref(source)).length;
+    });
     const empty = computed(() => unref(size) <= 0);
     const usable = computed(() => !unref(empty));
 
