@@ -7,7 +7,7 @@
  * @Description: 
 -->
 <script setup>
-import { definePopup } from "@/domain/Popup/usecase/definePopup";
+import { definePopup } from "@/domain/popup/usecase/definePopup";
 
 const { pond, pondFind, pondRelease } = definePopup();
 </script>

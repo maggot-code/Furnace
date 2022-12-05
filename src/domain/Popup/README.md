@@ -2,7 +2,7 @@
 
 ```vue
 <script setup>
-import { useDialog } from "@/domain/Popup/usecase/useDialog";
+import { useDialog } from "@/domain/popup/usecase/useDialog";
 const props = defineProps({
     popupKeyword: {
         type: String,

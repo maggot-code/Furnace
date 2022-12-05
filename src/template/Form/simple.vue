@@ -10,7 +10,7 @@
 import { ConfigFormServer, ConfigFormObtain } from "@/server/config/form";
 import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useWatch } from "@/hooks/service/useWatch";
-import { useDialog } from "@/domain/Popup/usecase/useDialog";
+import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 

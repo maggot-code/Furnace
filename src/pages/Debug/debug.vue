@@ -7,7 +7,7 @@
  * @Description: 
 -->
 <script setup>
-import { usePopup } from "@/domain/Popup/usecase/usePopup";
+import { usePopup } from "@/domain/popup/usecase/usePopup";
 
 const popup = usePopup();
 
