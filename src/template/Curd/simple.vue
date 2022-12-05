@@ -3,10 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:59:00
+ * @LastEditTime: 2022-12-05 18:14:06
  * @Description: 
 -->
 <script setup>
+import SimpleFormTemplate from "@/template/Form/simple.vue";
+
 import { ConfigCurdServer, ConfigCurdObtain } from "@/server/config/curd";
 import { CurdSearchServer } from "@/server/curd/search";
 import { CurdTableServer } from "@/server/curd/table";
@@ -15,6 +17,7 @@ import { CurdLayoutObtain, CurdDataObtain } from "@/server/curd/layout";
 import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
+import { usePopup } from "@/domain/Popup/usecase/usePopup";
 import { useDialog } from "@/domain/Popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
@@ -32,6 +35,7 @@ const { finished: tableFinished } = CurdTableServer.server;
 const props = defineProps({
     popupKeyword: String
 });
+const popup = usePopup();
 const dialog = useDialog(props.popupKeyword);
 const meta = useTemplateProps(dialog.config);
 const loading = useLoad(serverGroup);
@@ -39,6 +43,10 @@ const table = defineTable();
 const form = defineForm();
 const curd = defineCurd();
 const formEvent = useFormEvent(form);
+const formDialog = popup.define({
+    title: "表单",
+    template: SimpleFormTemplate
+});
 
 // hack tablehandle trigger
 const unwatch = watch(curd.ready, (state) => {
@@ -53,6 +61,7 @@ function search() { }
 function tableEvent(event) {
     const { mode } = event;
     console.log(mode, event);
+    formDialog.show();
 }
 function tableHandle(factor) {
     curd.tableFactor(factor);
@@ -83,6 +92,7 @@ onBeforeMount(async () => {
 });
 onBeforeUnmount(() => {
     unwatch();
+    formDialog.destroy();
     serverGroup.forEach((server) => server.abort());
 });
 </script>
