@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/shared/views.js
+ * @FilePath: \Furnace\src\internal\shared\views.js
  * @Author: maggot-code
  * @Date: 2022-12-03 21:31:20
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 16:15:44
+ * @LastEditTime: 2022-12-05 12:28:48
  * @Description: 
  */
 import { UNDEFINED_VIEW } from "~/shared/constant";
@@ -22,7 +22,7 @@ function cutGroup(namespace, views) {
 }
 
 export function wrapViews() {
-    Views = Views ?? import.meta.glob("../../{layout,pages,template,biz}/**/*.{vue,jsx,tsx}", { eager: true });
+    Views = import.meta.glob("../../{layout,pages,template,biz}/**/*.{vue,jsx,tsx}", { eager: true });
 
     return {
         group: Views,

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 23:21:34
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 12:26:08
+ * @LastEditTime: 2022-12-05 12:40:03
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
@@ -70,7 +70,6 @@ export function defineTable(namespace) {
 
     function setupSchema(struct) {
         schema.struct.setup(struct);
-        refreshRef.update();
     }
     function setupSource(source) {
         data.source.setup(source);

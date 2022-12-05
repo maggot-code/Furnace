@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 12:26:45
+ * @LastEditTime: 2022-12-05 13:17:26
  * @Description: 
 -->
 <script setup>
@@ -17,7 +17,7 @@ import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
-import { defineTable } from "@/domain/table/usecase/defineTable";
+import { defineTable } from "@/domain/Table/usecase/defineTable";
 import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
 
 const serverGroup = [
@@ -39,9 +39,9 @@ const { formRefs, formSchema, cellSchema } = form;
 function enums() { }
 function search() { }
 function tableHandle(factor) {
-    console.log(factor);
+    curd.tableFactor(factor);
+    formEvent.formSave();
 }
-
 formEvent.onSubmit(({ data, state }) => {
     if (!data) {
         // TODO message
@@ -49,14 +49,16 @@ formEvent.onSubmit(({ data, state }) => {
     }
 
     curd.formFactor(data);
+    CurdDataObtain(curd.toFactor());
 });
 formEvent.onReset(({ data }) => {
     curd.formFactor(data);
+    CurdDataObtain(curd.toFactor());
 });
-watchEffect(() => {
-    console.log(unref(curd.ready));
-    console.log(curd.toFactor());
-});
+watch(curd.ready, (state) => {
+    if (!state) return;
+    table.refreshRef.update();
+}, { immediate: true });
 useWatch(ConfigCurdServer, ConfigCurdServer.server.result.setup);
 useWatch(CurdSearchServer, form.setup);
 useWatch(CurdTableServer, table.setupSchema);
@@ -66,7 +68,6 @@ onBeforeMount(async () => {
     await CurdLayoutObtain();
     curd.setupFormReady();
     curd.setupTableReady();
-    await CurdDataObtain();
 });
 onBeforeUnmount(() => {
     serverGroup.forEach((server) => server.abort());
@@ -172,7 +173,6 @@ onBeforeUnmount(() => {
         &-search {
             flex: 1;
             padding-right: 24px;
-            background-color: #f0f0f0;
             box-sizing: border-box;
         }
 
@@ -181,7 +181,6 @@ onBeforeUnmount(() => {
             display: flex;
             justify-content: flex-end;
             align-items: flex-start;
-            background-color: #f0f0f0;
         }
     }
 

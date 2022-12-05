@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/mode/usecase/useMatch.js
+ * @FilePath: \Furnace\src\internal\mode\usecase\useMatch.js
  * @Author: maggot-code
  * @Date: 2022-12-04 16:30:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 16:53:39
+ * @LastEditTime: 2022-12-05 12:32:13
  * @Description: 
  */
 import { UNDEFINED_NAME } from "~/shared/constant";
