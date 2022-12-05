@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 13:27:44
+ * @LastEditTime: 2022-12-05 17:59:00
  * @Description: 
 -->
 <script setup>
@@ -15,6 +15,7 @@ import { CurdLayoutObtain, CurdDataObtain } from "@/server/curd/layout";
 import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 import { defineTable } from "@/domain/Table/usecase/defineTable";
@@ -28,7 +29,11 @@ const serverGroup = [
 ];
 const { finished: searchFinished } = CurdSearchServer.server;
 const { finished: tableFinished } = CurdTableServer.server;
-const meta = useTemplateProps();
+const props = defineProps({
+    popupKeyword: String
+});
+const dialog = useDialog(props.popupKeyword);
+const meta = useTemplateProps(dialog.config);
 const loading = useLoad(serverGroup);
 const table = defineTable();
 const form = defineForm();

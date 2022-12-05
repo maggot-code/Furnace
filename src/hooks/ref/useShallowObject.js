@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 01:42:31
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:10:45
+ * @LastEditTime: 2022-12-05 18:07:13
  * @Description: 
  */
 import { transObject } from "~/shared/trans";
+import { mergeObject } from "~/shared/merge";
 import { useComplexState } from "@/hooks/ref/useRefState";
 
 export function useShallowObject(dataSource) {
@@ -15,6 +16,10 @@ export function useShallowObject(dataSource) {
     function setup(value) {
         source.value = transObject(value);
         return unref(source);
+    }
+    function into(value) {
+        const data = clone(unref(source));
+        return setup(mergeObject(data, transObject(value)));
     }
     function bind(path, value) {
         const data = clone(unref(source));
@@ -40,6 +45,7 @@ export function useShallowObject(dataSource) {
         source,
         state,
         setup,
+        into,
         bind,
         take,
         has,

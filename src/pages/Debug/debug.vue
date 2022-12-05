@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 15:26:29
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:50:59
+ * @LastEditTime: 2022-12-05 17:57:30
  * @Description: 
 -->
 <script setup>
@@ -13,7 +13,8 @@ const popup = usePopup();
 
 const curd = popup.define({
     title: "增删改查",
-    options: { id: 8849 }
+    options: { id: 8849 },
+    template: defineAsyncComponent(() => import("@/template/Curd/simple.vue"))
 });
 
 function createPopup() {

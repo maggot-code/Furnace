@@ -3,13 +3,13 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 14:59:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:48:06
+ * @LastEditTime: 2022-12-05 18:07:30
  * @Description: 
  */
 import { UNDEFINED_VIEW } from "~/shared/constant";
 import { uuid } from "~/shared/uuid";
 import { mergeObject } from "~/shared/merge";
-import { transFunction, transDefault } from "~/shared/trans";
+import { transFunction, transDefault, transObject } from "~/shared/trans";
 import { DialogProps } from "../shared/constant";
 import { useElementRefs } from "@/hooks/useElement";
 import { useBooleanState } from "@/hooks/ref/useRefState";
@@ -41,10 +41,10 @@ export function DialogEntity(record, popup, props, keyword) {
     }
     function show(extend) {
         if (popup.cache.has(uid)) {
-            options.setup(extend);
+            options.into(extend);
             state.toEnable();
         } else {
-            const config = mergeObject(props, extend, { show: true });
+            const config = mergeObject(props, transObject(extend), { show: true });
             const entity = DialogEntity(record, popup, config, uid);
             popup.toPond(entity);
         }
