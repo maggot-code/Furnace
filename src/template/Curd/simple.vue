@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\template\Curd\simple.vue
+ * @FilePath: /Furnace/src/template/CURD/simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 18:14:06
+ * @LastEditTime: 2022-12-06 00:56:27
  * @Description: 
 -->
 <script setup>
@@ -43,10 +43,32 @@ const table = defineTable();
 const form = defineForm();
 const curd = defineCurd();
 const formEvent = useFormEvent(form);
-const formDialog = popup.define({
+const modifyDialog = popup.define({
     title: "表单",
-    template: SimpleFormTemplate
+    width: "80%",
+    height: "70vh",
+    afterClose: table.refreshRef.update,
+    template: defineAsyncComponent(() => import("@/template/CURD/modify.vue")),
 });
+const deleteDialog = popup.define({
+    title: "删除",
+    width: "320px",
+    height: "64px",
+    afterClose: table.refreshRef.update,
+    template: defineAsyncComponent(() => import("@/template/Event/delete.vue")),
+});
+const exportDialog = popup.define({
+    title: "导出",
+    width: "320px",
+    height: "64px",
+    template: defineAsyncComponent(() => import("@/template/Event/export.vue")),
+});
+const dialogMatch = {
+    add: modifyDialog,
+    edit: modifyDialog,
+    delete: deleteDialog,
+    export: exportDialog,
+}
 
 // hack tablehandle trigger
 const unwatch = watch(curd.ready, (state) => {
@@ -60,15 +82,14 @@ function enums() { }
 function search() { }
 function tableEvent(event) {
     const { mode } = event;
-    console.log(mode, event);
-    formDialog.show();
+    dialogMatch[mode].show(event);
 }
 function tableHandle(factor) {
     curd.tableFactor(factor);
     formEvent.formSave();
 }
 formEvent.onSubmit(({ data, state }) => {
-    if (!data) {
+    if (!state) {
         // TODO message
         return;
     }
@@ -92,7 +113,9 @@ onBeforeMount(async () => {
 });
 onBeforeUnmount(() => {
     unwatch();
-    formDialog.destroy();
+    modifyDialog.destroy();
+    exportDialog.destroy();
+    deleteDialog.destroy();
     serverGroup.forEach((server) => server.abort());
 });
 </script>

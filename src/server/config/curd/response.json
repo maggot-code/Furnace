@@ -13,6 +13,26 @@
         "source": {
             "url": "/curd/source",
             "method": "POST"
+        },
+        "add": {
+            "url": "/curd/add",
+            "method": "GET"
+        },
+        "edit": {
+            "url": "/curd/edit",
+            "method": "GET"
+        },
+        "save": {
+            "url": "/curd/save",
+            "method": "POST"
+        },
+        "delete": {
+            "url": "/curd/delete",
+            "method": "GET"
+        },
+        "export": {
+            "url": "/curd/export",
+            "method": "GET"
         }
     }
 }

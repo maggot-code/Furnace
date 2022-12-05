@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\layout\Popup.vue
+ * @FilePath: /Furnace/src/layout/Popup.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 17:32:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:27:46
+ * @LastEditTime: 2022-12-05 23:45:47
  * @Description: 
 -->
 <script setup>
@@ -25,6 +25,7 @@ const { pond, pondFind, pondRelease } = definePopup();
                 v-bind="pondFind(key).constProps"
             >
                 <div
+                    class="furnace-popup-main"
                     :ref="pondFind(key).refs"
                     :style="{ height: pondFind(key).height.value }"
                 >

@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\domain\Popup\usecase\definePopup.js
+ * @FilePath: /Furnace/src/domain/popup/usecase/definePopup.js
  * @Author: maggot-code
  * @Date: 2022-12-05 14:10:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 17:11:19
+ * @LastEditTime: 2022-12-05 23:37:47
  * @Description: 
  */
 import { POPUP_SYMBOLE } from "../shared/context";
@@ -25,6 +25,8 @@ export function definePopup() {
     });
     function pondRelease(key) {
         return (done) => {
+            if (!cache.has(key)) return;
+
             const entity = cache.take(key);
             isFunction(done) && done();
             entity.state.toDisable();
@@ -40,6 +42,9 @@ export function definePopup() {
         cache.bind(uid, entity);
     }
 
+    onUnmounted(() => {
+        cache.clear();
+    });
     return providePopup({
         cache,
         pond,

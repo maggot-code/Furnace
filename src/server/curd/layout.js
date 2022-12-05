@@ -1,15 +1,17 @@
 /*
- * @FilePath: \Furnace\src\server\curd\layout.js
+ * @FilePath: /Furnace/src/server/curd/layout.js
  * @Author: maggot-code
  * @Date: 2022-12-05 00:21:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 13:16:55
+ * @LastEditTime: 2022-12-06 00:51:23
  * @Description: 
  */
 import { ConfigCurdServer } from "../config/curd";
 import { CurdSearchServer, CurdSearchSetup } from "../curd/search";
 import { CurdTableServer, CurdTableSetup } from "../curd/table";
 import { CurdDataServer, CurdDataSetup } from "../curd/data";
+import { CurdAsyncServer, CurdAsyncSetup } from "./async";
+
 import { service } from "@/service/Application";
 import { mergeObject } from "~/shared/merge";
 import { filterObjectEmpty } from "~/shared/filter";
@@ -34,6 +36,23 @@ export function CurdDataObtain(factor) {
     CurdDataSetup(mergeObject(source, options));
 
     return service.send(CurdDataServer.server);
+}
+
+export function CurdFormObtain(mode, factor) {
+    const config = unref(ConfigCurdServer.server.result.source);
+    const request = get(config, mode, {});
+    const params = pick(factor, "id");
+    CurdAsyncSetup(mergeObject(request, { params }));
+
+    return service.send(CurdAsyncServer.server);
+}
+
+export function CurdSaveObtain(factor, data) {
+    const { save } = unref(ConfigCurdServer.server.result.source);
+    const params = pick(factor, "id");
+    CurdAsyncSetup(mergeObject(save, { params, data }));
+
+    return service.send(CurdAsyncServer.server);
 }
 
 export default CurdLayoutObtain;

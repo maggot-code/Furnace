@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\domain\Popup\entity\Dialog.js
+ * @FilePath: /Furnace/src/domain/popup/entity/Dialog.js
  * @Author: maggot-code
  * @Date: 2022-12-05 14:59:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 18:07:30
+ * @LastEditTime: 2022-12-06 00:55:16
  * @Description: 
  */
 import { UNDEFINED_VIEW } from "~/shared/constant";
@@ -17,6 +17,7 @@ import { useShallowObject } from "@/hooks/ref/useShallowObject";
 
 export function DialogEntity(record, popup, props, keyword) {
     const template = get(props, "template", UNDEFINED_VIEW);
+    const afterClose = get(props, "afterClose", () => { });
     const uid = transDefault(keyword, `${record}-${uuid()}`);
     const element = useElementRefs();
     const state = useBooleanState(get(props, "show", false));
@@ -43,17 +44,20 @@ export function DialogEntity(record, popup, props, keyword) {
         if (popup.cache.has(uid)) {
             options.into(extend);
             state.toEnable();
+            return this;
         } else {
-            const config = mergeObject(props, transObject(extend), { show: true });
+            const transExtend = { options: transObject(extend) };
+            const config = mergeObject(props, transExtend, { show: true });
             const entity = DialogEntity(record, popup, config, uid);
             popup.toPond(entity);
+            return entity;
         }
     }
     function hide() {
         state.toDisable();
     }
     function destroy(handler) {
-        const control = transFunction(handler);
+        const control = transFunction(handler, afterClose);
         const release = popup.pondRelease(uid);
         release(control);
     }

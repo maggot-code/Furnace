@@ -1,14 +1,14 @@
 <!--
- * @FilePath: /Furnace/src/template/Form/simple.vue
+ * @FilePath: /Furnace/src/template/CURD/modify.vue
  * @Author: maggot-code
- * @Date: 2022-12-04 16:03:44
+ * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 23:56:26
+ * @LastEditTime: 2022-12-06 00:56:56
  * @Description: 
 -->
 <script setup>
-import { ConfigFormServer, ConfigFormObtain } from "@/server/config/form";
-import { useTemplateProps } from "@/hooks/template/useTemplateProps";
+import { CurdAsyncServer } from "@/server/curd/async";
+import { CurdFormObtain, CurdSaveObtain } from "@/server/curd/layout";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
@@ -18,38 +18,39 @@ const props = defineProps({
     popupKeyword: String
 });
 const dialog = useDialog(props.popupKeyword);
-console.log(dialog);
-const meta = useTemplateProps(dialog.config);
+const mode = computed(() => get(unref(dialog.config), "mode"));
+const params = computed(() => get(unref(dialog.config), "row", {}));
 const form = defineForm();
 const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
-const { loading, finished } = ConfigFormServer.server;
+const { loading, finished } = CurdAsyncServer.server;
 function enums() { }
 function search() { }
 
-console.log(unref(meta));
+formEvent.onSubmit(async ({ data, state }) => {
+    if (!state) {
+        // TODO message
+        return;
+    }
 
-formEvent.onSubmit((source) => {
-    console.log(source);
+    await CurdSaveObtain(unref(params), data);
+    dialog.destroy();
 });
-formEvent.onReset((source) => {
-    console.log(source);
-});
-useWatch(ConfigFormServer, form.setup);
+useWatch(CurdAsyncServer, form.setup);
 onBeforeMount(() => {
-    ConfigFormObtain(meta);
+    CurdFormObtain(unref(mode), unref(params));
 });
 onBeforeUnmount(() => {
-    ConfigFormServer.abort();
+    CurdAsyncServer.abort();
 });
 </script>
 
 <template>
     <div
-        class="template-form-simple"
+        class="template-curd-form"
         v-loading="loading"
     >
-        <div class="template-form-simple-body">
+        <div class="template-curd-form-body">
             <!-- @monitor-value="monitorValue" -->
             <mg-form
                 v-if="finished"
@@ -58,7 +59,7 @@ onBeforeUnmount(() => {
                 :remote="{ enums, search }"
             ></mg-form>
         </div>
-        <div class="template-form-simple-footer">
+        <div class="template-curd-form-footer">
             <el-button
                 size="mini"
                 @click="formEvent.formSubmit"
@@ -72,7 +73,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang='scss'>
-.template-form-simple {
+.template-curd-form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
