@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\domain\Table\usecase\defineTable.js
+ * @FilePath: /Furnace/src/domain/Table/usecase/defineTable.js
  * @Author: maggot-code
  * @Date: 2022-12-04 23:21:34
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 12:40:03
+ * @LastEditTime: 2022-12-06 01:27:59
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
@@ -88,6 +88,7 @@ export function defineTable(namespace) {
         total: data.total,
         tableData: data.tableData,
         tableChoice: choice.tableChoice,
+        choice,
         refresh,
         keyname,
         controller,

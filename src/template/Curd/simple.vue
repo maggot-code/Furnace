@@ -3,12 +3,10 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 00:56:27
+ * @LastEditTime: 2022-12-06 01:52:24
  * @Description: 
 -->
 <script setup>
-import SimpleFormTemplate from "@/template/Form/simple.vue";
-
 import { ConfigCurdServer, ConfigCurdObtain } from "@/server/config/curd";
 import { CurdSearchServer } from "@/server/curd/search";
 import { CurdTableServer } from "@/server/curd/table";
@@ -23,6 +21,7 @@ import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 import { defineTable } from "@/domain/Table/usecase/defineTable";
 import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
+import { mergeObject } from "~/shared/merge";
 
 const serverGroup = [
     ConfigCurdServer,
@@ -30,8 +29,7 @@ const serverGroup = [
     CurdTableServer,
     CurdDataServer
 ];
-const { finished: searchFinished } = CurdSearchServer.server;
-const { finished: tableFinished } = CurdTableServer.server;
+const { finished } = CurdTableServer.server;
 const props = defineProps({
     popupKeyword: String
 });
@@ -39,29 +37,28 @@ const popup = usePopup();
 const dialog = useDialog(props.popupKeyword);
 const meta = useTemplateProps(dialog.config);
 const loading = useLoad(serverGroup);
+const curd = defineCurd();
 const table = defineTable();
 const form = defineForm();
-const curd = defineCurd();
 const formEvent = useFormEvent(form);
 const modifyDialog = popup.define({
-    title: "表单",
     width: "80%",
     height: "70vh",
     afterClose: table.refreshRef.update,
     template: defineAsyncComponent(() => import("@/template/CURD/modify.vue")),
 });
 const deleteDialog = popup.define({
-    title: "删除",
+    title: "请确认是否删除",
     width: "320px",
     height: "64px",
     afterClose: table.refreshRef.update,
-    template: defineAsyncComponent(() => import("@/template/Event/delete.vue")),
+    template: defineAsyncComponent(() => import("@/template/CURD/delete.vue")),
 });
 const exportDialog = popup.define({
-    title: "导出",
+    title: "请确认是否导出",
     width: "320px",
     height: "64px",
-    template: defineAsyncComponent(() => import("@/template/Event/export.vue")),
+    template: defineAsyncComponent(() => import("@/template/CURD/export.vue")),
 });
 const dialogMatch = {
     add: modifyDialog,
@@ -82,7 +79,7 @@ function enums() { }
 function search() { }
 function tableEvent(event) {
     const { mode } = event;
-    dialogMatch[mode].show(event);
+    dialogMatch[mode].show(mergeObject(event, { table }));
 }
 function tableHandle(factor) {
     curd.tableFactor(factor);
@@ -125,10 +122,7 @@ onBeforeUnmount(() => {
         class="template-curd-simple"
         v-loading="loading"
     >
-        <div
-            class="template-curd-simple-head"
-            v-if="searchFinished"
-        >
+        <div class="template-curd-simple-head">
             <div class="template-curd-simple-head-search">
                 <mg-form
                     ref="formRefs"
@@ -149,7 +143,7 @@ onBeforeUnmount(() => {
         </div>
         <div
             class="template-curd-simple-body"
-            v-if="tableFinished"
+            v-if="finished"
         >
             <div
                 class="template-curd-simple-body-control"

@@ -1,11 +1,15 @@
 /*
- * @FilePath: \Furnace\src\domain\Curd\usecase\defineCurd.js
+ * @FilePath: /Furnace/src/domain/Curd/usecase/defineCurd.js
  * @Author: maggot-code
  * @Date: 2022-12-05 11:02:30
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 11:19:49
+ * @LastEditTime: 2022-12-06 01:16:10
  * @Description: 
  */
+import {
+    CURD_FORM_SYMBOL,
+    CURD_TABLE_SYMBOL
+} from "../shared/context";
 import { useShallowObject } from "@/hooks/ref/useShallowObject";
 
 const NormCollect = {
@@ -48,6 +52,8 @@ export function defineCurd() {
     }
 
     return {
+        formSymbol: CURD_FORM_SYMBOL,
+        tableSymbol: CURD_TABLE_SYMBOL,
         ready,
         setupFormReady,
         setupTableReady,

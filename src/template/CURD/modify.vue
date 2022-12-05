@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 00:56:56
+ * @LastEditTime: 2022-12-06 01:54:34
  * @Description: 
 -->
 <script setup>
@@ -14,6 +14,11 @@ import { useDialog } from "@/domain/popup/usecase/useDialog";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 
+const titleMapper = {
+    add: "请填写新增信息",
+    edit: "请修改以下信息",
+    view: "查看",
+};
 const props = defineProps({
     popupKeyword: String
 });
@@ -23,7 +28,7 @@ const params = computed(() => get(unref(dialog.config), "row", {}));
 const form = defineForm();
 const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
-const { loading, finished } = CurdAsyncServer.server;
+const { loading } = CurdAsyncServer.server;
 function enums() { }
 function search() { }
 
@@ -38,6 +43,7 @@ formEvent.onSubmit(async ({ data, state }) => {
 });
 useWatch(CurdAsyncServer, form.setup);
 onBeforeMount(() => {
+    dialog.setupTitle(get(titleMapper, unref(mode), "请填写表单"));
     CurdFormObtain(unref(mode), unref(params));
 });
 onBeforeUnmount(() => {
@@ -53,7 +59,6 @@ onBeforeUnmount(() => {
         <div class="template-curd-form-body">
             <!-- @monitor-value="monitorValue" -->
             <mg-form
-                v-if="finished"
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
                 :remote="{ enums, search }"

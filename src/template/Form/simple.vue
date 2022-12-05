@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 23:56:26
+ * @LastEditTime: 2022-12-06 01:03:30
  * @Description: 
 -->
 <script setup>
@@ -18,12 +18,11 @@ const props = defineProps({
     popupKeyword: String
 });
 const dialog = useDialog(props.popupKeyword);
-console.log(dialog);
 const meta = useTemplateProps(dialog.config);
 const form = defineForm();
 const formEvent = useFormEvent(form);
 const { formRefs, formSchema, cellSchema } = form;
-const { loading, finished } = ConfigFormServer.server;
+const { loading } = ConfigFormServer.server;
 function enums() { }
 function search() { }
 
@@ -52,7 +51,6 @@ onBeforeUnmount(() => {
         <div class="template-form-simple-body">
             <!-- @monitor-value="monitorValue" -->
             <mg-form
-                v-if="finished"
                 ref="formRefs"
                 :schema="{ formSchema, cellSchema }"
                 :remote="{ enums, search }"

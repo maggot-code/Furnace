@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 00:21:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 00:51:23
+ * @LastEditTime: 2022-12-06 01:21:21
  * @Description: 
  */
 import { ConfigCurdServer } from "../config/curd";
@@ -51,6 +51,20 @@ export function CurdSaveObtain(factor, data) {
     const { save } = unref(ConfigCurdServer.server.result.source);
     const params = pick(factor, "id");
     CurdAsyncSetup(mergeObject(save, { params, data }));
+
+    return service.send(CurdAsyncServer.server);
+}
+
+export function CurdDeleteObtain(params) {
+    const config = unref(ConfigCurdServer.server.result.source);
+    CurdAsyncSetup(mergeObject(config.delete, { params }));
+
+    return service.send(CurdAsyncServer.server);
+}
+
+export function CurdExportObtain() {
+    const config = unref(ConfigCurdServer.server.result.source);
+    CurdAsyncSetup(mergeObject(config.export));
 
     return service.send(CurdAsyncServer.server);
 }
