@@ -1,12 +1,13 @@
 /*
- * @FilePath: /Furnace/src/hooks/ref/useRefState.js
+ * @FilePath: \Furnace\src\hooks\ref\useRefState.js
  * @Author: maggot-code
  * @Date: 2022-11-27 02:46:28
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 01:53:11
+ * @LastEditTime: 2022-12-05 11:29:09
  * @Description: 
  */
 import { transArray, transBoolean } from "~/shared/trans";
+import { uuid } from "~/shared/uuid";
 
 export function useComplexState(source, trans) {
     const wrap = flow([trans ?? transArray, transArray])
@@ -50,5 +51,16 @@ export function useBooleanState(rawState) {
         toSwitch,
         toEnable,
         toDisable,
+    }
+}
+
+export function useSignalState() {
+    const source = ref(uuid());
+    function update() {
+        source.value = uuid();
+    }
+    return {
+        source,
+        update,
     }
 }

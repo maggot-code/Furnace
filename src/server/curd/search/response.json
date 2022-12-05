@@ -16,7 +16,7 @@
                 "ruleSchema": [
                     {
                         "message": "请输入姓名",
-                        "required": true
+                        "required": false
                     }
                 ],
                 "mold": "text",

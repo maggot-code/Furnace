@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 09:51:39
+ * @LastEditTime: 2022-12-05 12:26:45
  * @Description: 
 -->
 <script setup>
@@ -12,12 +12,13 @@ import { CurdSearchServer } from "@/server/curd/search";
 import { CurdTableServer } from "@/server/curd/table";
 import { CurdDataServer } from "@/server/curd/data";
 import { CurdLayoutObtain, CurdDataObtain } from "@/server/curd/layout";
-import { useTemplateProps } from "@/hooks/template/usecase/useTemplateProps";
+import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";
 import { defineTable } from "@/domain/table/usecase/defineTable";
+import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
 
 const serverGroup = [
     ConfigCurdServer,
@@ -31,17 +32,30 @@ const meta = useTemplateProps();
 const loading = useLoad(serverGroup);
 const table = defineTable();
 const form = defineForm();
+const curd = defineCurd();
 const formEvent = useFormEvent(form);
-const { tableRefs, total, tableData, tableChoice, controller, uiSchema, mergeSchema, columnSchema } = table;
+const { tableRefs, refresh, total, tableData, tableChoice, hasAllControl, allControl, rowControl, uiSchema, mergeSchema, columnSchema } = table;
 const { formRefs, formSchema, cellSchema } = form;
 function enums() { }
 function search() { }
+function tableHandle(factor) {
+    console.log(factor);
+}
 
-formEvent.onSubmit((source) => {
-    console.log(source);
+formEvent.onSubmit(({ data, state }) => {
+    if (!data) {
+        // TODO message
+        return;
+    }
+
+    curd.formFactor(data);
 });
-formEvent.onReset((source) => {
-    console.log(source);
+formEvent.onReset(({ data }) => {
+    curd.formFactor(data);
+});
+watchEffect(() => {
+    console.log(unref(curd.ready));
+    console.log(curd.toFactor());
 });
 useWatch(ConfigCurdServer, ConfigCurdServer.server.result.setup);
 useWatch(CurdSearchServer, form.setup);
@@ -50,6 +64,8 @@ useWatch(CurdDataServer, table.setupSource);
 onBeforeMount(async () => {
     await ConfigCurdObtain(meta);
     await CurdLayoutObtain();
+    curd.setupFormReady();
+    curd.setupTableReady();
     await CurdDataObtain();
 });
 onBeforeUnmount(() => {
@@ -88,13 +104,23 @@ onBeforeUnmount(() => {
             class="template-curd-simple-body"
             v-if="tableFinished"
         >
-            <div class="template-curd-simple-body-control">controller</div>
+            <div
+                class="template-curd-simple-body-control"
+                v-if="hasAllControl"
+            >
+                <template v-for="(cell, key) in allControl">
+                    <el-button
+                        :key="key"
+                        size="mini"
+                        v-bind="cell"
+                    >{{ cell.label }}</el-button>
+                </template>
+            </div>
             <div class="template-curd-simple-body-table">
                 <!-- :openHeight="openHeight"
                 :resetCurrentPage="resetCurrentPage"
                 :resizeTable="resizeTable"
                 :refresh="refresh"
-                :controller="row"
                 @onChoice="table.choice.source.setup"
                 @tableHandle="curd.factor.setupTable"
                 @cellEvent="cellEvent"
@@ -102,11 +128,15 @@ onBeforeUnmount(() => {
                 <mg-table
                     ref="tableRefs"
                     :defaultPageSize="20"
-                    :isLabel="true"
+                    :isLabel="false"
+                    :refresh="refresh"
+                    :controller="rowControl"
                     :total="total"
-                    :tableChoice="tableChoice"
                     :tableData="tableData"
+                    :tableChoice="tableChoice"
                     :tableSchema="{ uiSchema, mergeSchema, columnSchema }"
+                    @onChoice="table.setupChoice"
+                    @tableHandle="tableHandle"
                 ></mg-table>
             </div>
         </div>

@@ -1,14 +1,14 @@
 <!--
- * @FilePath: /Furnace/src/template/Form/simple.vue
+ * @FilePath: \Furnace\src\template\Form\simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 22:36:51
+ * @LastEditTime: 2022-12-05 10:52:19
  * @Description: 
 -->
 <script setup>
 import { ConfigFormServer, ConfigFormObtain } from "@/server/config/form";
-import { useTemplateProps } from "@/hooks/template/usecase/useTemplateProps";
+import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useWatch } from "@/hooks/service/useWatch";
 import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
 import { defineForm } from "@/domain/form/usecase/defineForm";

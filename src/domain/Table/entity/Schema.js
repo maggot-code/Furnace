@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/table/entity/Schema.js
+ * @FilePath: \Furnace\src\domain\Table\entity\Schema.js
  * @Author: maggot-code
  * @Date: 2022-12-04 23:18:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 23:44:08
+ * @LastEditTime: 2022-12-05 11:11:01
  * @Description: 
  */
 import { useShallowObject } from "@/hooks/ref/useShallowObject";
@@ -24,7 +24,7 @@ export function SchemaEntity() {
 
     function getStruct(path, replace = null) {
         if (isEmptyString(path)) return unref(struct.source);
-        return get(unref(struct.source), path, replace);
+        return struct.take(path, replace);
     }
 
     return {

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/vite.config.js
+ * @FilePath: \Furnace\vite.config.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-03 17:40:46
+ * @LastEditTime: 2022-12-05 12:10:57
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
