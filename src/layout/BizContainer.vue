@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 13:13:49
+ * @LastEditTime: 2022-12-06 13:22:59
  * @Description: 
 -->
 <script setup>
@@ -36,8 +36,8 @@ const { menuStore } = useMenu();
                 <slot name="header"></slot>
             </el-header>
             <el-main class="furnace-biz-main-body">
-                <div class="furnace-biz-main-body-crumbs">
-                    <slot name="crumbs"></slot>
+                <div class="furnace-biz-main-body-nav">
+                    <slot name="nav"></slot>
                 </div>
                 <div class="furnace-biz-main-body-content">
                     <slot name="body"></slot>
@@ -71,7 +71,7 @@ const { menuStore } = useMenu();
             height: 100%;
             overflow: hidden;
 
-            &-crumbs {
+            &-nav {
                 width: 100%;
                 height: 32px;
                 overflow: hidden;
