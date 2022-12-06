@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/CURD/simple.vue
+ * @FilePath: \Furnace\src\template\Curd\simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:50:02
+ * @LastEditTime: 2022-12-06 12:33:50
  * @Description: 
 -->
 <script setup>
@@ -31,6 +31,7 @@ const serverGroup = [
     CurdTableServer,
     CurdDataServer
 ];
+const { unusable } = CurdSearchServer.server;
 const { finished } = CurdTableServer.server;
 const props = defineProps({
     popupKeyword: String
@@ -48,20 +49,20 @@ const modifyDialog = popup.define({
     width: "80%",
     height: "70vh",
     afterClose: table.refreshRef.update,
-    template: defineAsyncComponent(() => import("@/template/CURD/modify.vue")),
+    template: defineAsyncComponent(() => import("@/template/Curd/modify.vue")),
 });
 const deleteDialog = popup.define({
     title: "请确认是否删除",
     width: "320px",
     height: "64px",
     afterClose: table.refreshRef.update,
-    template: defineAsyncComponent(() => import("@/template/CURD/delete.vue")),
+    template: defineAsyncComponent(() => import("@/template/Curd/delete.vue"))
 });
 const exportDialog = popup.define({
     title: "请确认是否导出",
     width: "320px",
     height: "64px",
-    template: defineAsyncComponent(() => import("@/template/CURD/export.vue")),
+    template: defineAsyncComponent(() => import("@/template/Curd/export.vue"))
 });
 const dialogMatch = {
     add: modifyDialog,
@@ -80,6 +81,8 @@ const { tableRefs, refresh, total, tableData, tableChoice, hasAllControl, allCon
 const { formRefs, formSchema, cellSchema } = form;
 function tableEvent(event) {
     const { mode } = event;
+    if (isNil(dialogMatch[mode])) return;
+
     dialogMatch[mode].show(mergeObject(event, { table }));
 }
 function tableHandle(factor) {
@@ -124,6 +127,7 @@ onBeforeUnmount(() => {
             <div class="template-curd-simple-head-search">
                 <mg-form
                     ref="formRefs"
+                    :schema="{ formSchema, cellSchema }"
                     :remote="{ enums: formWorker.enums, search: formWorker.search }"
                     :upload="{ call: formWorker.call, down: formWorker.down }"
                     @form-error="formEvent.formError"

@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/CURD/delete.vue
+ * @FilePath: \Furnace\src\template\Curd\delete.vue
  * @Author: maggot-code
  * @Date: 2022-12-05 22:44:40
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:12:43
+ * @LastEditTime: 2022-12-06 10:35:30
  * @Description: 
 -->
 <script setup>

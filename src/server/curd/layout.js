@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/server/curd/layout.js
+ * @FilePath: \Furnace\src\server\curd\layout.js
  * @Author: maggot-code
  * @Date: 2022-12-05 00:21:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 01:21:21
+ * @LastEditTime: 2022-12-06 12:29:04
  * @Description: 
  */
 import { ConfigCurdServer } from "../config/curd";
@@ -17,9 +17,9 @@ import { mergeObject } from "~/shared/merge";
 import { filterObjectEmpty } from "~/shared/filter";
 
 export function CurdLayoutObtain() {
-    const { search, table } = unref(ConfigCurdServer.server.result.source);
-    CurdSearchSetup(search);
-    CurdTableSetup(table);
+    const config = unref(ConfigCurdServer.server.result.source);
+    CurdSearchSetup(get(config, "search", {}));
+    CurdTableSetup(get(config, "table", {}));
 
     return service.sendAll([
         CurdSearchServer.server,
@@ -28,12 +28,12 @@ export function CurdLayoutObtain() {
 }
 
 export function CurdDataObtain(factor) {
-    const { source } = unref(ConfigCurdServer.server.result.source);
+    const config = unref(ConfigCurdServer.server.result.source);
     const options = {
         params: factor.params,
         data: filterObjectEmpty(get(factor, "data", {}))
     }
-    CurdDataSetup(mergeObject(source, options));
+    CurdDataSetup(mergeObject(get(config, "source", {}), options));
 
     return service.send(CurdDataServer.server);
 }
@@ -48,23 +48,23 @@ export function CurdFormObtain(mode, factor) {
 }
 
 export function CurdSaveObtain(factor, data) {
-    const { save } = unref(ConfigCurdServer.server.result.source);
+    const config = unref(ConfigCurdServer.server.result.source);
     const params = pick(factor, "id");
-    CurdAsyncSetup(mergeObject(save, { params, data }));
+    CurdAsyncSetup(mergeObject(get(config, "save", {}), { params, data }));
 
     return service.send(CurdAsyncServer.server);
 }
 
 export function CurdDeleteObtain(params) {
     const config = unref(ConfigCurdServer.server.result.source);
-    CurdAsyncSetup(mergeObject(config.delete, { params }));
+    CurdAsyncSetup(mergeObject(get(config, "delete", {}), { params }));
 
     return service.send(CurdAsyncServer.server);
 }
 
 export function CurdExportObtain() {
     const config = unref(ConfigCurdServer.server.result.source);
-    CurdAsyncSetup(mergeObject(config.export));
+    CurdAsyncSetup(get(config, "export", {}));
 
     return service.send(CurdAsyncServer.server);
 }

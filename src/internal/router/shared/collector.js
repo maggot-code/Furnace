@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 17:29:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 12:33:11
+ * @LastEditTime: 2022-12-06 09:14:49
  * @Description: 
  */
 import { UNDEFINED_NAME } from "~/shared/constant";
@@ -33,8 +33,8 @@ function findPrivate(source) {
 
 // 对路由定义的常量文件进行收集
 export function wrapRouterConstant() {
-    // Constant = Constant ?? import.meta.glob("../constant/*.js", { eager: true });
-    Constant = import.meta.glob("../constant/*.js", { eager: true });
+    Constant = Constant ?? import.meta.glob("../constant/*.js", { eager: true });
+    // Constant = import.meta.glob("../constant/*.js", { eager: true });
 
     return {
         group: Constant,
@@ -44,8 +44,8 @@ export function wrapRouterConstant() {
 
 // 对路由定义的命名空间文件进行收集
 export function wrapRouterNamespace() {
-    // Namespace = Namespace ?? import.meta.glob("../namespace/*.js", { eager: true });
-    Namespace = import.meta.glob("../namespace/*.js", { eager: true });
+    Namespace = Namespace ?? import.meta.glob("../namespace/*.js", { eager: true });
+    // Namespace = import.meta.glob("../namespace/*.js", { eager: true });
 
     return {
         group: Namespace,

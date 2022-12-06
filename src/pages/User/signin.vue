@@ -1,14 +1,13 @@
 <!--
- * @FilePath: /Furnace/src/pages/User/signin.vue
+ * @FilePath: \Furnace\src\pages\User\signin.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 05:14:54
+ * @LastEditTime: 2022-12-06 09:26:24
  * @Description: 
 -->
 <script setup>
 import { UserLoginServer, UserLoginObtain } from "@/server/user/login";
-import { useWatch } from "@/hooks/service/useWatch";
 import { useUserStore } from "@/store/useUserStore";
 import { useLogin } from "@/biz/user/usecase/useLogin";
 import { useRedirect } from "@/hooks/router/useRedirect";
@@ -18,13 +17,13 @@ const userStore = useUserStore();
 const login = useLogin();
 const { loginRefs, loginForm, loginRules } = login;
 const { loading } = UserLoginServer.server;
-
-login.onAfterSubmit((props) => UserLoginObtain(props.data));
-
-useWatch(UserLoginServer, (response) => {
-    userStore.setup(response);
-    redo();
-});
+function loginNext(response) {
+    userStore.setup(response) && redo();
+}
+function loginCutoff(error) {
+    console.log(error);
+}
+login.onAfterSubmit((props) => UserLoginObtain(props.data).then(loginNext).catch(loginCutoff));
 </script>
 
 <template>

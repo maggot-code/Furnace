@@ -1,19 +1,14 @@
 /*
- * @FilePath: /Furnace/src/domain/form/usecase/useFormWorker.js
+ * @FilePath: \Furnace\src\domain\Form\usecase\useFormWorker.js
  * @Author: maggot-code
  * @Date: 2022-12-06 02:15:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:46:03
+ * @LastEditTime: 2022-12-06 10:24:37
  * @Description: 
  */
-import axios from "axios";
+import { service } from "@/service/FormServer";
 import { transArray } from "~/shared/trans";
 import { mergeObject } from "~/shared/merge";
-
-const service = axios.create({
-    baseURL: import.meta.env.VITE_APP_SERVER_PREFIX,
-    timeout: import.meta.env.DEV ? 0 : 30000,
-});
 
 export function useFormWorker(form) {
     // 选项获取
@@ -25,6 +20,7 @@ export function useFormWorker(form) {
             .then((response) => {
                 return transArray(response);
             }).catch((error) => {
+                console.log(error);
                 return [];
             });
     }
