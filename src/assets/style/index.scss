@@ -1,0 +1,43 @@
+// @import "@/assets/style/font.scss";
+@import "@/assets/style/element.scss";
+@import "@/assets/style/loading.scss";
+@import "@/assets/style/container.scss";
+
+:root {
+    font-family: 'Smiley Sans', Inter, Avenir, Helvetica, Arial, sans-serif;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    overflow: hidden;
+}
+
+.furnace-popup-main {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}

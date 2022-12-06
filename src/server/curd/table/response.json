@@ -1,0 +1,87 @@
+{
+    "code": -1,
+    "message": "ok",
+    "data": {
+        "keyname": "id",
+        "uiSchema": {
+            "sortProp": "id",
+            "sortOrder": "asc",
+            "border": true,
+            "stripe": false,
+            "isPage": true,
+            "isChoice": true,
+            "isIndex": true,
+            "isLabel": true,
+            "size": "mini",
+            "handleFixed": "right"
+        },
+        "controller": {
+            "export": {
+                "mode": "export",
+                "type": "default",
+                "useAll": true,
+                "label": "导出文件",
+                "icon": "el-icon-download"
+            },
+            "delete": {
+                "mode": "delete",
+                "type": "default",
+                "useAll": true,
+                "useRow": true,
+                "label": "删除",
+                "icon": "el-icon-delete"
+            },
+            "add": {
+                "mode": "add",
+                "type": "default",
+                "useAll": true,
+                "label": "新增",
+                "icon": "el-icon-folder-add"
+            },
+            "edit": {
+                "mode": "edit",
+                "type": "default",
+                "useRow": true,
+                "label": "修改",
+                "icon": "el-icon-edit"
+            }
+        },
+        "mergeSchema": {},
+        "columnSchema": [
+            {
+                "isSort": true,
+                "prop": "id",
+                "mold": "default",
+                "label": "主键",
+                "align": "center",
+                "width": 260
+            },
+            {
+                "prop": "password",
+                "mold": "void"
+            },
+            {
+                "isSort": true,
+                "prop": "name",
+                "mold": "html",
+                "label": "姓名",
+                "align": "center",
+                "width": 90
+            },
+            {
+                "prop": "address",
+                "mold": "default",
+                "label": "住址",
+                "align": "center",
+                "minWidth": 240
+            },
+            {
+                "prop": "mail",
+                "mold": "link",
+                "label": "邮件",
+                "align": "center",
+                "width": 240
+            }
+        ]
+    }
+}

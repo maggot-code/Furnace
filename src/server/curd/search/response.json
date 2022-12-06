@@ -1,0 +1,38 @@
+{
+    "code": -1,
+    "message": "ok",
+    "data": {
+        "formSchema": {
+            "inline": true,
+            "labelWidth": "auto"
+        },
+        "cellSchema": [
+            {
+                "field": "name",
+                "uiSchema": {
+                    "clearable": true,
+                    "placeholder": "请输入姓名"
+                },
+                "ruleSchema": [
+                    {
+                        "message": "请输入姓名",
+                        "required": false
+                    }
+                ],
+                "mold": "text",
+                "componentName": "mg-input",
+                "value": ""
+            },
+            {
+                "field": "address",
+                "uiSchema": {
+                    "clearable": true,
+                    "placeholder": "请输入地址"
+                },
+                "mold": "text",
+                "componentName": "mg-input",
+                "value": ""
+            }
+        ]
+    }
+}
