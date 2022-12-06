@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-06 02:15:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 10:24:37
+ * @LastEditTime: 2022-12-06 12:39:39
  * @Description: 
  */
 import { service } from "@/service/FormServer";
@@ -20,7 +20,6 @@ export function useFormWorker(form) {
             .then((response) => {
                 return transArray(response);
             }).catch((error) => {
-                console.log(error);
                 return [];
             });
     }

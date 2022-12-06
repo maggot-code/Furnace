@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/layout/BizHeader.vue
+ * @FilePath: \Furnace\src\layout\BizHeader.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:43:11
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 17:20:12
+ * @LastEditTime: 2022-12-06 12:51:59
  * @Description: 
 -->
 <script setup>
@@ -34,6 +34,5 @@ const iconName = computed(() => {
     align-items: center;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 </style>

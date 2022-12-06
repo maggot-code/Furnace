@@ -1,13 +1,23 @@
 <!--
- * @FilePath: /Furnace/src/pages/Business/business.vue
+ * @FilePath: \Furnace\src\pages\Business\business.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 17:04:02
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 17:51:35
+ * @LastEditTime: 2022-12-06 13:08:41
  * @Description: 
 -->
+<script setup>
+import { defineMenu } from "~/menu/usecase/defineMenu";
+
+defineMenu();
+</script>
+
 <template>
     <BizContainer>
+        <template #title>
+            <BizTitle></BizTitle>
+        </template>
+
         <template #aside>
             <BizMenu></BizMenu>
         </template>
@@ -16,49 +26,16 @@
             <BizHeader></BizHeader>
         </template>
 
+        <template #curmbs>
+            <BizCrumbs></BizCrumbs>
+        </template>
+
         <template #body>
-            <transition name="el-fade-in-linear">
-                <router-view v-slot="{ Component }">
-                    <components
-                        :is="Component"
-                        :key="keyword"
-                        v-bind="meta"
-                    ></components>
-                </router-view>
-            </transition>
+            <BizMain></BizMain>
         </template>
     </BizContainer>
 </template>
 
-<script>
-import { defineMenu } from "~/menu/usecase/defineMenu";
-import { uuid } from "~/shared/uuid";
-export default {
-    name: 'Business',
-    mixins: [],
-    components: {},
-    props: {},
-    setup() {
-        defineMenu();
-        return {}
-    },
-    data() {
-        return {
-            keyword: uuid()
-        }
-    },
-    computed: {
-        meta() {
-            return this.$route.meta;
-        }
-    },
-    watch: {
-        $route() {
-            this.keyword = uuid();
-        }
-    }
-};
-</script>
-<style lang='scss' scoped>
+<style scoped lang='scss'>
 
 </style>
