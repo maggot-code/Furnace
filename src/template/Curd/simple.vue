@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 13:52:55
+ * @LastEditTime: 2022-12-06 16:05:16
  * @Description: 
 -->
 <script setup>
@@ -110,7 +110,6 @@ onBeforeMount(async () => {
     curd.setupTableReady();
 });
 onBeforeUnmount(() => {
-    console.log(11);
     unwatch();
     modifyDialog.destroy();
     exportDialog.destroy();

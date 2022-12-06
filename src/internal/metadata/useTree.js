@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/metadata/useTree.js
+ * @FilePath: \Furnace\src\internal\metadata\useTree.js
  * @Author: maggot-code
  * @Date: 2022-12-03 20:25:12
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 06:20:25
+ * @LastEditTime: 2022-12-06 15:14:56
  * @Description: 
  */
 import { NormTreeProps } from "~/metadata/shared/constant";

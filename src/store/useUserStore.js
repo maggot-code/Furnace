@@ -3,11 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:44:55
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 09:10:39
+ * @LastEditTime: 2022-12-06 16:22:48
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { isUnusable, isUsable } from "~/shared/is";
+import { transString, transArray } from "~/shared/trans";
 import dayjs from "dayjs";
 
 const OverdueInfo = ["已过期", "未过期"];
@@ -81,9 +82,9 @@ export const useUserStore = defineStore(Namespace, {
             return isUsable(this.token.value);
         },
         setup(response) {
-            this.name = get(response, "name");
-            this.avatar = get(response, "avatar");
-            this.roles = get(response, "roles");
+            this.name = transString(get(response, "name"));
+            this.avatar = transString(get(response, "avatar"));
+            this.roles = transArray(get(response, "roles"));
             this.activeRole = get(response, "activeRole");
             return this.setupToken(response);
         },
