@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 17:04:02
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 13:23:11
+ * @LastEditTime: 2022-12-06 16:44:45
  * @Description: 
 -->
 <script setup>
@@ -26,9 +26,9 @@ defineMenu();
             <BizHeader></BizHeader>
         </template>
 
-        <template #nav>
+        <!-- <template #nav>
             <BizNav></BizNav>
-        </template>
+        </template> -->
 
         <template #body>
             <BizMain></BizMain>

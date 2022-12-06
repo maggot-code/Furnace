@@ -3,13 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 13:22:59
+ * @LastEditTime: 2022-12-06 16:44:20
  * @Description: 
 -->
 <script setup>
 import { useMenu } from "~/menu/usecase/useMenu";
 
 const { menuStore } = useMenu();
+const slots = useSlots();
+const bodyStyle = computed(() => {
+    return isNil(slots.nav)
+        ? { height: "100%" }
+        : {};
+});
 </script>
 
 <template>
@@ -36,10 +42,16 @@ const { menuStore } = useMenu();
                 <slot name="header"></slot>
             </el-header>
             <el-main class="furnace-biz-main-body">
-                <div class="furnace-biz-main-body-nav">
+                <div
+                    class="furnace-biz-main-body-nav"
+                    v-if="slots.nav"
+                >
                     <slot name="nav"></slot>
                 </div>
-                <div class="furnace-biz-main-body-content">
+                <div
+                    class="furnace-biz-main-body-content"
+                    :style="bodyStyle"
+                >
                     <slot name="body"></slot>
                 </div>
             </el-main>
