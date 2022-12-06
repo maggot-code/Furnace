@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/form/usecase/defineForm.js
+ * @FilePath: \Furnace\src\domain\Form\usecase\defineForm.js
  * @Author: maggot-code
  * @Date: 2022-12-04 21:17:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:17:26
+ * @LastEditTime: 2022-12-06 13:55:45
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
@@ -23,7 +23,9 @@ export function defineForm(namespace) {
     const job = JobEntity();
     const event = EventEntity(element);
     function setup(struct) {
-        schema.formConfig.setup(get(struct, "formSchema", {}));
+        schema.formConfig.setup(get(struct, "formSchema", {
+            labelWidth: "120px"
+        }));
         schema.cellConfig.setup(get(struct, "cellSchema", []));
     }
 

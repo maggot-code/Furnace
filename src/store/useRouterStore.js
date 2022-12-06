@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 09:35:43
+ * @LastEditTime: 2022-12-06 14:22:42
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -14,7 +14,8 @@ import { GroupEntity } from "~/router/entity/Group";
 import { RouteName, RouterNamespace } from "~/router/shared/context";
 
 const paths = ["cache"];
-const storage = import.meta.env.DEV ? window.sessionStorage : window.localStorage;
+// const storage = import.meta.env.DEV ? window.sessionStorage : window.localStorage;
+const storage = window.sessionStorage;
 
 export const Namespace = 'useRouterStore';
 
