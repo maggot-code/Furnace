@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/hooks/service/useWatch.js
+ * @FilePath: \Furnace\src\hooks\service\useWatch.js
  * @Author: maggot-code
  * @Date: 2022-12-04 02:00:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 03:27:25
+ * @LastEditTime: 2022-12-07 18:17:31
  * @Description: 
  */
 import { transFunction } from "~/shared/trans";

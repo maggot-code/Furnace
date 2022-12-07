@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:59:54
+ * @LastEditTime: 2022-12-07 18:13:52
  * @Description: 
 -->
 <script setup>
@@ -104,13 +104,13 @@ useWatch(CurdSearchServer, form.setup);
 useWatch(CurdTableServer, table.setupSchema);
 useWatch(CurdDataServer, table.setupSource);
 
-onBeforeMount(async () => {
+onMounted(async () => {
     await ConfigCurdObtain(meta);
     await CurdLayoutObtain();
     curd.setupTableReady();
     curd.setupFormReady();
 });
-onBeforeUnmount(() => {
+onUnmounted(() => {
     unwatch();
     modifyDialog.destroy();
     exportDialog.destroy();

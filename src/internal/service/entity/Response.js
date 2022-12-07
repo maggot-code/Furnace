@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 00:48:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 11:17:04
+ * @LastEditTime: 2022-12-07 18:16:00
  * @Description: 
  */
 import { ConfigEntity } from "~/service/entity/Config";
