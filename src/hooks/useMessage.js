@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/hooks/useMessage.js
+ * @FilePath: \Furnace\src\hooks\useMessage.js
  * @Author: maggot-code
  * @Date: 2022-11-23 01:30:31
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 01:28:52
+ * @LastEditTime: 2022-12-07 17:18:50
  * @Description: 
  */
 import { Message } from "element-ui";
@@ -19,6 +19,8 @@ export const NormProps = {
     center: false,
     dangerouslyUseHTMLString: false
 }
+
+export const useMessageCloseAll = () => Message.closeAll();
 
 export function useMessage(props) {
     const config = mergeObject(NormProps, props);

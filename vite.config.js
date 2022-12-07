@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 10:19:35
+ * @LastEditTime: 2022-12-07 17:13:45
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -13,6 +13,7 @@ import vue from '@vitejs/plugin-vue2';
 import viteCompression from "vite-plugin-compression";
 import autoImport from "unplugin-auto-import/vite";
 import vueComponents from "unplugin-vue-components/vite";
+import legacy from '@vitejs/plugin-legacy'
 
 import lodashImport from "./plugins/lodash";
 import componentImport from "./plugins/component";
@@ -90,6 +91,32 @@ export default defineConfig(({ mode }) => {
                 open: false,
                 gzipSize: true,
                 brotliSize: true,
+            }),
+            legacy({
+                targets: ['defaults', 'ie >= 11', 'chrome 52'],
+                additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+                renderLegacyChunks: true,
+                polyfills: [
+                    'es.global-this',
+                    'es.symbol',
+                    'es.array.filter',
+                    'es.promise',
+                    'es.promise.finally',
+                    'es/map',
+                    'es/set',
+                    'es.array.at',
+                    'es.array.for-each',
+                    'es.object.define-properties',
+                    'es.object.define-property',
+                    'es.object.get-own-property-descriptor',
+                    'es.object.get-own-property-descriptors',
+                    'es.object.keys',
+                    'es.object.to-string',
+                    'web.dom-collections.for-each',
+                    'esnext.global-this',
+                    'esnext.array.at',
+                    'esnext.string.match-all'
+                ]
             })
         ],
         json: {
@@ -98,7 +125,7 @@ export default defineConfig(({ mode }) => {
         },
         build: {
             minify: false,
-            target: "es2015",
+            // target: "es2015",
             sourcemap: 'hidden',
             chunkSizeWarningLimit: 500,
             assetsInlineLimit: 4096,

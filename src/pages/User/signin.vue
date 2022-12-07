@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 16:40:11
+ * @LastEditTime: 2022-12-07 17:21:32
  * @Description: 
 -->
 <script setup>
@@ -11,7 +11,7 @@ import { UserLoginServer, UserLoginObtain } from "@/server/user/login";
 import { useUserStore } from "@/store/useUserStore";
 import { useLogin } from "@/biz/user/usecase/useLogin";
 import { useRedirect } from "@/hooks/router/useRedirect";
-import { useMessage } from "@/hooks/useMessage";
+import { useMessageCloseAll, useMessage } from "@/hooks/useMessage";
 
 const redo = useRedirect();
 const userStore = useUserStore();
@@ -32,7 +32,10 @@ login.onAfterSubmit((props) => {
         showClose: false,
         iconClass: "el-icon-loading"
     });
-    UserLoginObtain(props.data).then(loginNext).catch(loginCutoff);
+    UserLoginObtain(props.data)
+        .then(loginNext)
+        .catch(loginCutoff)
+        .finally(useMessageCloseAll);
 });
 </script>
 

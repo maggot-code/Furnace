@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 17:29:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 09:14:49
+ * @LastEditTime: 2022-12-07 17:15:11
  * @Description: 
  */
 import { UNDEFINED_NAME } from "~/shared/constant";
@@ -22,7 +22,7 @@ function pickFileName(path) {
     const match = path.match(reg);
     const usable = Array.isArray(match) && match.length > 1;
 
-    return usable ? match.at(1) : UNDEFINED_NAME;
+    return usable ? match[1] : UNDEFINED_NAME;
 }
 function findName(source, path) {
     return get(source[path], NameKeyword, UNDEFINED_NAME);
