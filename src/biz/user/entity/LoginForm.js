@@ -1,15 +1,16 @@
 /*
- * @FilePath: /Furnace/src/biz/user/entity/LoginForm.js
+ * @FilePath: \Furnace\src\biz\user\entity\LoginForm.js
  * @Author: maggot-code
  * @Date: 2022-12-04 04:06:48
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 04:09:22
+ * @LastEditTime: 2022-12-07 14:54:32
  * @Description: 
  */
 export function LoginFormEntity() {
     const data = reactive({
         username: "admin",
-        userpassword: "admin@1234",
+        // userpassword: "admin@1234",
+        userpassword: "",
     });
     const rules = {
         username: [

@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 09:26:24
+ * @LastEditTime: 2022-12-07 16:40:11
  * @Description: 
 -->
 <script setup>
@@ -11,6 +11,7 @@ import { UserLoginServer, UserLoginObtain } from "@/server/user/login";
 import { useUserStore } from "@/store/useUserStore";
 import { useLogin } from "@/biz/user/usecase/useLogin";
 import { useRedirect } from "@/hooks/router/useRedirect";
+import { useMessage } from "@/hooks/useMessage";
 
 const redo = useRedirect();
 const userStore = useUserStore();
@@ -18,12 +19,21 @@ const login = useLogin();
 const { loginRefs, loginForm, loginRules } = login;
 const { loading } = UserLoginServer.server;
 function loginNext(response) {
+    // useSuccessTips("成功,正在为您载入配置");
     userStore.setup(response) && redo();
 }
 function loginCutoff(error) {
     console.log(error);
 }
-login.onAfterSubmit((props) => UserLoginObtain(props.data).then(loginNext).catch(loginCutoff));
+login.onAfterSubmit((props) => {
+    useMessage({
+        duration: 0,
+        message: "登录中",
+        showClose: false,
+        iconClass: "el-icon-loading"
+    });
+    UserLoginObtain(props.data).then(loginNext).catch(loginCutoff);
+});
 </script>
 
 <template>
@@ -40,6 +50,7 @@ login.onAfterSubmit((props) => UserLoginObtain(props.data).then(loginNext).catch
             <el-form-item prop="username">
                 <el-input
                     v-model="loginForm.username"
+                    @keyup.enter.native="login.onSubmit"
                     :readonly="loading"
                     prefix-icon="el-icon-user"
                     placeholder="账户：admin"
@@ -50,6 +61,7 @@ login.onAfterSubmit((props) => UserLoginObtain(props.data).then(loginNext).catch
             <el-form-item prop="userpassword">
                 <el-input
                     v-model="loginForm.userpassword"
+                    @keyup.enter.native="login.onSubmit"
                     :readonly="loading"
                     prefix-icon="el-icon-lock"
                     placeholder="密码：furnace"

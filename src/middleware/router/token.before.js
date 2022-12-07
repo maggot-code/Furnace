@@ -3,11 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-11-30 18:09:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 00:33:35
+ * @LastEditTime: 2022-12-07 16:00:05
  * @Description: 
  */
 import { useUserStore } from "@/store/useUserStore";
 import { useRouterStore } from "@/store/useRouterStore";
+import { useWarningTips } from "@/hooks/useMessage";
 
 function define(to, form, next) {
     const userStore = useUserStore();
@@ -16,6 +17,7 @@ function define(to, form, next) {
     if (userStore.tokenUnusable) {
         userStore.clearToken();
         routerStore.toUnmounted();
+        useWarningTips(userStore.tokenUnusableTips);
     };
 
     next();

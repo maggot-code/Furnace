@@ -3,10 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:44:55
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 16:22:48
+ * @LastEditTime: 2022-12-07 16:05:25
  * @Description: 
  */
 import { defineStore } from 'pinia';
+import { useGlobStore } from "@/store/useGlobStore";
 import { isUnusable, isUsable } from "~/shared/is";
 import { transString, transArray } from "~/shared/trans";
 import dayjs from "dayjs";
@@ -53,6 +54,10 @@ export const useUserStore = defineStore(Namespace, {
         },
         tokenUsable() {
             return !this.tokenUnusable;
+        },
+        tokenUnusableTips() {
+            const globStore = useGlobStore();
+            return globStore.inLogged ? "抱歉，需要您重新登录" : "请登录，以验证您的身份";
         },
         overdueView() {
             const [unusable, usable] = OverdueInfo;
