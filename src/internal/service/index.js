@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/service/index.js
+ * @FilePath: \Furnace\src\internal\service\index.js
  * @Author: maggot-code
  * @Date: 2022-12-04 00:42:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 22:35:50
+ * @LastEditTime: 2022-12-07 11:21:42
  * @Description: 
  */
 import { ResponseEntity } from "~/service/entity/Response";
@@ -54,6 +54,7 @@ export function defineService(tofetch, props) {
         const server = ResponseEntity(props, defineResult);
         return {
             server,
+            clean: server.clean,
             abort: () => abort(server),
             obtain: (extend) => {
                 abort(server);

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/service/entity/Response.js
+ * @FilePath: \Furnace\src\internal\service\entity\Response.js
  * @Author: maggot-code
  * @Date: 2022-12-04 00:48:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 22:39:06
+ * @LastEditTime: 2022-12-07 11:17:04
  * @Description: 
  */
 import { ConfigEntity } from "~/service/entity/Config";
@@ -39,6 +39,13 @@ export function ResponseEntity(props, defineResult) {
         pend.toDisable();
         finish.toEnable();
     }
+    function clean() {
+        config.clear();
+        result.clear();
+        startup.toDisable();
+        pend.toDisable();
+        finish.toEnable();
+    }
 
     return {
         started,
@@ -49,7 +56,8 @@ export function ResponseEntity(props, defineResult) {
         loading,
         finished,
         toStart,
-        toEnd
+        toEnd,
+        clean
     }
 }
 

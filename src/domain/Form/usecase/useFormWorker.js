@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-06 02:15:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 12:39:39
+ * @LastEditTime: 2022-12-07 10:56:50
  * @Description: 
  */
 import { service } from "@/service/FormServer";
@@ -41,13 +41,13 @@ export function useFormWorker(form) {
     // 文件上传
     function call(request) {
         const { file } = request;
-        const service = "/SWZDH/Common/UpFile";
+        const address = import.meta.env.VITE_APP_SERVER_PREFIX + "/Common/UpFile";
         const body = new FormData();
         body.append("files", file);
         const tocancel = new AbortController();
         async function tocall() {
-            const { data } = await service.request({
-                url: service,
+            const response = await service.request({
+                url: address,
                 method: "post",
                 data: body,
                 signal: tocancel.signal,
@@ -57,7 +57,7 @@ export function useFormWorker(form) {
                     request.onProgress({ percent });
                 }
             });
-            return data;
+            return transArray(response);
         }
         return {
             uid: file.uid,

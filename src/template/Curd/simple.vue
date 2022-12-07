@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 16:05:16
+ * @LastEditTime: 2022-12-07 11:21:51
  * @Description: 
 -->
 <script setup>
@@ -16,16 +16,16 @@ import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useWarningTips } from "@/hooks/useMessage";
 import { useLoad } from "@/hooks/service/useLoad";
 import { useWatch } from "@/hooks/service/useWatch";
-import { usePopup } from "@/domain/popup/usecase/usePopup";
-import { useDialog } from "@/domain/popup/usecase/useDialog";
-import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
-import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
-import { defineForm } from "@/domain/form/usecase/defineForm";
+import { usePopup } from "@/domain/Popup/usecase/usePopup";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
+import { useFormEvent } from "@/domain/Form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/Form/usecase/useFormWorker";
+import { defineForm } from "@/domain/Form/usecase/defineForm";
 import { defineTable } from "@/domain/Table/usecase/defineTable";
 import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
 import { mergeObject } from "~/shared/merge";
 
-const serverGroup = [
+const serviceGroup = [
     ConfigCurdServer,
     CurdSearchServer,
     CurdTableServer,
@@ -39,7 +39,7 @@ const props = defineProps({
 const popup = usePopup();
 const dialog = useDialog(props.popupKeyword);
 const meta = useTemplateProps(dialog.config);
-const loading = useLoad(serverGroup);
+const loading = useLoad(serviceGroup);
 const curd = defineCurd();
 const table = defineTable();
 const form = defineForm();
@@ -114,7 +114,10 @@ onBeforeUnmount(() => {
     modifyDialog.destroy();
     exportDialog.destroy();
     deleteDialog.destroy();
-    serverGroup.forEach((server) => server.abort());
+    serviceGroup.forEach((service) => {
+        service.abort();
+        service.clean();
+    });
 });
 </script>
 

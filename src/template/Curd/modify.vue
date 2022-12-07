@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/template/CURD/modify.vue
+ * @FilePath: \Furnace\src\template\Curd\modify.vue
  * @Author: maggot-code
  * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:49:58
+ * @LastEditTime: 2022-12-07 11:22:00
  * @Description: 
 -->
 <script setup>
@@ -11,10 +11,10 @@ import { CurdAsyncServer } from "@/server/curd/async";
 import { CurdFormObtain, CurdSaveObtain } from "@/server/curd/layout";
 import { useWarningTips } from "@/hooks/useMessage";
 import { useWatch } from "@/hooks/service/useWatch";
-import { useDialog } from "@/domain/popup/usecase/useDialog";
-import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
-import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
-import { defineForm } from "@/domain/form/usecase/defineForm";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
+import { useFormEvent } from "@/domain/Form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/Form/usecase/useFormWorker";
+import { defineForm } from "@/domain/Form/usecase/defineForm";
 
 const titleMapper = {
     add: "请填写新增信息",
@@ -46,6 +46,7 @@ onBeforeMount(() => {
 });
 onBeforeUnmount(() => {
     CurdAsyncServer.abort();
+    CurdAsyncServer.clean();
 });
 </script>
 

@@ -3,13 +3,13 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 22:44:40
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 10:35:30
+ * @LastEditTime: 2022-12-07 10:28:05
  * @Description: 
 -->
 <script setup>
 import { CurdAsyncServer } from "@/server/curd/async";
 import { CurdDeleteObtain } from "@/server/curd/layout";
-import { useDialog } from "@/domain/popup/usecase/useDialog";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
 import { useWarningTips } from "@/hooks/useMessage";
 
 const { loading } = CurdAsyncServer.server;
@@ -33,7 +33,7 @@ const tips = computed(() => {
     return unref(needArray) ? `确定要删除这些数据吗？` : `确定要删除这条数据吗？`;
 });
 async function handlerDelete() {
-    if (unref(notKeys)) return useWarningTips("抱歉,您还没有选择需要删除的数据");
+    if (unref(needArray) && unref(notKeys)) return useWarningTips("抱歉,您还没有选择需要删除的数据");
 
     const { table } = unref(dialog.config);
     const params = unref(needArray)

@@ -1,13 +1,29 @@
 /*
- * @FilePath: /Furnace/src/domain/form/usecase/useFormEvent.js
+ * @FilePath: \Furnace\src\domain\Form\usecase\useFormEvent.js
  * @Author: maggot-code
  * @Date: 2022-12-04 22:11:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:51:57
+ * @LastEditTime: 2022-12-07 11:26:40
  * @Description: 
  */
 import { createEventHook } from "@vueuse/core";
 import { useWarningTips } from "@/hooks/useMessage";
+
+function transFormData(source) {
+    return source.map((value) => {
+        if (isPlainObject(value)) return get(value, "url", "");
+
+        return value;
+    });
+}
+
+function formatFormData(data) {
+    return Object.keys(data).reduce((store, key) => {
+        const value = data[key];
+        store[key] = Array.isArray(value) ? transFormData(value).join("|") : value;
+        return store;
+    }, {});
+}
 
 export function useFormEvent(form) {
     const submitEvent = createEventHook();
@@ -16,18 +32,27 @@ export function useFormEvent(form) {
     // 检查必填
     async function formSubmit() {
         const [data, state] = await form.getFormData(true);
-        submitEvent.trigger({ data, state });
+        submitEvent.trigger({
+            data: formatFormData(data),
+            state
+        });
     }
 
     // 不检查必填
     async function formSave() {
         const [data, state] = await form.getFormData(false);
-        submitEvent.trigger({ data, state });
+        submitEvent.trigger({
+            data: formatFormData(data),
+            state
+        });
     }
 
     async function formReset() {
         const [data, state] = await form.resetFormData();
-        resetEvent.trigger({ data, state });
+        resetEvent.trigger({
+            data: formatFormData(data),
+            state
+        });
     }
 
     function formError(abnormal) {

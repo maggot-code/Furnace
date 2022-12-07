@@ -1,19 +1,19 @@
 <!--
- * @FilePath: /Furnace/src/template/Form/simple.vue
+ * @FilePath: \Furnace\src\template\Form\simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 02:49:46
+ * @LastEditTime: 2022-12-07 11:22:07
  * @Description: 
 -->
 <script setup>
 import { ConfigFormServer, ConfigFormObtain } from "@/server/config/form";
 import { useTemplateProps } from "@/hooks/template/useTemplateProps";
 import { useWatch } from "@/hooks/service/useWatch";
-import { useDialog } from "@/domain/popup/usecase/useDialog";
-import { useFormEvent } from "@/domain/form/usecase/useFormEvent";
-import { useFormWorker } from "@/domain/form/usecase/useFormWorker";
-import { defineForm } from "@/domain/form/usecase/defineForm";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
+import { useFormEvent } from "@/domain/Form/usecase/useFormEvent";
+import { useFormWorker } from "@/domain/Form/usecase/useFormWorker";
+import { defineForm } from "@/domain/Form/usecase/defineForm";
 
 const props = defineProps({
     popupKeyword: String
@@ -23,7 +23,7 @@ const meta = useTemplateProps(dialog.config);
 const form = defineForm();
 const formWorker = useFormWorker(form);
 const formEvent = useFormEvent(form);
-const { formRefs, formSchema, cellSchema } = form;
+const { formRefs, formJob, formSchema, cellSchema } = form;
 const { loading } = ConfigFormServer.server;
 
 formEvent.onSubmit((source) => {
@@ -38,6 +38,7 @@ onBeforeMount(() => {
 });
 onBeforeUnmount(() => {
     ConfigFormServer.abort();
+    ConfigFormServer.clean();
 });
 </script>
 
@@ -50,6 +51,7 @@ onBeforeUnmount(() => {
             <!-- @monitor-value="monitorValue" -->
             <mg-form
                 ref="formRefs"
+                :job="formJob"
                 :schema="{ formSchema, cellSchema }"
                 :remote="{ enums: formWorker.enums, search: formWorker.search }"
                 :upload="{ call: formWorker.call, down: formWorker.down }"

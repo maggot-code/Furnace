@@ -9,7 +9,7 @@
 <script setup>
 import { CurdAsyncServer } from "@/server/curd/async";
 import { CurdExportObtain } from "@/server/curd/layout";
-import { useDialog } from "@/domain/popup/usecase/useDialog";
+import { useDialog } from "@/domain/Popup/usecase/useDialog";
 
 const { loading } = CurdAsyncServer.server;
 const props = defineProps({
