@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:03:44
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 11:22:07
+ * @LastEditTime: 2022-12-07 17:49:18
  * @Description: 
 -->
 <script setup>
@@ -38,7 +38,6 @@ onBeforeMount(() => {
 });
 onBeforeUnmount(() => {
     ConfigFormServer.abort();
-    ConfigFormServer.clean();
 });
 </script>
 

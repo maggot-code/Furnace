@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 00:21:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 12:29:04
+ * @LastEditTime: 2022-12-07 17:43:57
  * @Description: 
  */
 import { ConfigCurdServer } from "../config/curd";

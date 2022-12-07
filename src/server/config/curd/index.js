@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/server/config/curd/index.js
+ * @FilePath: \Furnace\src\server\config\curd\index.js
  * @Author: maggot-code
  * @Date: 2022-12-04 22:25:41
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-05 00:23:27
+ * @LastEditTime: 2022-12-07 17:44:38
  * @Description: 
  */
 import { ConfigAddress, ConfigMethod } from "./config";

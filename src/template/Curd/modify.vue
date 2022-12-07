@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 11:22:00
+ * @LastEditTime: 2022-12-07 17:49:23
  * @Description: 
 -->
 <script setup>
@@ -46,7 +46,6 @@ onBeforeMount(() => {
 });
 onBeforeUnmount(() => {
     CurdAsyncServer.abort();
-    CurdAsyncServer.clean();
 });
 </script>
 

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/Curd/usecase/defineCurd.js
+ * @FilePath: \Furnace\src\domain\Curd\usecase\defineCurd.js
  * @Author: maggot-code
  * @Date: 2022-12-05 11:02:30
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 01:16:10
+ * @LastEditTime: 2022-12-07 17:34:21
  * @Description: 
  */
 import {
@@ -38,6 +38,10 @@ export function defineCurd() {
         if (collect.take("tableReady")) return;
         collect.bind("tableReady", true);
     }
+    function clearReady() {
+        collect.bind("formReady", false);
+        collect.bind("tableReady", false);
+    }
     function formFactor(value) {
         collect.bind("form", value);
     }
@@ -51,10 +55,14 @@ export function defineCurd() {
         }
     }
 
+    onBeforeUnmount(() => {
+        clearReady();
+    });
     return {
         formSymbol: CURD_FORM_SYMBOL,
         tableSymbol: CURD_TABLE_SYMBOL,
         ready,
+        clearReady,
         setupFormReady,
         setupTableReady,
         formFactor,

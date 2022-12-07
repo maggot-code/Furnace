@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-06 13:09:14
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 11:26:05
+ * @LastEditTime: 2022-12-07 17:25:18
  * @Description: 
 -->
 <template>
@@ -41,8 +41,11 @@ export default {
         }
     },
     watch: {
-        $route() {
-            this.keyword = uuid();
+        "meta.uid": {
+            handler() {
+                this.keyword = uuid();
+            },
+            immediate: true
         }
     }
 };

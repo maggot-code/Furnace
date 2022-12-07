@@ -1,19 +1,21 @@
 <!--
- * @FilePath: /Furnace/src/layout/Fragment.vue
+ * @FilePath: \Furnace\src\layout\Fragment.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 12:37:42
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 17:51:47
+ * @LastEditTime: 2022-12-07 17:50:12
  * @Description: 
 -->
 <template>
-    <router-view v-slot="{ Component }">
-        <components
-            :is="Component"
-            :key="keyword"
-            v-bind="meta"
-        ></components>
-    </router-view>
+    <transition name="el-fade-in-linear">
+        <router-view v-slot="{ Component }">
+            <components
+                :is="Component"
+                :key="keyword"
+                v-bind="meta"
+            ></components>
+        </router-view>
+    </transition>
 </template>
 
 <script>
@@ -37,8 +39,11 @@ export default {
     },
     //监控data中的数据变化
     watch: {
-        $route() {
-            this.keyword = uuid();
+        "meta.uid": {
+            handler() {
+                this.keyword = uuid();
+            },
+            immediate: true
         }
     }
 };

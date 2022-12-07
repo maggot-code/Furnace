@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:21:32
+ * @LastEditTime: 2022-12-07 17:24:04
  * @Description: 
 -->
 <script setup>
@@ -67,7 +67,7 @@ login.onAfterSubmit((props) => {
                     @keyup.enter.native="login.onSubmit"
                     :readonly="loading"
                     prefix-icon="el-icon-lock"
-                    placeholder="密码：furnace"
+                    placeholder="密码：admin@1234"
                     type="password"
                     clearable
                     show-password
