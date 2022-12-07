@@ -3,13 +3,14 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 22:06:04
+ * @LastEditTime: 2022-12-08 02:08:58
  * @Description: 
  */
 import Vue from 'vue';
 import { extendRouter } from "@/extend/router";
 import { extendPinia } from "@/extend/pinia";
 import { extendElement } from "@/extend/element";
+import { extendScroll } from "@/extend/scroll";
 import { extendTable } from "@/extend/table";
 import { extendForm } from "@/extend/form";
 import { extendMock } from "@/extend/mockServer";
@@ -25,6 +26,7 @@ const router = extendRouter(Vue);
 extendTable(Vue);
 extendForm(Vue);
 extendElement(Vue);
+extendScroll(Vue);
 extendMock(Vue);
 
 const app = new Vue({

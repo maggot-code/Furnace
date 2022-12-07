@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\layout\BizTitle.vue
+ * @FilePath: /Furnace/src/layout/BizTitle.vue
  * @Author: maggot-code
  * @Date: 2022-12-06 13:04:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 16:40:40
+ * @LastEditTime: 2022-12-07 21:01:37
  * @Description: 
 -->
 <script setup>
@@ -27,8 +27,8 @@ const title = computed(() => {
 <style scoped lang='scss'>
 .biz-title {
     width: 100%;
-    height: 64px;
-    line-height: 64px;
+    height: 100%;
+    line-height: 1.5;
     text-align: center;
 }
 </style>

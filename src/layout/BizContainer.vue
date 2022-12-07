@@ -1,14 +1,16 @@
 <!--
- * @FilePath: \Furnace\src\layout\BizContainer.vue
+ * @FilePath: /Furnace/src/layout/BizContainer.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 16:44:20
+ * @LastEditTime: 2022-12-08 02:19:07
  * @Description: 
 -->
 <script setup>
+import { useScroll } from "@/hooks/useScroll";
 import { useMenu } from "~/menu/usecase/useMenu";
 
+const { refs } = useScroll();
 const { menuStore } = useMenu();
 const slots = useSlots();
 const bodyStyle = computed(() => {
@@ -27,8 +29,17 @@ const bodyStyle = computed(() => {
             class="furnace-biz-aside"
             :width="menuStore.menuWidth"
         >
-            <slot name="title"></slot>
-            <slot name="aside"></slot>
+            <div class="furnace-biz-aside-title">
+                <slot name="title"></slot>
+            </div>
+            <div class="furnace-biz-aside-menu">
+                <furnace-scroll
+                    ref="refs"
+                    class="furnace-biz-aside-menu-scroll"
+                >
+                    <slot name="aside"></slot>
+                </furnace-scroll>
+            </div>
         </el-aside>
 
         <el-container
@@ -65,9 +76,24 @@ const bodyStyle = computed(() => {
     box-sizing: border-box;
 
     &-aside {
-        transition: all 0.3s;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
+        transition: all 0.3s;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+        &-title {
+            width: 100%;
+            height: 64px;
+            overflow: hidden;
+        }
+
+        &-menu {
+            width: 100%;
+            height: calc(100% - 64px);
+
+            // &-scroll {}
+        }
     }
 
     &-main {

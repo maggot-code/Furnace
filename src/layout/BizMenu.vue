@@ -3,13 +3,13 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 01:40:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 17:34:24
+ * @LastEditTime: 2022-12-08 02:07:22
  * @Description: 
 -->
 <template>
     <el-menu
-        class="furnace-menu"
         mode="vertical"
+        class="furnace-menu"
         :collapse-transition="false"
         :default-active="$route.meta.uid"
         :collapse="menuStore.collapse"
@@ -44,6 +44,7 @@ export default {
         function renderSub(node) {
             return eq(node.mode, "fragment");
         }
+
         return {
             menuStore,
             menuGroup,
@@ -52,9 +53,9 @@ export default {
     }
 };
 </script>
-<style lang='scss' scoped>
+<style scoped lang='scss'>
 .furnace-menu {
-    width: calc(100% + 3px);
+    width: 100%;
     min-height: 100%;
 }
 </style>
