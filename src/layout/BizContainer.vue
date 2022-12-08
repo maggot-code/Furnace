@@ -1,16 +1,14 @@
 <!--
- * @FilePath: /Furnace/src/layout/BizContainer.vue
+ * @FilePath: \Furnace\src\layout\BizContainer.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 23:17:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 02:19:07
+ * @LastEditTime: 2022-12-08 09:42:49
  * @Description: 
 -->
 <script setup>
-import { useScroll } from "@/hooks/useScroll";
 import { useMenu } from "~/menu/usecase/useMenu";
 
-const { refs } = useScroll();
 const { menuStore } = useMenu();
 const slots = useSlots();
 const bodyStyle = computed(() => {
@@ -33,12 +31,7 @@ const bodyStyle = computed(() => {
                 <slot name="title"></slot>
             </div>
             <div class="furnace-biz-aside-menu">
-                <furnace-scroll
-                    ref="refs"
-                    class="furnace-biz-aside-menu-scroll"
-                >
-                    <slot name="aside"></slot>
-                </furnace-scroll>
+                <slot name="aside"></slot>
             </div>
         </el-aside>
 
@@ -91,8 +84,6 @@ const bodyStyle = computed(() => {
         &-menu {
             width: 100%;
             height: calc(100% - 64px);
-
-            // &-scroll {}
         }
     }
 

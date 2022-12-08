@@ -1,9 +1,9 @@
 <!--
- * @FilePath: /Furnace/src/components/Menu/MenuLabel.vue
+ * @FilePath: \Furnace\src\components\Menu\MenuLabel.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 02:07:25
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-01 23:20:23
+ * @LastEditTime: 2022-12-08 10:19:55
  * @Description: 
 -->
 <script setup>
@@ -16,7 +16,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <span class="furnace-menu-label">{{ node.title }}</span>
+    <span
+        class="furnace-menu-label"
+        :menuid="node.uid"
+    >{{ node.title }}</span>
 </template>
 
 <style scoped lang='scss'>

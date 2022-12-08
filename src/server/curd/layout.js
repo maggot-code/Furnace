@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 00:21:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:43:57
+ * @LastEditTime: 2022-12-08 11:03:11
  * @Description: 
  */
 import { ConfigCurdServer } from "../config/curd";
@@ -14,7 +14,6 @@ import { CurdAsyncServer, CurdAsyncSetup } from "./async";
 
 import { service } from "@/service/Application";
 import { mergeObject } from "~/shared/merge";
-import { filterObjectEmpty } from "~/shared/filter";
 
 export function CurdLayoutObtain() {
     const config = unref(ConfigCurdServer.server.result.source);
@@ -30,8 +29,8 @@ export function CurdLayoutObtain() {
 export function CurdDataObtain(factor) {
     const config = unref(ConfigCurdServer.server.result.source);
     const options = {
-        params: factor.params,
-        data: filterObjectEmpty(get(factor, "data", {}))
+        params: get(factor, "params", {}),
+        data: get(factor, "data", {})
     }
     CurdDataSetup(mergeObject(get(config, "source", {}), options));
 

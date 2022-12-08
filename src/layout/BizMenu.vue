@@ -1,13 +1,14 @@
 <!--
- * @FilePath: /Furnace/src/layout/BizMenu.vue
+ * @FilePath: \Furnace\src\layout\BizMenu.vue
  * @Author: maggot-code
  * @Date: 2022-12-01 01:40:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 02:07:22
+ * @LastEditTime: 2022-12-08 10:49:08
  * @Description: 
 -->
 <template>
     <el-menu
+        ref="refs"
         mode="vertical"
         class="furnace-menu"
         :collapse-transition="false"
@@ -33,12 +34,14 @@
 <script>
 import { storeToRefs } from "pinia";
 import { useMenu } from "~/menu/usecase/useMenu";
+import { useElementRefs } from "@/hooks/useElement";
 export default {
     name: 'BizMenu',
     mixins: [],
     components: {},
     props: {},
     setup() {
+        const { refs } = useElementRefs();
         const { menuStore } = useMenu();
         const { menuGroup } = storeToRefs(menuStore);
         function renderSub(node) {
@@ -46,6 +49,7 @@ export default {
         }
 
         return {
+            refs,
             menuStore,
             menuGroup,
             renderSub

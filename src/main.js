@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/main.js
+ * @FilePath: \Furnace\src\main.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 02:08:58
+ * @LastEditTime: 2022-12-08 09:45:12
  * @Description: 
  */
 import Vue from 'vue';

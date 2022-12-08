@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 18:13:52
+ * @LastEditTime: 2022-12-08 10:57:45
  * @Description: 
 -->
 <script setup>
@@ -31,7 +31,6 @@ const serviceGroup = [
     CurdTableServer,
     CurdDataServer
 ];
-const { unusable } = CurdSearchServer.server;
 const { finished } = CurdTableServer.server;
 const props = defineProps({
     popupKeyword: String
