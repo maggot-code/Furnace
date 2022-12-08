@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:24:04
+ * @LastEditTime: 2022-12-08 16:52:09
  * @Description: 
 -->
 <script setup>
@@ -41,6 +41,7 @@ login.onAfterSubmit((props) => {
 
 <template>
     <div class="furnace-signin">
+        <h1 class="furnace-signin-title">标题</h1>
         <el-form
             ref="loginRefs"
             label-width="auto"
@@ -74,6 +75,9 @@ login.onAfterSubmit((props) => {
                 ></el-input>
             </el-form-item>
             <el-form-item>
+                <VerifySlider></VerifySlider>
+            </el-form-item>
+            <el-form-item>
                 <el-button
                     :loading="loading"
                     @click="login.onSubmit"
@@ -95,5 +99,9 @@ login.onAfterSubmit((props) => {
     width: 100%;
     height: 100%;
     overflow: hidden;
+
+    &-title {
+        font-size: 24px;
+    }
 }
 </style>

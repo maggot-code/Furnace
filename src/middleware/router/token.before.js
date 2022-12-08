@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-30 18:09:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 16:00:05
+ * @LastEditTime: 2022-12-08 16:47:03
  * @Description: 
  */
 import { useUserStore } from "@/store/useUserStore";
@@ -17,7 +17,7 @@ function define(to, form, next) {
     if (userStore.tokenUnusable) {
         userStore.clearToken();
         routerStore.toUnmounted();
-        useWarningTips(userStore.tokenUnusableTips);
+        // useWarningTips(userStore.tokenUnusableTips);
     };
 
     next();

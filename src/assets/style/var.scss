@@ -1,0 +1,10 @@
+$WindowWidthSize: 1920;
+$WindowHeightSize: 1080;
+
+@function tovw($px) {
+    @return calc($px / $WindowWidthSize) * 100vw;
+}
+
+@function tovh($px) {
+    @return calc($px / $WindowHeightSize) * 100vh;
+}

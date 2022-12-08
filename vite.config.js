@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 09:13:44
+ * @LastEditTime: 2022-12-08 14:03:54
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -14,6 +14,7 @@ import viteCompression from "vite-plugin-compression";
 import autoImport from "unplugin-auto-import/vite";
 import vueComponents from "unplugin-vue-components/vite";
 import legacy from '@vitejs/plugin-legacy'
+// import postcssPxToViewport from 'postcss-px-to-viewport';
 
 import lodashImport from "./plugins/lodash";
 import componentImport from "./plugins/component";
@@ -38,6 +39,21 @@ export default defineConfig(({ mode }) => {
                     // target: "http://10.1.1.171:9096/",
                     target: "http://192.1.1.5:8085/",
                     changeOrigin: true
+                }
+            }
+        },
+        css: {
+            postcss: {
+                plugins: [
+                    // postcssPxToViewport({
+                    //     viewportWidth: 1920,
+                    //     viewportUnit: "vw"
+                    // })
+                ],
+            },
+            preprocessorOptions: {
+                scss: {
+                    additionalData: '@import "@/assets/style/var.scss";'
                 }
             }
         },
