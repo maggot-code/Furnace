@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-05 23:59:09
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:49:23
+ * @LastEditTime: 2022-12-08 11:34:32
  * @Description: 
 -->
 <script setup>
@@ -61,6 +61,7 @@ onBeforeUnmount(() => {
                 :schema="{ formSchema, cellSchema }"
                 :remote="{ enums: formWorker.enums, search: formWorker.search }"
                 :upload="{ call: formWorker.call, down: formWorker.down }"
+                @upload-event="formEvent.uploadEvent"
                 @form-error="formEvent.formError"
             ></mg-form>
         </div>

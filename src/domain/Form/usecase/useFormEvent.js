@@ -3,11 +3,12 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 22:11:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 11:26:40
+ * @LastEditTime: 2022-12-08 11:35:49
  * @Description: 
  */
 import { createEventHook } from "@vueuse/core";
 import { useWarningTips } from "@/hooks/useMessage";
+import { isEmptyObject } from "~/shared/is";
 
 function transFormData(source) {
     return source.map((value) => {
@@ -55,6 +56,12 @@ export function useFormEvent(form) {
         });
     }
 
+    function uploadEvent(file) {
+        if (isEmptyObject(file)) return;
+
+        file.toload();
+    }
+
     function formError(abnormal) {
         const tips = get(abnormal, "error.txt", "抱歉,表单提交失败,请稍后再试!");
         useWarningTips(tips);
@@ -69,6 +76,7 @@ export function useFormEvent(form) {
         formSave,
         formReset,
         formError,
+        uploadEvent,
         onSubmit: submitEvent.on,
         onReset: resetEvent.on
     }

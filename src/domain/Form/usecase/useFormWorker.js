@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-06 02:15:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 10:56:50
+ * @LastEditTime: 2022-12-08 11:34:51
  * @Description: 
  */
 import { service } from "@/service/FormServer";
@@ -67,7 +67,7 @@ export function useFormWorker(form) {
     }
     // 文件下载
     async function down(file) {
-        const fileAddress = "/SWZDH/file";
+        const fileAddress = import.meta.env.VITE_APP_SERVER_PREFIX + "/file";
         const url = fileAddress + file.url;
         return service.request({ url, method: "GET", responseType: 'blob' })
             .then((response) => {
