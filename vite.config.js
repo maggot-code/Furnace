@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-21 14:19:59
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 17:13:45
+ * @LastEditTime: 2022-12-08 09:11:10
  * @Description: 
  */
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
@@ -35,8 +35,8 @@ export default defineConfig(({ mode }) => {
                     changeOrigin: true
                 },
                 "/mh": {
-                    target: "http://10.1.1.171:9096/",
-                    // target: "http://192.1.1.5:8080/",
+                    // target: "http://10.1.1.171:9096/",
+                    target: "http://192.1.1.5:8080/",
                     changeOrigin: true
                 }
             }
