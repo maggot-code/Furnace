@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/domain/form/entity/Schema.js
+ * @FilePath: \Furnace\src\domain\Form\entity\Schema.js
  * @Author: maggot-code
  * @Date: 2022-12-04 21:09:49
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 21:15:46
+ * @LastEditTime: 2022-12-09 10:21:25
  * @Description: 
  */
 import { useShallowObject } from "@/hooks/ref/useShallowObject";
@@ -19,11 +19,23 @@ export function SchemaEntity() {
         return unref(cellConfig.source)
     });
 
+    // 由于错误的用法导致需要该函数用来配合重新设置数据
+    // 经过测试在tableTable被消费的时候就会出现cellSchema被重置的问题
+    // 但是原因没有找到，所以只能通过该函数来解决
+    function cover(dataSource) {
+        const schema = (unref(cellSchema)).map((cell) => {
+            cell.value = dataSource[cell.field];
+            return cell;
+        });
+        cellConfig.setup(schema);
+    }
+
     return {
         formConfig,
         cellConfig,
         formSchema,
         cellSchema,
+        cover,
     }
 }
 

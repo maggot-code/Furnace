@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 21:17:00
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 13:55:45
+ * @LastEditTime: 2022-12-09 10:06:53
  * @Description: 
  */
 import { SchemaEntity } from "../entity/Schema";
@@ -35,6 +35,7 @@ export function defineForm(namespace) {
     });
 
     return provideForm(namespace, {
+        schema,
         formRefs: element.refs,
         formJob: job,
         formSchema: schema.formSchema,

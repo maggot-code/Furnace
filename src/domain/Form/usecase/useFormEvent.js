@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 22:11:57
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 11:35:49
+ * @LastEditTime: 2022-12-09 10:11:18
  * @Description: 
  */
 import { createEventHook } from "@vueuse/core";
@@ -33,6 +33,7 @@ export function useFormEvent(form) {
     // 检查必填
     async function formSubmit() {
         const [data, state] = await form.getFormData(true);
+        form.schema.cover(data);
         submitEvent.trigger({
             data: formatFormData(data),
             state
@@ -42,6 +43,7 @@ export function useFormEvent(form) {
     // 不检查必填
     async function formSave() {
         const [data, state] = await form.getFormData(false);
+        form.schema.cover(data);
         submitEvent.trigger({
             data: formatFormData(data),
             state
@@ -50,6 +52,7 @@ export function useFormEvent(form) {
 
     async function formReset() {
         const [data, state] = await form.resetFormData();
+        form.schema.cover(data);
         resetEvent.trigger({
             data: formatFormData(data),
             state

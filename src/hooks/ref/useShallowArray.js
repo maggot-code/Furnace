@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/hooks/ref/useShallowArray.js
+ * @FilePath: \Furnace\src\hooks\ref\useShallowArray.js
  * @Author: maggot-code
  * @Date: 2022-12-04 01:42:19
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 01:47:01
+ * @LastEditTime: 2022-12-09 10:17:36
  * @Description: 
  */
 import { transArray } from "~/shared/trans";
