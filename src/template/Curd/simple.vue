@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\template\Curd\simple.vue
+ * @FilePath: /Furnace/src/template/Curd/simple.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 16:02:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 10:57:45
+ * @LastEditTime: 2022-12-10 14:56:02
  * @Description: 
 -->
 <script setup>
@@ -25,13 +25,13 @@ import { defineTable } from "@/domain/Table/usecase/defineTable";
 import { defineCurd } from "@/domain/Curd/usecase/defineCurd";
 import { mergeObject } from "~/shared/merge";
 
+const { finished } = CurdDataServer.server;
 const serviceGroup = [
     ConfigCurdServer,
     CurdSearchServer,
     CurdTableServer,
     CurdDataServer
 ];
-const { finished } = CurdTableServer.server;
 const props = defineProps({
     popupKeyword: String
 });
@@ -162,13 +162,6 @@ onUnmounted(() => {
                 </template>
             </div>
             <div class="template-curd-simple-body-table">
-                <!-- :openHeight="openHeight"
-                :resetCurrentPage="resetCurrentPage"
-                :resizeTable="resizeTable"
-                :refresh="refresh"
-                @onChoice="table.choice.source.setup"
-                @cellEvent="cellEvent"
-                @handleRow="handleRow" -->
                 <mg-table
                     ref="tableRefs"
                     :defaultPageSize="20"

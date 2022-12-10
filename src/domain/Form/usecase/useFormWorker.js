@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\domain\Form\usecase\useFormWorker.js
+ * @FilePath: /Furnace/src/domain/Form/usecase/useFormWorker.js
  * @Author: maggot-code
  * @Date: 2022-12-06 02:15:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 11:34:51
+ * @LastEditTime: 2022-12-10 14:46:14
  * @Description: 
  */
 import { service } from "@/service/FormServer";
@@ -18,7 +18,7 @@ export function useFormWorker(form) {
         const params = omit(get(props, "lib", {}), "api");
         return service.request({ url, params, method })
             .then((response) => {
-                return transArray(response);
+                return transArray(response?.data ?? response);
             }).catch((error) => {
                 return [];
             });

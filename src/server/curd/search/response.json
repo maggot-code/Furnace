@@ -32,6 +32,25 @@
                 "mold": "text",
                 "componentName": "mg-input",
                 "value": ""
+            },
+            {
+                "field": "city",
+                "dataSchema": {
+                    "enums": [],
+                    "childrenKey": "children",
+                    "lib": {},
+                    "step": "2",
+                    "valueField": "id",
+                    "textField": "text",
+                    "api": "/mock/get/city"
+                },
+                "uiSchema": {
+                    "clearable": true,
+                    "placeholder": "请选择城市"
+                },
+                "mold": "default",
+                "componentName": "mg-cascader",
+                "value": ""
             }
         ]
     }

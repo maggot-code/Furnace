@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\pages\User\signin.vue
+ * @FilePath: /Furnace/src/pages/User/signin.vue
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 18:10:22
+ * @LastEditTime: 2022-12-10 14:37:00
  * @Description: 
 -->
 <script setup>
@@ -72,9 +72,6 @@ login.onAfterSubmit((props) => {
                     clearable
                     show-password
                 ></el-input>
-            </el-form-item>
-            <el-form-item>
-                <VerifySlider></VerifySlider>
             </el-form-item>
             <el-form-item>
                 <el-button
