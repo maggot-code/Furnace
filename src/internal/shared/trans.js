@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/shared/trans.js
+ * @FilePath: \Furnace\src\internal\shared\trans.js
  * @Author: maggot-code
  * @Date: 2022-12-03 17:33:16
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 04:30:47
+ * @LastEditTime: 2022-12-12 13:39:51
  * @Description: 
  */
 // 默认值转换

@@ -3,14 +3,13 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 04:06:48
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 14:54:32
+ * @LastEditTime: 2022-12-12 10:28:13
  * @Description: 
  */
 export function LoginFormEntity() {
     const data = reactive({
         username: "admin",
-        // userpassword: "admin@1234",
-        userpassword: "",
+        userpassword: "admin@1234"
     });
     const rules = {
         username: [
