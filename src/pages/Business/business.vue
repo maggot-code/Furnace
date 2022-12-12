@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 17:04:02
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 10:48:51
+ * @LastEditTime: 2022-12-12 15:06:44
  * @Description: 
 -->
 <script setup>
@@ -21,11 +21,6 @@ defineMenu();
         </template>
 
         <template #aside>
-            <!-- <furnace-scroll
-                ref="refs"
-            >
-                <BizMenu></BizMenu>
-            </furnace-scroll> -->
             <FurnaceScrollBar
                 ref="refs"
                 classes="biz-scroll"

@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/extend/router.js
+ * @FilePath: \Furnace\src\extend\router.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:54:32
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 05:49:56
+ * @LastEditTime: 2022-12-12 16:23:07
  * @Description: 
  */
 import { defineRouter } from "~/router";
@@ -14,6 +14,7 @@ import BeforeLogin from "@/middleware/router/login.before";
 import BeforeBusiness from "@/middleware/router/business.before";
 import BeforeProgress from "@/middleware/router/nprogress.before";
 import AfterProgress from "@/middleware/router/nprogress.after";
+import AfterTitle from "@/middleware/router/title.after";
 
 const RouterBefore = [
     BeforeProgress,
@@ -24,7 +25,8 @@ const RouterBefore = [
     BeforeBusiness,
 ];
 const RouterAfter = [
-    AfterProgress
+    AfterProgress,
+    AfterTitle
 ];
 const { router, VueRouter } = defineRouter({
     before: RouterBefore,

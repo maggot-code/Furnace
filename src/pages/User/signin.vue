@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 14:40:46
+ * @LastEditTime: 2022-12-12 16:15:31
  * @Description: 
 -->
 <script setup>
@@ -11,21 +11,16 @@ import { UserLoginServer, UserLoginObtain } from "@/server/user/login";
 import { useUserStore } from "@/store/useUserStore";
 import { useLogin } from "@/biz/user/usecase/useLogin";
 import { useRedirect } from "@/hooks/router/useRedirect";
-import { useInfo } from "@/hooks/system/useInfo";
+import { useInfo, useTypeface } from "@/hooks/system/useInfo";
 import { useMessageCloseAll, useMessage } from "@/hooks/useMessage";
-
-const { info, version } = useInfo();
 
 const redo = useRedirect();
 const userStore = useUserStore();
 const login = useLogin();
+const fontClass = useTypeface();
+const { info, version } = useInfo();
 const { loginRefs, loginForm, loginRules } = login;
 const { loading } = UserLoginServer.server;
-const fontClass = computed(() => {
-    return import.meta.env.DEV
-        ? ["furnace-font"]
-        : [];
-});
 function loginNext(response) {
     // useSuccessTips("成功,正在为您载入配置");
     userStore.setup(response) && redo();
@@ -211,10 +206,6 @@ login.onAfterSubmit((props) => {
 </template>
 
 <style scoped lang='scss'>
-.furnace-font {
-    font-family: "Smiley Sans";
-}
-
 .furnace-signin {
     display: grid;
     width: 100%;
@@ -258,6 +249,7 @@ login.onAfterSubmit((props) => {
 
                 &-title {
                     font-size: 32px;
+                    line-height: 1.5;
                     padding-left: 12px;
                     color: #666;
                     letter-spacing: 2px;

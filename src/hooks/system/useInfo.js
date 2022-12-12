@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-12 13:21:47
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 13:33:05
+ * @LastEditTime: 2022-12-12 16:15:07
  * @Description: 
  */
 import { SYSTEM_SYMBOL } from "~/shared/constant";
@@ -20,6 +20,15 @@ export function useInfo() {
         info,
         version
     }
+}
+
+export function useTypeface() {
+    const fontClass = computed(() => {
+        return import.meta.env.DEV
+            ? ["furnace-font"]
+            : [];
+    });
+    return fontClass;
 }
 
 export default useInfo;
