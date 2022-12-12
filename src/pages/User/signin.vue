@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 03:01:27
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 13:46:03
+ * @LastEditTime: 2022-12-12 14:40:46
  * @Description: 
 -->
 <script setup>
@@ -21,6 +21,11 @@ const userStore = useUserStore();
 const login = useLogin();
 const { loginRefs, loginForm, loginRules } = login;
 const { loading } = UserLoginServer.server;
+const fontClass = computed(() => {
+    return import.meta.env.DEV
+        ? ["furnace-font"]
+        : [];
+});
 function loginNext(response) {
     // useSuccessTips("成功,正在为您载入配置");
     userStore.setup(response) && redo();
@@ -49,7 +54,7 @@ login.onAfterSubmit((props) => {
                 <div class="furnace-signin-content-top-main">
                     <el-image
                         class="furnace-signin-content-top-main-logo"
-                        fit="contain"
+                        fit="scale-down"
                         :alt="info.title"
                         :src="info.logo"
                     >
@@ -57,9 +62,15 @@ login.onAfterSubmit((props) => {
                             <i class="el-icon-picture-outline"></i>
                         </template>
                     </el-image>
-                    <h1 class="furnace-signin-content-top-main-title">{{ info.title }}</h1>
+                    <h1
+                        class="furnace-signin-content-top-main-title"
+                        :class="fontClass"
+                    >{{ info.title }}</h1>
                 </div>
-                <p class="furnace-signin-content-top-describe">{{ info.desc }}</p>
+                <p
+                    class="furnace-signin-content-top-describe"
+                    :class="fontClass"
+                >{{ info.desc }}</p>
             </div>
             <div class="furnace-signin-content-main">
                 <el-form
@@ -163,35 +174,47 @@ login.onAfterSubmit((props) => {
                         <i class="el-icon-question el-icon--right"></i>
                     </el-link>
                 </div>
-                <el-link
-                    class="furnace-signin-content-footer-item"
-                    type="info"
-                    icon="el-icon-connection"
-                >
-                    {{ info.author }}
-                </el-link>
-                <el-link
-                    class="furnace-signin-content-footer-item"
-                    type="info"
-                    icon="el-icon-link"
-                    target="_blank"
-                    :href="info.store.uri"
-                >
-                    {{ info.store.name }}
-                </el-link>
-                <el-link
-                    class="furnace-signin-content-footer-item"
-                    type="info"
-                    icon="el-icon-position"
-                >
-                    {{ version }}
-                </el-link>
+                <el-row>
+                    <el-row :span="24">
+                        <el-link
+                            class="furnace-signin-content-footer-item"
+                            type="info"
+                            icon="el-icon-connection"
+                        >
+                            {{ info.author }}
+                        </el-link>
+                    </el-row>
+                    <el-row :span="24">
+                        <el-link
+                            class="furnace-signin-content-footer-item"
+                            type="info"
+                            icon="el-icon-link"
+                            target="_blank"
+                            :href="info.store.uri"
+                        >
+                            {{ info.store.name }}
+                        </el-link>
+                    </el-row>
+                    <el-row :span="24">
+                        <el-link
+                            class="furnace-signin-content-footer-item"
+                            type="info"
+                            icon="el-icon-position"
+                        >
+                            {{ version }}
+                        </el-link>
+                    </el-row>
+                </el-row>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped lang='scss'>
+.furnace-font {
+    font-family: "Smiley Sans";
+}
+
 .furnace-signin {
     display: grid;
     width: 100%;
@@ -221,15 +244,19 @@ login.onAfterSubmit((props) => {
             &-main {
                 display: flex;
                 justify-content: center;
+                margin-bottom: 12px;
 
                 &-logo,
                 &-title {
-                    height: 64px;
-                    line-height: 64px;
+                    height: 52px;
+                    line-height: 52px;
+                }
+
+                &-logo {
+                    width: 52px;
                 }
 
                 &-title {
-                    font-family: "Smiley Sans";
                     font-size: 32px;
                     padding-left: 12px;
                     color: #666;
@@ -239,11 +266,11 @@ login.onAfterSubmit((props) => {
             }
 
             &-describe {
-                font-family: "Smiley Sans";
                 text-align: center;
                 font-size: 16px;
                 color: #999;
                 height: 24px;
+                line-height: 24px;
             }
         }
 
