@@ -3,16 +3,19 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 21:34:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 16:07:07
+ * @LastEditTime: 2022-12-12 18:18:56
  * @Description: 
 -->
 <script setup>
 import { RouteName } from "~/router/shared/context";
 import { useRouter } from "@/hooks/router/useRouter";
 import { useScroll } from "@/hooks/useScroll";
+import { useInfo, useTypeface } from "@/hooks/system/useInfo";
 
 const router = useRouter();
+const fontClass = useTypeface();
 const { refs } = useScroll();
+const { info } = useInfo();
 
 function tobiz() {
     router.push({ name: RouteName.BusinessName });
@@ -22,7 +25,25 @@ function tobiz() {
 <template>
     <main class="welcome-container">
         <section class="welcome-container-head">
-            <UserView></UserView>
+            <div class="welcome-container-head-title">
+                <el-image
+                    class="welcome-container-head-title-logo"
+                    fit="scale-down"
+                    :alt="info.title"
+                    :src="info.logo"
+                >
+                    <template #error>
+                        <i class="el-icon-picture-outline"></i>
+                    </template>
+                </el-image>
+                <h1
+                    class="welcome-container-head-title-words"
+                    :class="fontClass"
+                >{{ info.title }}</h1>
+            </div>
+            <div class="welcome-container-head-user">
+                <UserView></UserView>
+            </div>
         </section>
         <section class="welcome-container-body">
             <FurnaceScrollBar
@@ -30,32 +51,53 @@ function tobiz() {
                 class="welcome-container-body-scroll"
                 :speed="120"
             >
-                <el-row :gutter="24">
-                    <el-col :span="12">
-                        <ContainerView>1</ContainerView>
-                    </el-col>
-                    <el-col :span="12">
-                        <ContainerView>2</ContainerView>
-                    </el-col>
-                    <el-col :span="8">
-                        <ContainerView>3</ContainerView>
-                    </el-col>
-                    <el-col :span="8">
-                        <ContainerView>4</ContainerView>
-                    </el-col>
-                    <el-col :span="8">
-                        <ContainerView>5</ContainerView>
-                    </el-col>
-                    <el-col :span="24">
-                        <ContainerView>6</ContainerView>
-                    </el-col>
-                    <el-col :span="12">
-                        <ContainerView>7</ContainerView>
-                    </el-col>
-                    <el-col :span="24">
-                        <ContainerView>8</ContainerView>
-                    </el-col>
-                </el-row>
+                <GridView
+                    :col-gap="4"
+                    :row-gap="4"
+                >
+                    <GridCell
+                        style="grid-area: 1 / 1 / 2 / 3;"
+                        :col="2"
+                        :row="1"
+                    >
+                        <SystemModular color="#36b24d"></SystemModular>
+                    </GridCell>
+                    <GridCell
+                        style="grid-area: 1 / 3 / 3 / 5;"
+                        :col="2"
+                        :row="2"
+                    >
+                        <SystemModular color="#0e98ad"></SystemModular>
+                    </GridCell>
+                    <GridCell
+                        style="grid-area: 2 / 1 / 3 / 3;"
+                        :col="2"
+                        :row="1"
+                    >
+                        <SystemModular color="#ff9433"></SystemModular>
+                    </GridCell>
+                    <GridCell
+                        style="grid-area: 3 / 1 / 5 / 2;"
+                        :col="1"
+                        :row="2"
+                    >
+                        <SystemModular color="#4263eb"></SystemModular>
+                    </GridCell>
+                    <GridCell
+                        style="grid-area: 4 / 2 / 5 / 5;"
+                        :col="3"
+                        :row="1"
+                    >
+                        <SystemModular color="pink"></SystemModular>
+                    </GridCell>
+                    <GridCell
+                        style="grid-area: 3 / 2 / 4 / 5;"
+                        :col="3"
+                        :row="1"
+                    >
+                        <SystemModular color="#333"></SystemModular>
+                    </GridCell>
+                </GridView>
             </FurnaceScrollBar>
         </section>
     </main>
@@ -70,11 +112,41 @@ function tobiz() {
     background-color: #f0f2f5;
 
     &-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
         height: 64px;
+        padding: 0 24px;
         background-color: #fff;
         box-sizing: border-box;
         overflow: hidden;
+
+        &-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+
+            &-logo,
+            &-words {
+                height: 52px;
+                line-height: 52px;
+            }
+
+            &-logo {
+                width: 52px;
+            }
+
+            &-words {
+                font-size: 32px;
+                line-height: 1.5;
+                padding-left: 12px;
+                color: #666;
+                letter-spacing: 2px;
+                text-shadow: 0 0 2px #333;
+            }
+        }
     }
 
     &-body {
