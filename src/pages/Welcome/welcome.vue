@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 21:34:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 18:18:56
+ * @LastEditTime: 2022-12-13 14:37:34
  * @Description: 
 -->
 <script setup>
@@ -52,50 +52,39 @@ function tobiz() {
                 :speed="120"
             >
                 <GridView
-                    :col-gap="4"
-                    :row-gap="4"
+                    :cup="4"
+                    :col-gap="12"
+                    :row-gap="12"
                 >
                     <GridCell
-                        style="grid-area: 1 / 1 / 2 / 3;"
-                        :col="2"
-                        :row="1"
+                        :spanStart="[1, 1]"
+                        :spanEnd="[3, 3]"
                     >
                         <SystemModular color="#36b24d"></SystemModular>
                     </GridCell>
                     <GridCell
-                        style="grid-area: 1 / 3 / 3 / 5;"
-                        :col="2"
-                        :row="2"
+                        :spanStart="[1, 3]"
+                        :spanEnd="[4, 5]"
                     >
                         <SystemModular color="#0e98ad"></SystemModular>
                     </GridCell>
                     <GridCell
-                        style="grid-area: 2 / 1 / 3 / 3;"
-                        :col="2"
-                        :row="1"
+                        :spanStart="[3, 1]"
+                        :spanEnd="[4, 3]"
                     >
                         <SystemModular color="#ff9433"></SystemModular>
                     </GridCell>
                     <GridCell
-                        style="grid-area: 3 / 1 / 5 / 2;"
-                        :col="1"
-                        :row="2"
+                        :spanStart="[4, 2]"
+                        :spanEnd="[5, 5]"
                     >
                         <SystemModular color="#4263eb"></SystemModular>
                     </GridCell>
                     <GridCell
-                        style="grid-area: 4 / 2 / 5 / 5;"
-                        :col="3"
-                        :row="1"
+                        :spanStart="[4, 1]"
+                        :spanEnd="[5, 2]"
                     >
                         <SystemModular color="pink"></SystemModular>
-                    </GridCell>
-                    <GridCell
-                        style="grid-area: 3 / 2 / 4 / 5;"
-                        :col="3"
-                        :row="1"
-                    >
-                        <SystemModular color="#333"></SystemModular>
                     </GridCell>
                 </GridView>
             </FurnaceScrollBar>
