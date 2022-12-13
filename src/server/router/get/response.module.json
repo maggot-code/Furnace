@@ -3,107 +3,19 @@
     "message": "ok",
     "data": [
         {
-            "name": "system",
-            "mode": "fragment",
-            "address": "/sys",
-            "redirect": "/sys/user",
-            "title": "系统模块",
+            "name": "",
+            "mode": "",
+            "template": "",
+            "address": "",
+            "redirect": "",
+            "title": "",
             "orderid": 0,
-            "module": true,
+            "hidden": false,
+            "affix": false,
             "menu": false,
+            "module": false,
             "pid": null,
-            "id": 1
-        },
-        {
-            "name": "system_user",
-            "mode": "fragment",
-            "address": "/sys/user",
-            "redirect": "/sys/user/list",
-            "title": "系统用户",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 1,
-            "id": 10
-        },
-        {
-            "name": "system_user_list",
-            "mode": "template",
-            "address": "/sys/user/list",
-            "title": "用户列表",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 10,
-            "id": 100
-        },
-        {
-            "name": "system_user_visit",
-            "mode": "template",
-            "address": "/sys/user/visit",
-            "title": "来访记录",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 10,
-            "id": 101
-        },
-        {
-            "name": "system_user_log",
-            "mode": "template",
-            "address": "/sys/user/log",
-            "title": "操作日志",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 10,
-            "id": 102
-        },
-        {
-            "name": "system_power",
-            "mode": "fragment",
-            "address": "/sys/power",
-            "redirect": "/sys/power/setup",
-            "title": "系统权限",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 1,
-            "id": 20
-        },
-        {
-            "name": "system_power_setup",
-            "mode": "template",
-            "address": "/sys/power/setup",
-            "title": "权限设置",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 20,
-            "id": 200
-        },
-        {
-            "name": "system_power_filter",
-            "mode": "template",
-            "address": "/sys/power/filter",
-            "title": "权限过滤",
-            "orderid": 0,
-            "module": false,
-            "menu": true,
-            "pid": 20,
-            "id": 201
-        },
-        {
-            "name": "system",
-            "mode": "fragment",
-            "address": "/sys",
-            "redirect": "/sys/user",
-            "title": "监控模块",
-            "orderid": 0,
-            "module": true,
-            "menu": false,
-            "pid": null,
-            "id": 2
+            "id": 0
         }
     ]
 }

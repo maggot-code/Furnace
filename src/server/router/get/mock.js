@@ -3,11 +3,11 @@
  * @Author: maggot-code
  * @Date: 2022-12-04 05:25:52
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-13 14:57:25
+ * @LastEditTime: 2022-12-13 17:55:04
  * @Description: 
  */
-// import Response from "./response.json";
-import Response from "./response.module.json";
+import Response from "./response.json";
+// import Response from "./response.module.json";
 import { defineMock, defineResponse } from "~/mock";
 import { Address, Method } from "./config";
 
