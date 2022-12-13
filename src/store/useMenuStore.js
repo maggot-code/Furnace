@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-08 11:18:50
+ * @LastEditTime: 2022-12-13 15:58:14
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -18,6 +18,10 @@ const paths = ["collapse"];
 function useMenu(node) {
     const menuState = get(node, "meta.menu", node.menu);
     return transBoolean(menuState);
+}
+function useModule(node) {
+    const moduleState = get(node, "meta.module", node.module);
+    return transBoolean(moduleState);
 }
 
 function toFilter(node) {
