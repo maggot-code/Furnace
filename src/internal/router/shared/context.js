@@ -1,9 +1,9 @@
 /*
- * @FilePath: /Furnace/src/internal/router/shared/context.js
+ * @FilePath: \Furnace\src\internal\router\shared\context.js
  * @Author: maggot-code
  * @Date: 2022-12-03 17:09:36
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:18:31
+ * @LastEditTime: 2022-12-13 14:47:23
  * @Description: 
  */
 import {
@@ -72,6 +72,7 @@ export const VueRouterMetaPickKeyword = [
     "hasParent",
     "hasChild",
     "disabled",
+    "module",
     "menu",
     "hidden",
     "affix",
