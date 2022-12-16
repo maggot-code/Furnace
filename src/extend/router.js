@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\extend\router.js
+ * @FilePath: /Furnace/src/extend/router.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:54:32
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 16:23:07
+ * @LastEditTime: 2022-12-16 16:18:53
  * @Description: 
  */
 import { defineRouter } from "~/router";

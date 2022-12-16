@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-15 17:24:30
+ * @LastEditTime: 2022-12-16 17:33:05
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -18,10 +18,6 @@ const paths = ["collapse"];
 function useMenu(node) {
     const menuState = get(node, "meta.menu", node.menu);
     return transBoolean(menuState);
-}
-function useModule(node) {
-    const moduleState = get(node, "meta.module", node.module);
-    return transBoolean(moduleState);
 }
 
 function toFilter(node) {
@@ -54,13 +50,14 @@ export const useMenuStore = defineStore(Namespace, {
     getters: {
         menuGroup() {
             const routerStore = useRouterStore();
-            return treeMap(routerStore.asyncRoutes, transMenuNode).filter(toFilter).sort(toSort);
+            return treeMap(routerStore.moduleCurrent, transMenuNode).filter(toFilter).sort(toSort);
         },
         menuWidth() {
             return this.collapse ? "64px" : "240px";
         },
-        hiddenTitle: (state) => (level) => {
-            const levelState = transNumber(level, 0) > 0;
+        hiddenTitle: (state) => (node) => {
+            const threshold = node?.parent?.module ? 1 : 0;
+            const levelState = transNumber(node.level, 0) > threshold;
 
             if (levelState) return true;
 

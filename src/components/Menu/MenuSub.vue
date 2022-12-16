@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-01 02:05:15
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 17:21:09
+ * @LastEditTime: 2022-12-16 17:30:56
  * @Description: 
 -->
 <script setup>
@@ -28,7 +28,7 @@ const props = defineProps({
             <template slot="title">
                 <MenuIcon :node="node"></MenuIcon>
                 <MenuLabel
-                    v-show="menuStore.hiddenTitle(node.level)"
+                    v-show="menuStore.hiddenTitle(node)"
                     :node="node"
                 ></MenuLabel>
             </template>

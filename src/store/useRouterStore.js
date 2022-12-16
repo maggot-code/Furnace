@@ -3,15 +3,17 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-15 17:24:02
+ * @LastEditTime: 2022-12-16 16:55:29
  * @Description: 
  */
 import { defineStore } from 'pinia';
 import { RouterGetObtain } from "@/server/router/get";
 import { transArray } from "~/shared/trans";
-import { reloadRouter } from "~/router";
+import { findRoute, reloadRouter } from "~/router";
 import { GroupEntity } from "~/router/entity/Group";
 import { RouteName, RouterNamespace } from "~/router/shared/context";
+import BusinessRoute from "~/router/constant/business";
+import { mergeObject } from "~/shared/merge";
 
 const paths = ["cache", "module"];
 // const storage = import.meta.env.DEV ? window.sessionStorage : window.localStorage;
@@ -22,8 +24,8 @@ export const Namespace = 'useRouterStore';
 export const useRouterStore = defineStore(Namespace, {
     state: () => ({
         mounted: false,
+        cache: [],
         module: "",
-        cache: []
     }),
 
     getters: {
@@ -36,15 +38,26 @@ export const useRouterStore = defineStore(Namespace, {
         // 永远存在且一定会存在一个模块
         moduleRoutes() {
             if (this.notAsyncRoutes) return [];
-            return this.asyncRoutes.filter((route) => route.meta.module);
+            const root = mergeObject(findRoute(BusinessRoute), { children: [] });
+            const group = this.asyncRoutes.reduce((store, route) => {
+                if (route.meta.module) {
+                    store.push(route);
+                } else {
+                    root.children.push(route);
+                }
+                return store;
+            }, []);
+            group.unshift(root);
+
+            return group;
         },
         moduleCurrent() {
-            return [];
+            return this.moduleRoutes.find((route) => route.name === this.module)?.children ?? [];
         },
         firstRoute() {
-            if (this.notAsyncRoutes) return null;
+            if (this.moduleCurrent.length <= 0) return null;
 
-            return this.asyncRoutes[0];
+            return this.moduleCurrent[0];
         }
     },
 
@@ -69,6 +82,9 @@ export const useRouterStore = defineStore(Namespace, {
         toUnmounted() {
             this.cache = [];
             this.mounted = false;
+        },
+        toModule(route) {
+            this.module = route.name;
         }
     },
 

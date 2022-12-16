@@ -3,23 +3,16 @@
  * @Author: maggot-code
  * @Date: 2022-11-23 21:34:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-15 16:49:15
+ * @LastEditTime: 2022-12-16 17:59:14
  * @Description: 
 -->
 <script setup>
-import { RouteName } from "~/router/shared/context";
-import { useRouter } from "@/hooks/router/useRouter";
 import { useScroll } from "@/hooks/useScroll";
 import { useInfo, useTypeface } from "@/hooks/system/useInfo";
 
-const router = useRouter();
 const fontClass = useTypeface();
 const { refs } = useScroll();
 const { info } = useInfo();
-
-function tobiz() {
-    router.push({ name: RouteName.BusinessName });
-}
 </script>
 
 <template>
@@ -70,6 +63,12 @@ function tobiz() {
                     </GridCell>
                     <GridCell
                         :spanStart="[2, 1]"
+                        :spanEnd="[3, 4]"
+                    >
+                        <EmptyView></EmptyView>
+                    </GridCell>
+                    <GridCell
+                        :spanStart="[3, 1]"
                         :spanEnd="[3, 4]"
                     >
                         <EmptyView></EmptyView>

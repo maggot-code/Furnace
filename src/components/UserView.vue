@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\components\UserView.vue
+ * @FilePath: /Furnace/src/components/UserView.vue
  * @Author: maggot-code
  * @Date: 2022-12-06 16:06:50
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 16:36:59
+ * @LastEditTime: 2022-12-16 17:08:40
  * @Description: 
 -->
 <script setup>
@@ -12,8 +12,10 @@ import { isEmptyString } from "~/shared/is";
 import { transFunction } from "~/shared/trans";
 import { useUserStore } from "@/store/useUserStore";
 import { useRedirect } from "@/hooks/router/useRedirect";
+import { useModule } from "@/hooks/router/useModule";
 
 const redo = useRedirect();
+const { modules, redo: switchModule } = useModule();
 const userStore = useUserStore();
 const { userInfo } = storeToRefs(userStore);
 const userName = computed(() => {
@@ -33,8 +35,12 @@ function errorHandler(error) {
     return true;
 }
 function handlerCommand(command) {
-    const handler = transFunction(commandKind[command]);
-    handler();
+    const handler = commandKind[command];
+    if (isFunction(handler)) {
+        handler();
+    } else {
+        switchModule(command);
+    }
 }
 </script>
 
@@ -52,11 +58,17 @@ function handlerCommand(command) {
                 @error="errorHandler"
             >{{ userName }}</el-avatar>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="info">个人信息</el-dropdown-item>
+                <template v-for="(route) in modules">
+                    <el-dropdown-item
+                        :command="route"
+                        :key="route.name"
+                    >{{ route.meta.title }}</el-dropdown-item>
+                </template>
                 <el-dropdown-item
-                    command="logoff"
+                    command="info"
                     divided
-                >退出登录</el-dropdown-item>
+                >个人信息</el-dropdown-item>
+                <el-dropdown-item command="logoff">退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>

@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\plugins\lodash.js
+ * @FilePath: /Furnace/plugins/lodash.js
  * @Author: maggot-code
  * @Date: 2022-11-21 14:42:17
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-07 15:43:06
+ * @LastEditTime: 2022-12-16 16:40:46
  * @Description: 
  */
 export default [
@@ -19,6 +19,7 @@ export default [
     "toLower",
     "toUpper",
     "eq",
+    "find",
     "set",
     "get",
     "pick",

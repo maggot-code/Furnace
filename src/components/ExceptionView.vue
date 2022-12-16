@@ -1,12 +1,16 @@
 <!--
- * @FilePath: \Furnace\src\components\ExceptionView.vue
+ * @FilePath: /Furnace/src/components/ExceptionView.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 19:26:50
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-11-23 20:05:20
+ * @LastEditTime: 2022-12-16 16:06:52
  * @Description: 
 -->
 <script setup>
+import { RouteName } from "~/router/shared/context";
+import { useRouter } from "@/hooks/router/useRouter";
+
+const router = useRouter();
 const props = defineProps({
     image: {
         type: [String],
@@ -21,6 +25,10 @@ const props = defineProps({
         default: '抱歉，无法继续工作了..'
     },
 });
+
+function resumeUse() {
+    router.push(RouteName.WelcomeName);
+}
 </script>
 
 <template>
@@ -32,7 +40,10 @@ const props = defineProps({
             <h1 class="exception-view-content-title">{{ title }}</h1>
             <div class="exception-view-content-desc">{{ desc }}</div>
             <div class="exception-view-content-action">
-                <el-button type="info">返回首页</el-button>
+                <el-button
+                    type="info"
+                    @click="resumeUse"
+                >返回首页</el-button>
             </div>
         </div>
     </div>

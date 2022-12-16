@@ -3,7 +3,7 @@
  * @Author: maggot-code
  * @Date: 2022-12-03 22:19:23
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-04 00:18:47
+ * @LastEditTime: 2022-12-16 16:30:38
  * @Description: 
  */
 import {
@@ -38,6 +38,17 @@ export function reloadRouter(routes) {
     router.matcher = replace.matcher // reset router
 
     return [router, state];
+}
+
+export function findRoute(route) {
+    const { name, path, address } = route;
+    const routes = router.getRoutes();
+
+    return find(routes, (item) => (
+        eq(item.name, name)
+        || eq(item.path, path)
+        || eq(item.path, address)
+    ));
 }
 
 export default router;
