@@ -1,28 +1,31 @@
 <!--
- * @FilePath: \Furnace\src\components\System\SystemModular.vue
+ * @FilePath: /Furnace/src/components/System/SystemModular.vue
  * @Author: maggot-code
  * @Date: 2022-12-12 16:48:53
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-12 18:19:58
+ * @LastEditTime: 2022-12-15 17:18:55
  * @Description: 
 -->
 <script setup>
-const props = defineProps({
-    color: String
-});
-const style = computed(() => {
-    return {
-        backgroundColor: props.color
-    }
-});
+import { useRouterStore } from "@/store/useRouterStore";
+import { useRouter } from "@/hooks/router/useRouter";
+
+const routerStore = useRouterStore();
+const router = useRouter();
+
+function tomodule(route) {
+    router.push(route);
+}
 </script>
 
 <template>
-    <div
-        class="system-modular"
-        :style="style"
-    >
-        <h1>系统模块</h1>
+    <div class="system-modular">
+        <template v-for="(group) in routerStore.moduleRoutes">
+            <h1
+                :key="group.meta.uid"
+                @click="tomodule(group)"
+            >{{ group.meta.title }}</h1>
+        </template>
     </div>
 </template>
 

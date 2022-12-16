@@ -1,11 +1,12 @@
 /*
- * @FilePath: \Furnace\src\components\Grid\GridCell.jsx
+ * @FilePath: /Furnace/src/components/Grid/GridCell.jsx
  * @Author: maggot-code
  * @Date: 2022-12-13 10:57:01
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-13 14:33:14
+ * @LastEditTime: 2022-12-15 13:53:26
  * @Description:
  */
+import "./cell.scss";
 import { defineComponent, computed, unref } from "vue";
 
 export default defineComponent({

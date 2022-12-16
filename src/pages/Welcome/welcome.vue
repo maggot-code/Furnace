@@ -1,9 +1,9 @@
 <!--
- * @FilePath: \Furnace\src\pages\Welcome\welcome.vue
+ * @FilePath: /Furnace/src/pages/Welcome/welcome.vue
  * @Author: maggot-code
  * @Date: 2022-11-23 21:34:26
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-13 14:37:34
+ * @LastEditTime: 2022-12-15 16:49:15
  * @Description: 
 -->
 <script setup>
@@ -52,39 +52,27 @@ function tobiz() {
                 :speed="120"
             >
                 <GridView
-                    :cup="4"
+                    :cup="3"
                     :col-gap="12"
                     :row-gap="12"
                 >
                     <GridCell
                         :spanStart="[1, 1]"
-                        :spanEnd="[3, 3]"
+                        :spanEnd="[2, 3]"
                     >
-                        <SystemModular color="#36b24d"></SystemModular>
+                        <SystemModular></SystemModular>
                     </GridCell>
                     <GridCell
                         :spanStart="[1, 3]"
-                        :spanEnd="[4, 5]"
+                        :spanEnd="[2, 3]"
                     >
-                        <SystemModular color="#0e98ad"></SystemModular>
+                        <EmptyView></EmptyView>
                     </GridCell>
                     <GridCell
-                        :spanStart="[3, 1]"
-                        :spanEnd="[4, 3]"
+                        :spanStart="[2, 1]"
+                        :spanEnd="[3, 4]"
                     >
-                        <SystemModular color="#ff9433"></SystemModular>
-                    </GridCell>
-                    <GridCell
-                        :spanStart="[4, 2]"
-                        :spanEnd="[5, 5]"
-                    >
-                        <SystemModular color="#4263eb"></SystemModular>
-                    </GridCell>
-                    <GridCell
-                        :spanStart="[4, 1]"
-                        :spanEnd="[5, 2]"
-                    >
-                        <SystemModular color="pink"></SystemModular>
+                        <EmptyView></EmptyView>
                     </GridCell>
                 </GridView>
             </FurnaceScrollBar>
@@ -106,7 +94,7 @@ function tobiz() {
         align-items: center;
         width: 100%;
         height: 64px;
-        padding: 0 24px;
+        padding: 0 12px;
         background-color: #fff;
         box-sizing: border-box;
         overflow: hidden;

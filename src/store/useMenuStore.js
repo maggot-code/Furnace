@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\store\useMenuStore.js
+ * @FilePath: /Furnace/src/store/useMenuStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 23:15:54
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-13 15:58:14
+ * @LastEditTime: 2022-12-15 17:24:30
  * @Description: 
  */
 import { defineStore } from 'pinia';

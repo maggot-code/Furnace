@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\middleware\router\unknow.before.js
+ * @FilePath: /Furnace/src/middleware/router/unknow.before.js
  * @Author: maggot-code
  * @Date: 2022-12-04 05:43:46
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-13 17:54:19
+ * @LastEditTime: 2022-12-15 16:53:53
  * @Description: 
  */
 import Router from "~/router";
@@ -13,7 +13,6 @@ import { useUserStore } from "@/store/useUserStore";
 function define(to, form, next) {
     const userStore = useUserStore();
     const routes = Router.getRoutes();
-    console.log(routes);
     const loseIndex = routes.findIndex((route) => eq(route.name, to.name)) < 0;
 
     if (userStore.tokenUnusable && eq(to.name, RouteName.NotfoundName)) {

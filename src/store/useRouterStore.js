@@ -1,9 +1,9 @@
 /*
- * @FilePath: \Furnace\src\store\useRouterStore.js
+ * @FilePath: /Furnace/src/store/useRouterStore.js
  * @Author: maggot-code
  * @Date: 2022-11-23 16:36:03
  * @LastEditors: maggot-code
- * @LastEditTime: 2022-12-06 14:22:42
+ * @LastEditTime: 2022-12-15 17:24:02
  * @Description: 
  */
 import { defineStore } from 'pinia';
@@ -13,7 +13,7 @@ import { reloadRouter } from "~/router";
 import { GroupEntity } from "~/router/entity/Group";
 import { RouteName, RouterNamespace } from "~/router/shared/context";
 
-const paths = ["cache"];
+const paths = ["cache", "module"];
 // const storage = import.meta.env.DEV ? window.sessionStorage : window.localStorage;
 const storage = window.sessionStorage;
 
@@ -22,6 +22,7 @@ export const Namespace = 'useRouterStore';
 export const useRouterStore = defineStore(Namespace, {
     state: () => ({
         mounted: false,
+        module: "",
         cache: []
     }),
 
@@ -29,8 +30,19 @@ export const useRouterStore = defineStore(Namespace, {
         asyncRoutes() {
             return GroupEntity(RouterNamespace.External, this.cache);
         },
+        notAsyncRoutes() {
+            return this.asyncRoutes.length <= 0;
+        },
+        // 永远存在且一定会存在一个模块
+        moduleRoutes() {
+            if (this.notAsyncRoutes) return [];
+            return this.asyncRoutes.filter((route) => route.meta.module);
+        },
+        moduleCurrent() {
+            return [];
+        },
         firstRoute() {
-            if (this.asyncRoutes.length <= 0) return null;
+            if (this.notAsyncRoutes) return null;
 
             return this.asyncRoutes[0];
         }
